@@ -1,0 +1,324 @@
+"use client";
+
+import Image from "next/image";
+import { FormEvent, useState, useTransition } from "react";
+
+type BookResult = {
+  id: string;
+  title: string;
+  price: number | null;
+  priceText: string;
+  link: string;
+  store: "amazon" | "flipkart";
+  isFallback: boolean;
+};
+
+type GoogleBook = {
+  id: string;
+  title: string;
+  authors: string[];
+  thumbnail: string | null;
+  infoLink: string;
+  publishedDate: string | null;
+  publisher: string | null;
+};
+
+type SearchResponse = {
+  query: string;
+  googleBook: GoogleBook | null;
+  amazon: BookResult[];
+  flipkart: BookResult[];
+  cheapestId: string | null;
+  notes: string[];
+};
+
+type StoreSectionProps = {
+  title: string;
+  accentClassName: string;
+  cheapestId: string | null;
+  results: BookResult[];
+};
+
+function StoreSection({
+  title,
+  accentClassName,
+  cheapestId,
+  results,
+}: StoreSectionProps) {
+  return (
+    <section className="space-y-4">
+      <div className="flex items-center justify-between">
+        <h2 className="text-2xl font-semibold text-slate-900">{title}</h2>
+        <span className={`rounded-full px-3 py-1 text-xs font-semibold ${accentClassName}`}>
+          Top {results.length} results
+        </span>
+      </div>
+
+      <div className="grid gap-4">
+        {results.map((item) => {
+          const isCheapest = item.id === cheapestId;
+
+          return (
+            <article
+              key={item.id}
+              className={`rounded-3xl border p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md ${
+                isCheapest
+                  ? "border-emerald-400 bg-emerald-50/80"
+                  : "border-slate-200 bg-white/85"
+              }`}
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div className="space-y-3">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="rounded-full bg-slate-900 px-2.5 py-1 text-xs font-semibold text-white">
+                      {item.store === "amazon" ? "Amazon" : "Flipkart"}
+                    </span>
+                    {isCheapest ? (
+                      <span className="rounded-full bg-emerald-600 px-2.5 py-1 text-xs font-semibold text-white">
+                        Cheapest
+                      </span>
+                    ) : null}
+                    {item.isFallback ? (
+                      <span className="rounded-full bg-amber-100 px-2.5 py-1 text-xs font-semibold text-amber-900">
+                        Fallback link
+                      </span>
+                    ) : (
+                      <span className="rounded-full bg-sky-100 px-2.5 py-1 text-xs font-semibold text-sky-900">
+                        Live parsed result
+                      </span>
+                    )}
+                  </div>
+
+                  <h3 className="text-lg font-semibold leading-snug text-slate-900">
+                    {item.title}
+                  </h3>
+                </div>
+
+                <p className="shrink-0 text-lg font-bold text-slate-900">{item.priceText}</p>
+              </div>
+
+              <div className="mt-4">
+                <a
+                  href={item.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-700"
+                >
+                  Open product
+                </a>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+export default function Home() {
+  const [query, setQuery] = useState("");
+  const [data, setData] = useState<SearchResponse | null>(null);
+  const [error, setError] = useState("");
+  const [isPending, startTransition] = useTransition();
+
+  async function runSearch(nextQuery: string) {
+    try {
+      const response = await fetch(`/api/search?q=${encodeURIComponent(nextQuery)}`, {
+        cache: "no-store",
+      });
+
+      if (!response.ok) {
+        const payload = (await response.json()) as { message?: string };
+        throw new Error(payload.message ?? "Search failed.");
+      }
+
+      const payload = (await response.json()) as SearchResponse;
+      setData(payload);
+    } catch (searchError) {
+      setData(null);
+      setError(
+        searchError instanceof Error ? searchError.message : "Something went wrong."
+      );
+    }
+  }
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const trimmedQuery = query.trim();
+    if (!trimmedQuery) {
+      setError("Please enter a book name.");
+      return;
+    }
+
+    setError("");
+
+    startTransition(() => {
+      void runSearch(trimmedQuery);
+    });
+  }
+
+  return (
+    <main className="min-h-screen bg-[radial-gradient(circle_at_top,#fff8e8_0%,#eef4ff_50%,#f8fafc_100%)] px-4 py-10 text-slate-900 sm:px-6">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-10">
+        <section className="rounded-[2rem] border border-white/70 bg-white/75 p-6 shadow-[0_20px_80px_rgba(15,23,42,0.08)] backdrop-blur sm:p-8">
+          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+            <div className="space-y-5">
+              <div className="inline-flex rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white">
+                Book price comparison for India
+              </div>
+              <div className="space-y-3">
+                <h1 className="max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">
+                  Compare Amazon and Flipkart book prices in one search.
+                </h1>
+                <p className="max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
+                  This MVP tries to fetch live results from both stores, shows the top 3
+                  matches, and highlights the cheapest option when a price is available.
+                </p>
+              </div>
+            </div>
+
+            <form
+              onSubmit={handleSubmit}
+              className="rounded-[1.75rem] bg-slate-950 p-5 text-white shadow-xl"
+            >
+              <label htmlFor="book-query" className="mb-3 block text-sm font-medium text-slate-300">
+                Search for a book
+              </label>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <input
+                  id="book-query"
+                  type="text"
+                  placeholder="Atomic Habits, Ikigai, Rich Dad Poor Dad..."
+                  value={query}
+                  onChange={(event) => setQuery(event.target.value)}
+                  className="min-w-0 flex-1 rounded-2xl border border-slate-700 bg-slate-900 px-4 py-3 text-base text-white outline-none ring-0 placeholder:text-slate-500 focus:border-amber-300"
+                />
+                <button
+                  type="submit"
+                  disabled={isPending}
+                  className="rounded-2xl bg-amber-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-amber-200 disabled:cursor-not-allowed disabled:opacity-70"
+                >
+                  {isPending ? "Searching..." : "Search now"}
+                </button>
+              </div>
+              <p className="mt-3 text-sm text-slate-400">
+                Tip: use the full book title for cleaner matches.
+              </p>
+            </form>
+          </div>
+        </section>
+
+        {error ? (
+          <section className="rounded-3xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700">
+            {error}
+          </section>
+        ) : null}
+
+        {data ? (
+          <>
+            {data.googleBook ? (
+              <section className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm">
+                <div className="grid gap-0 md:grid-cols-[180px_1fr]">
+                  <div className="flex items-center justify-center bg-slate-100 p-6">
+                    {data.googleBook.thumbnail ? (
+                      <Image
+                        src={data.googleBook.thumbnail}
+                        alt={data.googleBook.title}
+                        width={144}
+                        height={208}
+                        className="h-52 w-auto rounded-xl object-cover shadow-md"
+                        unoptimized
+                      />
+                    ) : (
+                      <div className="flex h-52 w-36 items-center justify-center rounded-xl bg-slate-200 text-sm font-medium text-slate-500">
+                        No cover
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="space-y-4 p-6">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-900">
+                        Google Books match
+                      </span>
+                      {data.googleBook.publishedDate ? (
+                        <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
+                          Published {data.googleBook.publishedDate}
+                        </span>
+                      ) : null}
+                    </div>
+
+                    <div>
+                      <h2 className="text-2xl font-bold text-slate-900">
+                        {data.googleBook.title}
+                      </h2>
+                      {data.googleBook.authors.length > 0 ? (
+                        <p className="mt-2 text-base text-slate-600">
+                          By {data.googleBook.authors.join(", ")}
+                        </p>
+                      ) : null}
+                      {data.googleBook.publisher ? (
+                        <p className="mt-1 text-sm text-slate-500">
+                          Publisher: {data.googleBook.publisher}
+                        </p>
+                      ) : null}
+                    </div>
+
+                    <a
+                      href={data.googleBook.infoLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-700"
+                    >
+                      View Google Books info
+                    </a>
+                  </div>
+                </div>
+              </section>
+            ) : null}
+
+            {data.notes.length > 0 ? (
+              <section className="rounded-3xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
+                <div className="space-y-2">
+                  {data.notes.map((note) => (
+                    <p key={note}>{note}</p>
+                  ))}
+                </div>
+              </section>
+            ) : null}
+
+            <section className="grid gap-6 lg:grid-cols-2">
+              <StoreSection
+                title="Amazon"
+                accentClassName="bg-orange-100 text-orange-900"
+                cheapestId={data.cheapestId}
+                results={data.amazon}
+              />
+              <StoreSection
+                title="Flipkart"
+                accentClassName="bg-blue-100 text-blue-900"
+                cheapestId={data.cheapestId}
+                results={data.flipkart}
+              />
+            </section>
+          </>
+        ) : (
+          <section className="grid gap-4 md:grid-cols-3">
+            {["Search both stores", "See top 3 results", "Spot the cheapest deal"].map((item) => (
+              <article
+                key={item}
+                className="rounded-3xl border border-slate-200 bg-white/80 p-5 shadow-sm"
+              >
+                <h2 className="text-lg font-semibold text-slate-900">{item}</h2>
+                <p className="mt-2 text-sm leading-6 text-slate-600">
+                  The app keeps the flow simple so you can grow it into a bigger product later.
+                </p>
+              </article>
+            ))}
+          </section>
+        )}
+      </div>
+    </main>
+  );
+}
