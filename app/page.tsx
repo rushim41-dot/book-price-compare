@@ -80,7 +80,7 @@ function StoreSection({
                     ) : null}
                     {item.isFallback ? (
                       <span className="rounded-full bg-amber-100 px-2.5 py-1 text-xs font-semibold text-amber-900">
-                        Fallback link
+                        Store search link
                       </span>
                     ) : (
                       <span className="rounded-full bg-sky-100 px-2.5 py-1 text-xs font-semibold text-sky-900">
@@ -104,7 +104,7 @@ function StoreSection({
                   rel="noreferrer"
                   className="inline-flex items-center rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-700"
                 >
-                  Open product
+                  Open store search
                 </a>
               </div>
             </article>
@@ -169,11 +169,11 @@ export default function Home() {
               </div>
               <div className="space-y-3">
                 <h1 className="max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">
-                  Compare Amazon and Flipkart book prices in one search.
+                  Find book details and compare buying options in one search.
                 </h1>
                 <p className="max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
-                  This MVP tries to fetch live results from both stores, shows the top 3
-                  matches, and highlights the cheapest option when a price is available.
+                  Search a book, confirm the title with Google Books, then open fast
+                  Amazon and Flipkart buying links.
                 </p>
               </div>
             </div>
@@ -269,7 +269,7 @@ export default function Home() {
                       href={data.googleBook.infoLink}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-700"
+                      className="inline-flex items-center rounded-full bg-amber-300 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-amber-200"
                     >
                       View Google Books info
                     </a>
