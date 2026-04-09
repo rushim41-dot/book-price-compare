@@ -32,84 +32,63 @@ type SearchResponse = {
   notes: string[];
 };
 
-type StoreSectionProps = {
-  title: string;
-  accentClassName: string;
-  cheapestId: string | null;
-  results: BookResult[];
+type BuyOptionsProps = {
+  amazonLink: string;
+  flipkartLink: string;
 };
 
-function StoreSection({
-  title,
-  accentClassName,
-  cheapestId,
-  results,
-}: StoreSectionProps) {
+function BuyOptions({ amazonLink, flipkartLink }: BuyOptionsProps) {
   return (
-    <section className="space-y-4">
-      <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-semibold text-slate-900">{title}</h2>
-        <span className={`rounded-full px-3 py-1 text-xs font-semibold ${accentClassName}`}>
-          Top {results.length} results
-        </span>
-      </div>
+    <section className="rounded-[2rem] border border-slate-200 bg-slate-950 p-6 text-white shadow-xl">
+      <div className="grid gap-6 lg:grid-cols-[1fr_1.4fr] lg:items-center">
+        <div>
+          <span className="rounded-full bg-amber-300 px-3 py-1 text-xs font-semibold text-slate-950">
+            Buy / compare
+          </span>
+          <h2 className="mt-4 text-3xl font-bold tracking-tight">
+            Check current book prices on trusted stores.
+          </h2>
+          <p className="mt-3 leading-7 text-slate-300">
+            We send you directly to the store search page so you can see today&apos;s
+            price, delivery date, seller, and available editions.
+          </p>
+        </div>
 
-      <div className="grid gap-4">
-        {results.map((item) => {
-          const isCheapest = item.id === cheapestId;
-
-          return (
-            <article
-              key={item.id}
-              className={`rounded-3xl border p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md ${
-                isCheapest
-                  ? "border-emerald-400 bg-emerald-50/80"
-                  : "border-slate-200 bg-white/85"
-              }`}
-            >
-              <div className="flex items-start justify-between gap-4">
-                <div className="space-y-3">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="rounded-full bg-slate-900 px-2.5 py-1 text-xs font-semibold text-white">
-                      {item.store === "amazon" ? "Amazon" : "Flipkart"}
-                    </span>
-                    {isCheapest ? (
-                      <span className="rounded-full bg-emerald-600 px-2.5 py-1 text-xs font-semibold text-white">
-                        Cheapest
-                      </span>
-                    ) : null}
-                    {item.isFallback ? (
-                      <span className="rounded-full bg-amber-100 px-2.5 py-1 text-xs font-semibold text-amber-900">
-                        Store search link
-                      </span>
-                    ) : (
-                      <span className="rounded-full bg-sky-100 px-2.5 py-1 text-xs font-semibold text-sky-900">
-                        Live parsed result
-                      </span>
-                    )}
-                  </div>
-
-                  <h3 className="text-lg font-semibold leading-snug text-slate-900">
-                    {item.title}
-                  </h3>
-                </div>
-
-                <p className="shrink-0 text-lg font-bold text-slate-900">{item.priceText}</p>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <a
+            href={amazonLink}
+            target="_blank"
+            rel="noreferrer"
+            className="group rounded-3xl bg-white p-5 text-slate-950 transition hover:-translate-y-1 hover:bg-orange-50"
+          >
+            <div className="flex h-full flex-col justify-between gap-8">
+              <div>
+                <p className="text-sm font-semibold text-orange-700">Amazon India</p>
+                <h3 className="mt-2 text-2xl font-bold">View on Amazon</h3>
               </div>
+              <span className="text-sm font-semibold text-slate-600 transition group-hover:text-orange-700">
+                Open store search
+              </span>
+            </div>
+          </a>
 
-              <div className="mt-4">
-                <a
-                  href={item.link}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-700"
-                >
-                  Open store search
-                </a>
+          <a
+            href={flipkartLink}
+            target="_blank"
+            rel="noreferrer"
+            className="group rounded-3xl bg-white p-5 text-slate-950 transition hover:-translate-y-1 hover:bg-blue-50"
+          >
+            <div className="flex h-full flex-col justify-between gap-8">
+              <div>
+                <p className="text-sm font-semibold text-blue-700">Flipkart</p>
+                <h3 className="mt-2 text-2xl font-bold">View on Flipkart</h3>
               </div>
-            </article>
-          );
-        })}
+              <span className="text-sm font-semibold text-slate-600 transition group-hover:text-blue-700">
+                Open store search
+              </span>
+            </div>
+          </a>
+        </div>
       </div>
     </section>
   );
@@ -288,20 +267,10 @@ export default function Home() {
               </section>
             ) : null}
 
-            <section className="grid gap-6 lg:grid-cols-2">
-              <StoreSection
-                title="Amazon"
-                accentClassName="bg-orange-100 text-orange-900"
-                cheapestId={data.cheapestId}
-                results={data.amazon}
-              />
-              <StoreSection
-                title="Flipkart"
-                accentClassName="bg-blue-100 text-blue-900"
-                cheapestId={data.cheapestId}
-                results={data.flipkart}
-              />
-            </section>
+            <BuyOptions
+              amazonLink={data.amazon[0]?.link ?? "https://www.amazon.in/s?k=books&i=stripbooks"}
+              flipkartLink={data.flipkart[0]?.link ?? "https://www.flipkart.com/search?q=books"}
+            />
           </>
         ) : (
           <section className="grid gap-4 md:grid-cols-3">
