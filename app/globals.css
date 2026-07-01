@@ -1939,6 +1939,20 @@ input {
   box-shadow: 0 8px 16px rgba(76, 56, 22, 0.1);
 }
 
+.promo-mini-book-fallback {
+  display: grid;
+  place-items: end start;
+  padding: 0.38rem;
+  background:
+    radial-gradient(circle at 80% 18%, rgba(255, 138, 31, 0.45), transparent 30%),
+    linear-gradient(145deg, #102c59 0%, #108d98 68%, #fff4df 100%);
+  color: white;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.56rem;
+  font-weight: 800;
+  line-height: 1.05;
+}
+
 .result-inline-link {
   display: inline-flex;
   align-items: center;

@@ -254,6 +254,44 @@ const PRIZE_WINNER_BOOK_SLUGS = [
   ...NOBEL_PRIZE_WINNER_BOOK_SLUGS,
 ];
 
+const FIRST_READ_BOOK_SLUGS = [
+  "and-then-there-were-none",
+  "none-of-this-is-true",
+  "gone-girl",
+  "keep-your-friends-close",
+  "one-step-too-far",
+  "reckless-girls",
+  "the-golden-couple",
+  "run",
+  "the-good-girl",
+  "recursion",
+  "dark-matter",
+  "project-hail-mary",
+  "ghost-station",
+  "detour",
+  "a-darker-shade-of-magic",
+  "a-gathering-of-shadows",
+  "a-conjuring-of-light",
+  "a-winter-s-promise",
+  "the-missing-of-clairdelune",
+  "the-memory-of-babel",
+  "the-storm-of-echoes",
+  "the-house-in-the-cerulean-sea",
+  "the-chronicles-of-narnia",
+  "the-song-of-achilles",
+  "salt-to-the-sea",
+  "the-book-of-lost-names",
+  "five-survive",
+  "thirteen-reasons-why",
+  "children-of-blood-and-bone",
+  "the-escape-game",
+  "taste",
+  "becoming",
+  "brain-on-fire",
+  "bossypants",
+  "shoe-dog",
+];
+
 export const COLLECTION_RECORDS: CollectionRecord[] = [
   {
     slug: "bestsellers",
@@ -290,6 +328,12 @@ export const COLLECTION_RECORDS: CollectionRecord[] = [
       "subtle-art",
       "ikigai",
     ],
+  },
+  {
+    slug: "first-book-start-here",
+    label: "First Book? Start Here",
+    description: "Easy, gripping reads selected for readers building a reading habit.",
+    bookSlugs: FIRST_READ_BOOK_SLUGS,
   },
   {
     slug: "world-classics",
@@ -593,6 +637,300 @@ const PEACOCK_CLASSICS_SEED_BOOKS: CatalogBookRecord[] =
         sourcePage,
       })
   );
+
+const FIRST_READ_SEED_ROWS = [
+  {
+    slug: "and-then-there-were-none",
+    title: "And Then There Were None",
+    authors: ["Agatha Christie"],
+    isbn13: "9780008123208",
+    shelfGenre: "Mysteries & Thrillers",
+    publisher: "HarperCollins",
+  },
+  {
+    slug: "none-of-this-is-true",
+    title: "None of This Is True",
+    authors: ["Lisa Jewell"],
+    isbn13: "9781804940204",
+    shelfGenre: "Mysteries & Thrillers",
+    publisher: "Penguin",
+  },
+  {
+    slug: "gone-girl",
+    title: "Gone Girl",
+    authors: ["Gillian Flynn"],
+    isbn13: "9780385347778",
+    shelfGenre: "Mysteries & Thrillers",
+    publisher: "Orion Publishing",
+  },
+  {
+    slug: "keep-your-friends-close",
+    title: "Keep Your Friends Close",
+    authors: ["Lucinda Berry"],
+    isbn13: "9781662512605",
+    shelfGenre: "Mysteries & Thrillers",
+    publisher: "Penguin",
+  },
+  {
+    slug: "one-step-too-far",
+    title: "One Step Too Far",
+    authors: ["Lisa Gardner"],
+    isbn13: "9781529157895",
+    shelfGenre: "Mysteries & Thrillers",
+    publisher: "HarperCollins",
+  },
+  {
+    slug: "reckless-girls",
+    title: "Reckless Girls",
+    authors: ["Rachel Hawkins"],
+    isbn13: "9780008495589",
+    shelfGenre: "Mysteries & Thrillers",
+    publisher: "Pan",
+  },
+  {
+    slug: "the-golden-couple",
+    title: "The Golden Couple",
+    authors: ["Greer Hendricks", "Sarah Pekkanen"],
+    isbn13: "9781529056105",
+    shelfGenre: "Mysteries & Thrillers",
+    publisher: "HarperCollins",
+  },
+  {
+    slug: "run",
+    title: "Run",
+    authors: ["Blake Crouch"],
+    isbn13: "9781035044665",
+    shelfGenre: "Mysteries & Thrillers",
+    publisher: "Macmillan",
+  },
+  {
+    slug: "the-good-girl",
+    title: "The Good Girl",
+    authors: ["Mary Kubica"],
+    isbn13: "9780778317760",
+    shelfGenre: "Mysteries & Thrillers",
+    publisher: "Mira Books",
+  },
+  {
+    slug: "recursion",
+    title: "Recursion",
+    authors: ["Blake Crouch"],
+    isbn13: "9781509866670",
+    shelfGenre: "Sci-Fi",
+    publisher: "Pan Macmillan UK",
+  },
+  {
+    slug: "dark-matter",
+    title: "Dark Matter",
+    authors: ["Blake Crouch"],
+    isbn13: "9781035034659",
+    shelfGenre: "Sci-Fi",
+    publisher: "Pan",
+  },
+  {
+    slug: "project-hail-mary",
+    title: "Project Hail Mary",
+    authors: ["Andy Weir"],
+    isbn13: "9781529157468",
+    shelfGenre: "Sci-Fi",
+    publisher: "Penguin",
+  },
+  {
+    slug: "ghost-station",
+    title: "Ghost Station",
+    authors: ["S. A. Barnes"],
+    isbn13: "9781250884947",
+    shelfGenre: "Sci-Fi",
+    publisher: "Tor Nightfire",
+  },
+  {
+    slug: "detour",
+    title: "Detour",
+    authors: ["Jeff Rake", "Rob Hart"],
+    isbn13: null,
+    shelfGenre: "Sci-Fi",
+    publisher: null,
+  },
+  {
+    slug: "a-darker-shade-of-magic",
+    title: "A Darker Shade of Magic",
+    authors: ["V. E. Schwab"],
+    isbn13: "9781783295401",
+    shelfGenre: "Fantasy",
+    publisher: "Titan Books",
+  },
+  {
+    slug: "a-gathering-of-shadows",
+    title: "A Gathering of Shadows",
+    authors: ["V. E. Schwab"],
+    isbn13: "9781783295425",
+    shelfGenre: "Fantasy",
+    publisher: "Titan Books",
+  },
+  {
+    slug: "a-conjuring-of-light",
+    title: "A Conjuring of Light",
+    authors: ["V. E. Schwab"],
+    isbn13: "9781785652448",
+    shelfGenre: "Fantasy",
+    publisher: "Titan Books",
+  },
+  {
+    slug: "a-winter-s-promise",
+    title: "A Winter's Promise",
+    authors: ["Christelle Dabos"],
+    isbn13: "9781787701809",
+    shelfGenre: "Fantasy",
+    publisher: "Europa Editions",
+  },
+  {
+    slug: "the-missing-of-clairdelune",
+    title: "The Missing of Clairdelune",
+    authors: ["Christelle Dabos"],
+    isbn13: "9781787702257",
+    shelfGenre: "Fantasy",
+    publisher: "Europa Editions",
+  },
+  {
+    slug: "the-memory-of-babel",
+    title: "The Memory of Babel",
+    authors: ["Christelle Dabos"],
+    isbn13: "9781787703087",
+    shelfGenre: "Fantasy",
+    publisher: "Europa Editions",
+  },
+  {
+    slug: "the-storm-of-echoes",
+    title: "The Storm of Echoes",
+    authors: ["Christelle Dabos"],
+    isbn13: "9781787704237",
+    shelfGenre: "Fantasy",
+    publisher: "Europa Editions",
+  },
+  {
+    slug: "the-house-in-the-cerulean-sea",
+    title: "The House in the Cerulean Sea",
+    authors: ["T. J. Klune"],
+    isbn13: "9781529087949",
+    shelfGenre: "Fantasy",
+    publisher: "Tor",
+  },
+  {
+    slug: "the-chronicles-of-narnia",
+    title: "The Chronicles of Narnia",
+    authors: ["C. S. Lewis"],
+    isbn13: null,
+    shelfGenre: "Fantasy",
+    publisher: null,
+  },
+  {
+    slug: "the-song-of-achilles",
+    title: "The Song of Achilles",
+    authors: ["Madeline Miller"],
+    isbn13: null,
+    shelfGenre: "Historical Fiction",
+    publisher: null,
+  },
+  {
+    slug: "salt-to-the-sea",
+    title: "Salt to the Sea",
+    authors: ["Ruta Sepetys"],
+    isbn13: null,
+    shelfGenre: "Historical Fiction",
+    publisher: null,
+  },
+  {
+    slug: "the-book-of-lost-names",
+    title: "The Book of Lost Names",
+    authors: ["Kristin Harmel"],
+    isbn13: null,
+    shelfGenre: "Historical Fiction",
+    publisher: null,
+  },
+  {
+    slug: "five-survive",
+    title: "Five Survive",
+    authors: ["Holly Jackson"],
+    isbn13: null,
+    shelfGenre: "Young Adult",
+    publisher: null,
+  },
+  {
+    slug: "thirteen-reasons-why",
+    title: "Thirteen Reasons Why",
+    authors: ["Jay Asher"],
+    isbn13: null,
+    shelfGenre: "Young Adult",
+    publisher: null,
+  },
+  {
+    slug: "children-of-blood-and-bone",
+    title: "Children of Blood and Bone",
+    authors: ["Tomi Adeyemi"],
+    isbn13: null,
+    shelfGenre: "Young Adult",
+    publisher: null,
+  },
+  {
+    slug: "the-escape-game",
+    title: "The Escape Game",
+    authors: ["Marissa Meyer"],
+    isbn13: null,
+    shelfGenre: "Young Adult",
+    publisher: null,
+  },
+  {
+    slug: "taste",
+    title: "Taste",
+    authors: ["Stanley Tucci"],
+    isbn13: null,
+    shelfGenre: "Memoir",
+    publisher: null,
+  },
+  {
+    slug: "becoming",
+    title: "Becoming",
+    authors: ["Michelle Obama"],
+    isbn13: null,
+    shelfGenre: "Memoir",
+    publisher: null,
+  },
+  {
+    slug: "brain-on-fire",
+    title: "Brain on Fire",
+    authors: ["Susannah Cahalan"],
+    isbn13: null,
+    shelfGenre: "Memoir",
+    publisher: null,
+  },
+  {
+    slug: "bossypants",
+    title: "Bossypants",
+    authors: ["Tina Fey"],
+    isbn13: null,
+    shelfGenre: "Memoir",
+    publisher: null,
+  },
+  {
+    slug: "shoe-dog",
+    title: "Shoe Dog",
+    authors: ["Phil Knight"],
+    isbn13: null,
+    shelfGenre: "Memoir",
+    publisher: null,
+  },
+] satisfies Array<{
+  slug: string;
+  title: string;
+  authors: string[];
+  isbn13: string | null;
+  shelfGenre: string;
+  publisher: string | null;
+}>;
+
+const FIRST_READ_SEED_BOOKS: CatalogBookRecord[] = FIRST_READ_SEED_ROWS.map(
+  buildFirstReadSeedBook
+);
 
 export const CATALOG_BOOKS: CatalogBookRecord[] = [
   {
@@ -1078,6 +1416,7 @@ export const CATALOG_BOOKS: CatalogBookRecord[] = [
   ...WORLD_CLASSICS_SEED_BOOKS,
   ...PEACOCK_CLASSICS_SEED_BOOKS,
   ...INDIAN_AUTHORS_SEED_BOOKS,
+  ...FIRST_READ_SEED_BOOKS,
   {
     id: "catalog-train-to-pakistan",
     slug: "train-to-pakistan",
@@ -1329,6 +1668,34 @@ function buildPeacockClassicSeedBook(book: {
     ],
     featuredCollectionSlugs: ["peacock-classics"],
     offers: buildCatalogOffers(book.slug, book.title, [book.author]),
+  };
+}
+
+function buildFirstReadSeedBook(
+  book: (typeof FIRST_READ_SEED_ROWS)[number]
+): CatalogBookRecord {
+  const genreTag = book.shelfGenre.toLowerCase();
+
+  return {
+    id: `catalog-${book.slug}`,
+    slug: book.slug,
+    title: book.title,
+    authors: book.authors,
+    description: `A ${book.shelfGenre.toLowerCase()} pick selected for the First Book? Start Here shelf.`,
+    category: "fiction",
+    thumbnail: book.isbn13
+      ? `https://covers.openlibrary.org/b/isbn/${book.isbn13}-L.jpg`
+      : null,
+    publisher: book.publisher,
+    publishedDate: null,
+    isbn13: book.isbn13,
+    isbn10: null,
+    language: "English",
+    format: "Paperback",
+    pages: null,
+    tags: ["first book start here", genreTag],
+    featuredCollectionSlugs: ["first-book-start-here"],
+    offers: buildCatalogOffers(book.slug, book.title, book.authors),
   };
 }
 

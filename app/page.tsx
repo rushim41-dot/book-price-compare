@@ -184,7 +184,11 @@ export default function Home() {
   const promoBestsellers =
     homepageCollections.find((collection) => collection.slug === "bestsellers")?.books.slice(0, 4) ??
     homepageFeaturedBooks.slice(0, 4);
-  const promoStarterBooks = homepageFeaturedBooks.slice(6, 10);
+  const promoStarterCollection = homepageCollections.find(
+    (collection) => collection.slug === "first-book-start-here"
+  );
+  const promoStarterBooks =
+    promoStarterCollection?.books.slice(0, 4) ?? homepageFeaturedBooks.slice(6, 10);
   const heroDiscoveryBooks =
     homepageCollections
       .find((collection) => collection.slug === "prize-winners")
@@ -252,7 +256,7 @@ export default function Home() {
         </Link>
 
         <Link
-          href="/guides"
+          href="/collections/first-book-start-here"
           className="hero-panel hero-panel-side hero-panel-arrivals promo-card-link"
         >
           <div className="promo-card-copy">
@@ -262,7 +266,11 @@ export default function Home() {
           <div className="promo-mini-books" aria-hidden="true">
             {promoStarterBooks.map((book) => (
               <div key={book.id} className="promo-mini-book">
-                {book.thumbnail ? <img src={book.thumbnail} alt="" width={52} height={90} className="promo-mini-book-cover" /> : null}
+                {book.thumbnail ? (
+                  <img src={book.thumbnail} alt="" width={52} height={90} className="promo-mini-book-cover" />
+                ) : (
+                  <div className="promo-mini-book-cover promo-mini-book-fallback">{book.title}</div>
+                )}
               </div>
             ))}
           </div>
