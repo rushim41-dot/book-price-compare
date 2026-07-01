@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
+import { SiteFooter } from "@/app/components/SiteFooter";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Book Price Compare India",
-  description: "Compare Amazon and Flipkart book prices for Indian shoppers.",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://books2buy.org",
+  ),
+  title: "Books2Buy | Compare Book Prices Across Amazon, Flipkart, and Bookswagon",
+  description:
+    "Books2Buy helps readers in India compare book buying links across Amazon, Flipkart, and Bookswagon with clean search results and launch-ready guidance.",
 };
 
 export default function RootLayout({
@@ -12,8 +17,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased">
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en" className="antialiased">
+      <body>
+        {children}
+        <SiteFooter />
+      </body>
     </html>
   );
 }

@@ -1,0 +1,1891 @@
+{
+  "new": [
+    {
+      "page": 5,
+      "slug": "a-dolls-house",
+      "title": "A Doll\u2019s House",
+      "author": "Henrik Ibsen",
+      "publishedDate": "2026",
+      "isbn13": "9788124805992",
+      "pages": 140
+    },
+    {
+      "page": 5,
+      "slug": "a-farewell-to-arms",
+      "title": "A Farewell To Arms",
+      "author": "Ernest Hemingway",
+      "publishedDate": "2026",
+      "isbn13": "9788124805435",
+      "pages": 316
+    },
+    {
+      "page": 5,
+      "slug": "arms-and-the-man",
+      "title": "Arms And The Man",
+      "author": "George Bernard Shaw",
+      "publishedDate": "2026",
+      "isbn13": "9788124804841",
+      "pages": 88
+    },
+    {
+      "page": 5,
+      "slug": "as-you-like-it",
+      "title": "As You Like It",
+      "author": "William Shakespeare",
+      "publishedDate": "2026",
+      "isbn13": "9788124800607",
+      "pages": 136
+    },
+    {
+      "page": 5,
+      "slug": "black-beauty",
+      "title": "Black Beauty",
+      "author": "Anna Sewell",
+      "publishedDate": "2026",
+      "isbn13": "9788124804803",
+      "pages": 216
+    },
+    {
+      "page": 5,
+      "slug": "candida",
+      "title": "Candida",
+      "author": "George Bernard Shaw",
+      "publishedDate": "2026",
+      "isbn13": "9788124802922",
+      "pages": 88
+    },
+    {
+      "page": 5,
+      "slug": "capitalism-socialism-and-democracy",
+      "title": "Capitalism, Socialism and Democracy",
+      "author": "Joseph A. Schumpeter",
+      "publishedDate": "2026",
+      "isbn13": "9788124805657",
+      "pages": 528
+    },
+    {
+      "page": 5,
+      "slug": "emma",
+      "title": "Emma",
+      "author": "Jane Austen",
+      "publishedDate": "2026",
+      "isbn13": "9788124800263",
+      "pages": 434
+    },
+    {
+      "page": 5,
+      "slug": "hamlet",
+      "title": "Hamlet",
+      "author": "William Shakespeare",
+      "publishedDate": "2026",
+      "isbn13": "9788124800539",
+      "pages": 168
+    },
+    {
+      "page": 5,
+      "slug": "henry-iv-part-one",
+      "title": "Henry IV Part One",
+      "author": "William Shakespeare",
+      "publishedDate": "2026",
+      "isbn13": "9788124800645",
+      "pages": 138
+    },
+    {
+      "page": 5,
+      "slug": "how-to-enjoy-your-life-and-your-job",
+      "title": "How to Enjoy Your Life and Your Job",
+      "author": "Dale Carnegie",
+      "publishedDate": "2026",
+      "isbn13": "9788124807491",
+      "pages": 178
+    },
+    {
+      "page": 5,
+      "slug": "jude-the-obscure",
+      "title": "Jude The Obscure",
+      "author": "Thomas Hardy",
+      "publishedDate": "2026",
+      "isbn13": "9788124800300",
+      "pages": 416
+    },
+    {
+      "page": 5,
+      "slug": "just-so-stories",
+      "title": "Just So Stories",
+      "author": "Rudyard Kipling",
+      "publishedDate": "2026",
+      "isbn13": "9788124803226",
+      "pages": 112
+    },
+    {
+      "page": 5,
+      "slug": "loves-labours-lost",
+      "title": "Love\u2019s Labour\u2019s Lost",
+      "author": "William Shakespeare",
+      "publishedDate": "2026",
+      "isbn13": "9788124804902",
+      "pages": 186
+    },
+    {
+      "page": 6,
+      "slug": "man-and-superman",
+      "title": "Man And Superman",
+      "author": "George Bernard Shaw",
+      "publishedDate": "2026",
+      "isbn13": "9788124802588",
+      "pages": 252
+    },
+    {
+      "page": 6,
+      "slug": "orlando",
+      "title": "Orlando",
+      "author": "Virginia Woolf",
+      "publishedDate": "2026",
+      "isbn13": "9788124800140",
+      "pages": 248
+    },
+    {
+      "page": 6,
+      "slug": "othello",
+      "title": "Othello",
+      "author": "William Shakespeare",
+      "publishedDate": "2026",
+      "isbn13": "9788124800546",
+      "pages": 144
+    },
+    {
+      "page": 6,
+      "slug": "peter-pan",
+      "title": "Peter Pan",
+      "author": "J.M. Barrie",
+      "publishedDate": "2026",
+      "isbn13": "9788124806074",
+      "pages": 164
+    },
+    {
+      "page": 6,
+      "slug": "politics",
+      "title": "Politics",
+      "author": "Aristotle",
+      "publishedDate": "2026",
+      "isbn13": "9788124806180",
+      "pages": 298
+    },
+    {
+      "page": 6,
+      "slug": "pygmalion",
+      "title": "Pygmalion",
+      "author": "George Bernard Shaw",
+      "publishedDate": "2026",
+      "isbn13": "9788124802960",
+      "pages": 102
+    },
+    {
+      "page": 6,
+      "slug": "robinson-crusoe",
+      "title": "Robinson Crusoe",
+      "author": "Daniel Defoe",
+      "publishedDate": "2026",
+      "isbn13": "9788124800478",
+      "pages": 288
+    },
+    {
+      "page": 6,
+      "slug": "romeo-and-juliet",
+      "title": "Romeo And Juliet",
+      "author": "William Shakespeare",
+      "publishedDate": "2026",
+      "isbn13": "9788124800775",
+      "pages": 130
+    },
+    {
+      "page": 6,
+      "slug": "she-stoops-to-conquer",
+      "title": "She Stoops To Conquer",
+      "author": "Oliver Goldsmith",
+      "publishedDate": "2026",
+      "isbn13": "9788124802724",
+      "pages": 86
+    },
+    {
+      "page": 6,
+      "slug": "socialism-utopian-and-scientific",
+      "title": "Socialism: Utopian and Scientific",
+      "author": "Friedrich Engels",
+      "publishedDate": "2026",
+      "isbn13": "9788124806883",
+      "pages": 106
+    },
+    {
+      "page": 6,
+      "slug": "sons-and-lovers",
+      "title": "Sons And Lovers",
+      "author": "D.H. Lawrence",
+      "publishedDate": "2026",
+      "isbn13": "9788124800065",
+      "pages": 452
+    },
+    {
+      "page": 6,
+      "slug": "tales-from-shakespeare",
+      "title": "Tales From Shakespeare",
+      "author": "Charles/Mary Lamb",
+      "publishedDate": "2026",
+      "isbn13": "9788124800942",
+      "pages": 290
+    },
+    {
+      "page": 6,
+      "slug": "ten-great-economists-from-marx-to-keynes",
+      "title": "Ten Great Economists: From Marx to Keynes",
+      "author": "Joseph A. Schumpeter",
+      "publishedDate": "2026",
+      "isbn13": "9788124806432",
+      "pages": 274
+    },
+    {
+      "page": 7,
+      "slug": "the-adventures-of-huckleberry-finn",
+      "title": "The Adventures Of Huckleberry Finn",
+      "author": "Mark Twain",
+      "publishedDate": "2026",
+      "isbn13": "9788124802410",
+      "pages": 276
+    },
+    {
+      "page": 7,
+      "slug": "the-arabian-nights-tales-of-thousand-nights-and-a-night",
+      "title": "The Arabian Nights: Tales of Thousand Nights and a Night",
+      "author": "Translated by Richard F. Burtan",
+      "publishedDate": "2026",
+      "isbn13": "9788124806951",
+      "pages": 424
+    },
+    {
+      "page": 7,
+      "slug": "the-complete-book-of-yoga",
+      "title": "The Complete Book of Yoga",
+      "author": "Swami Vivekananda",
+      "publishedDate": "2026",
+      "isbn13": "9788124806142",
+      "pages": 428
+    },
+    {
+      "page": 7,
+      "slug": "the-diary-of-a-young-girl",
+      "title": "The Diary of a Young Girl",
+      "author": "Anne Frank",
+      "publishedDate": "2026",
+      "isbn13": "9788124806944",
+      "pages": 246
+    },
+    {
+      "page": 7,
+      "slug": "the-essays",
+      "title": "The Essays",
+      "author": "Francis Bacon",
+      "publishedDate": "2026",
+      "isbn13": "9788124803707",
+      "pages": 152
+    },
+    {
+      "page": 7,
+      "slug": "the-invisible-man",
+      "title": "The Invisible Man",
+      "author": "H.G. Wells",
+      "publishedDate": "2026",
+      "isbn13": "9788124800348",
+      "pages": 159
+    },
+    {
+      "page": 7,
+      "slug": "the-kama-sutra-of-vatsyayana",
+      "title": "The Kama Sutra Of Vatsyayana",
+      "author": "Translated by Sir Richard Burton",
+      "publishedDate": "2026",
+      "isbn13": "9788124803998",
+      "pages": 210
+    },
+    {
+      "page": 7,
+      "slug": "the-life-triumphant-mastering-the-heart-and-mind",
+      "title": "The Life Triumphant: Mastering the Heart and Mind",
+      "author": "James Allen",
+      "publishedDate": "2026",
+      "isbn13": "9788124807125",
+      "pages": 88
+    },
+    {
+      "page": 7,
+      "slug": "the-little-prince",
+      "title": "The Little Prince",
+      "author": "Antoine De Saint-Exupery",
+      "publishedDate": "2026",
+      "isbn13": "9788124806173",
+      "pages": 96
+    },
+    {
+      "page": 7,
+      "slug": "the-mayor-of-casterbridge",
+      "title": "The Mayor Of Casterbridge",
+      "author": "Thomas Hardy",
+      "publishedDate": "2026",
+      "isbn13": "9788124800041",
+      "pages": 336
+    },
+    {
+      "page": 7,
+      "slug": "the-origin-of-species",
+      "title": "The Origin Of Species",
+      "author": "Charles Darwin",
+      "publishedDate": "2026",
+      "isbn13": "9788124800997",
+      "pages": 432
+    },
+    {
+      "page": 7,
+      "slug": "the-richest-man-in-babylon",
+      "title": "The Richest Man in Babylon",
+      "author": "George S. Clason",
+      "publishedDate": "2026",
+      "isbn13": "9788124806210",
+      "pages": 138
+    },
+    {
+      "page": 8,
+      "slug": "the-school-for-scandal",
+      "title": "The School For Scandal",
+      "author": "Richard Brinsley Sheridan",
+      "publishedDate": "2026",
+      "isbn13": "9788124802984",
+      "pages": 106
+    },
+    {
+      "page": 8,
+      "slug": "the-story-of-my-experiments-with-truth",
+      "title": "The Story of My Experiments with Truth",
+      "author": "Mohandas Karamchand Gandhi",
+      "publishedDate": "2026",
+      "isbn13": "9788124805800",
+      "pages": 461
+    },
+    {
+      "page": 8,
+      "slug": "the-time-machine",
+      "title": "The Time Machine",
+      "author": "H.G. Wells",
+      "publishedDate": "2026",
+      "isbn13": "9788124800492",
+      "pages": 104
+    },
+    {
+      "page": 8,
+      "slug": "the-travels-of-marco-polo",
+      "title": "The Travels Of Marco Polo",
+      "author": "Marco Polo",
+      "publishedDate": "2026",
+      "isbn13": "9788124803219",
+      "pages": 277
+    },
+    {
+      "page": 8,
+      "slug": "the-vicar-of-wakefield",
+      "title": "The Vicar of Wakefield",
+      "author": "Oliver Goldsmith",
+      "publishedDate": "2026",
+      "isbn13": "9788124803127",
+      "pages": 152
+    },
+    {
+      "page": 8,
+      "slug": "the-war-of-the-worlds",
+      "title": "The War of the Worlds",
+      "author": "H.G. Wells",
+      "publishedDate": "2026",
+      "isbn13": "9788124806241",
+      "pages": 199
+    },
+    {
+      "page": 8,
+      "slug": "twelfth-night",
+      "title": "Twelfth Night",
+      "author": "William Shakespeare",
+      "publishedDate": "2026",
+      "isbn13": "9788124800591",
+      "pages": 108
+    },
+    {
+      "page": 8,
+      "slug": "vanity-fair",
+      "title": "Vanity Fair",
+      "author": "William M. Thackeray",
+      "publishedDate": "2026",
+      "isbn13": "9788124805824",
+      "pages": 754
+    },
+    {
+      "page": 8,
+      "slug": "volpone",
+      "title": "Volpone",
+      "author": "Ben Jonson",
+      "publishedDate": "2026",
+      "isbn13": "9788124803011",
+      "pages": 132
+    },
+    {
+      "page": 8,
+      "slug": "white-nights",
+      "title": "White Nights",
+      "author": "Fyodor Dostoevsky",
+      "publishedDate": "2026",
+      "isbn13": "9788124808887",
+      "pages": 88
+    },
+    {
+      "page": 8,
+      "slug": "ivanhoe",
+      "title": "Ivanhoe",
+      "author": "Sir Walter Scott",
+      "publishedDate": "2026",
+      "isbn13": "9788124800935",
+      "pages": 512
+    },
+    {
+      "page": 8,
+      "slug": "tess-of-the-durbervilles",
+      "title": "Tess of the D\u2019Urbervilles",
+      "author": "Thomas Hardy",
+      "publishedDate": "2026",
+      "isbn13": "9788124800119",
+      "pages": 452
+    },
+    {
+      "page": 8,
+      "slug": "alices-adventures-in-wonderland-and-through-the-looking-glass",
+      "title": "Alice\u2019s Adventures in Wonderland & Through the Looking-Glass",
+      "author": "Lewis Carroll",
+      "publishedDate": "2026",
+      "isbn13": "9788124800904",
+      "pages": 254
+    },
+    {
+      "page": 9,
+      "slug": "annihilation-of-caste",
+      "title": "Annihilation of Caste",
+      "author": "B.R. Ambedkar",
+      "publishedDate": "2025",
+      "isbn13": "9788124806005",
+      "pages": 128
+    },
+    {
+      "page": 9,
+      "slug": "around-the-world-in-eighty-days",
+      "title": "Around The World In Eighty Days",
+      "author": "Jules Verne",
+      "publishedDate": "2025",
+      "isbn13": "9788124803134",
+      "pages": 172
+    },
+    {
+      "page": 9,
+      "slug": "as-a-man-thinketh",
+      "title": "As a Man Thinketh",
+      "author": "James Allen",
+      "publishedDate": "2025",
+      "isbn13": "9788124807149",
+      "pages": 92
+    },
+    {
+      "page": 9,
+      "slug": "beyond-good-and-evil",
+      "title": "Beyond Good and Evil",
+      "author": "Friedrich Nietzsche",
+      "publishedDate": "2025",
+      "isbn13": "9788124807040",
+      "pages": 204
+    },
+    {
+      "page": 9,
+      "slug": "booms-and-depressions-some-first-principles",
+      "title": "Booms and Depressions: Some First Principles",
+      "author": "Irving Fisher",
+      "publishedDate": "2025",
+      "isbn13": "9788124806449",
+      "pages": 232
+    },
+    {
+      "page": 9,
+      "slug": "essays-first-and-second-series",
+      "title": "Essays: First and Second Series",
+      "author": "Ralph Waldo Emerson",
+      "publishedDate": "2025",
+      "isbn13": "9788124806012",
+      "pages": 365
+    },
+    {
+      "page": 9,
+      "slug": "gullivers-travels",
+      "title": "Gulliver\u2019s Travels",
+      "author": "Jonathan Swift",
+      "publishedDate": "2025",
+      "isbn13": "9788124800683",
+      "pages": 302
+    },
+    {
+      "page": 9,
+      "slug": "hard-times",
+      "title": "Hard Times",
+      "author": "Charles Dickens",
+      "publishedDate": "2025",
+      "isbn13": "9788124800058",
+      "pages": 312
+    },
+    {
+      "page": 9,
+      "slug": "heidi",
+      "title": "Heidi",
+      "author": "Johanna Spyri",
+      "publishedDate": "2025",
+      "isbn13": "9788124806036",
+      "pages": 270
+    },
+    {
+      "page": 9,
+      "slug": "how-to-win-friends-and-influence-people",
+      "title": "How to Win Friends and Influence People",
+      "author": "Dale Carnegie",
+      "publishedDate": "2025",
+      "isbn13": "9788124805770",
+      "pages": 270
+    },
+    {
+      "page": 9,
+      "slug": "india-what-can-it-teach-us",
+      "title": "India: What Can it Teach Us'",
+      "author": "Friedrich Max Muller",
+      "publishedDate": "2025",
+      "isbn13": "9788124805572",
+      "pages": 243
+    },
+    {
+      "page": 9,
+      "slug": "25-greatest-speeches-of-vivekananda",
+      "title": "25 Greatest Speeches of Vivekananda",
+      "author": "Swami Vivekananda",
+      "publishedDate": "2025",
+      "isbn13": "9788124808054",
+      "pages": 276
+    },
+    {
+      "page": 10,
+      "slug": "joseph-andrews",
+      "title": "Joseph Andrews",
+      "author": "Henry Fielding",
+      "publishedDate": "2025",
+      "isbn13": "9788124800669",
+      "pages": 358
+    },
+    {
+      "page": 10,
+      "slug": "julius-caesar",
+      "title": "Julius Caesar",
+      "author": "William Shakespeare",
+      "publishedDate": "2025",
+      "isbn13": "9788124800584",
+      "pages": 100
+    },
+    {
+      "page": 10,
+      "slug": "king-lear",
+      "title": "King Lear",
+      "author": "William Shakespeare",
+      "publishedDate": "2025",
+      "isbn13": "9788124800553",
+      "pages": 142
+    },
+    {
+      "page": 10,
+      "slug": "lord-jim",
+      "title": "Lord Jim",
+      "author": "Joseph Conrad",
+      "publishedDate": "2025",
+      "isbn13": "9788124800294",
+      "pages": 336
+    },
+    {
+      "page": 10,
+      "slug": "macbeth",
+      "title": "Macbeth",
+      "author": "William Shakespeare",
+      "publishedDate": "2025",
+      "isbn13": "9788124800560",
+      "pages": 118
+    },
+    {
+      "page": 10,
+      "slug": "mansfield-park",
+      "title": "Mansfield Park",
+      "author": "Jane Austen",
+      "publishedDate": "2025",
+      "isbn13": "9788124800201",
+      "pages": 450
+    },
+    {
+      "page": 10,
+      "slug": "measure-for-measure",
+      "title": "Measure For Measure",
+      "author": "William Shakespeare",
+      "publishedDate": "2025",
+      "isbn13": "9788124800515",
+      "pages": 116
+    },
+    {
+      "page": 10,
+      "slug": "metamorphosis",
+      "title": "Metamorphosis",
+      "author": "Franz Kafka",
+      "publishedDate": "2025",
+      "isbn13": "9788124805411",
+      "pages": 78
+    },
+    {
+      "page": 10,
+      "slug": "nationalism",
+      "title": "Nationalism",
+      "author": "Rabindranath Tagore",
+      "publishedDate": "2025",
+      "isbn13": "9788124805299",
+      "pages": 104
+    },
+    {
+      "page": 10,
+      "slug": "nirmala",
+      "title": "Nirmala",
+      "author": "Premchand",
+      "publishedDate": "2025",
+      "isbn13": "9788124806050",
+      "pages": 202
+    },
+    {
+      "page": 10,
+      "slug": "patanjalis-yoga-sutras",
+      "title": "Patanjali\u2019s Yoga Sutras",
+      "author": "Swami Vivekananda",
+      "publishedDate": "2025",
+      "isbn13": "9788124806067",
+      "pages": 153
+    },
+    {
+      "page": 10,
+      "slug": "persuasion",
+      "title": "Persuasion",
+      "author": "Jane Austen",
+      "publishedDate": "2025",
+      "isbn13": "9788124800232",
+      "pages": 232
+    },
+    {
+      "page": 10,
+      "slug": "pollyanna",
+      "title": "Pollyanna",
+      "author": "Eleanor H. Porter",
+      "publishedDate": "2025",
+      "isbn13": "9788124806098",
+      "pages": 210
+    },
+    {
+      "page": 10,
+      "slug": "pratigya",
+      "title": "Pratigya",
+      "author": "Premchand",
+      "publishedDate": "2025",
+      "isbn13": "9788124806104",
+      "pages": 170
+    },
+    {
+      "page": 11,
+      "slug": "autobiography-of-a-yogi",
+      "title": "Autobiography of a Yogi",
+      "author": "Paramahansa Yogananda",
+      "publishedDate": "2026",
+      "isbn13": "9788124805602",
+      "pages": 480
+    },
+    {
+      "page": 11,
+      "slug": "principles-of-political-economy-and-taxation",
+      "title": "Principles of Political Economy and Taxation",
+      "author": "David Ricardo",
+      "publishedDate": "2025",
+      "isbn13": "9788124805534",
+      "pages": 392
+    },
+    {
+      "page": 11,
+      "slug": "red-oleanders-a-drama-in-one-act",
+      "title": "Red Oleanders: A Drama In One Act",
+      "author": "Rabindranath Tagore/Rama Kundu",
+      "publishedDate": "2025",
+      "isbn13": "9788124802618",
+      "pages": 152
+    },
+    {
+      "page": 11,
+      "slug": "saint-joan",
+      "title": "Saint Joan",
+      "author": "George Bernard Shaw",
+      "publishedDate": "2025",
+      "isbn13": "9788124802908",
+      "pages": 178
+    },
+    {
+      "page": 11,
+      "slug": "shakuntala",
+      "title": "Shakuntala",
+      "author": "Kalidasa",
+      "publishedDate": "2025",
+      "isbn13": "9788124806111",
+      "pages": 136
+    },
+    {
+      "page": 11,
+      "slug": "sri-ramakrishna-his-life-and-sayings",
+      "title": "Sri Ramakrishna: His Life and Sayings",
+      "author": "Friedrich Max Muller",
+      "publishedDate": "2025",
+      "isbn13": "9788124806975",
+      "pages": 166
+    },
+    {
+      "page": 11,
+      "slug": "the-adventures-of-sherlock-holmes",
+      "title": "The Adventures of Sherlock Holmes",
+      "author": "Sir Arthur Conan Doyle",
+      "publishedDate": "2025",
+      "isbn13": "9788124803561",
+      "pages": 354
+    },
+    {
+      "page": 11,
+      "slug": "the-best-short-stories",
+      "title": "The Best Short Stories",
+      "author": "Rudyard Kipling",
+      "publishedDate": "2025",
+      "isbn13": "9788124803332",
+      "pages": 288
+    },
+    {
+      "page": 11,
+      "slug": "the-birth-of-tragedy",
+      "title": "The Birth of Tragedy",
+      "author": "Friedrich Nietzsche",
+      "publishedDate": "2025",
+      "isbn13": "9788124807088",
+      "pages": 159
+    },
+    {
+      "page": 11,
+      "slug": "the-complete-grimms-fairy-tales",
+      "title": "The Complete Grimm\u2019s Fairy Tales",
+      "author": "Jacob Grimm/Wilhelm Grimm",
+      "publishedDate": "2025",
+      "isbn13": "9788124805794",
+      "pages": 670
+    },
+    {
+      "page": 11,
+      "slug": "the-elements-of-style",
+      "title": "The Elements of Style",
+      "author": "William Strunk Jr.",
+      "publishedDate": "2025",
+      "isbn13": "9788124806159",
+      "pages": 86
+    },
+    {
+      "page": 11,
+      "slug": "the-general-theory-of-employment-interest-and-money",
+      "title": "The General Theory of Employment Interest and Money",
+      "author": "John Maynard Keynes",
+      "publishedDate": "2025",
+      "isbn13": "9788124805527",
+      "pages": 354
+    },
+    {
+      "page": 12,
+      "slug": "the-german-ideology",
+      "title": "The German Ideology",
+      "author": "Karl Marx/Friedrich Engels",
+      "publishedDate": "2025",
+      "isbn13": "9788124805596",
+      "pages": 712
+    },
+    {
+      "page": 12,
+      "slug": "the-home-and-the-world",
+      "title": "The Home and the World",
+      "author": "Rabindranath Tagore",
+      "publishedDate": "2025",
+      "isbn13": "9788124807194",
+      "pages": 212
+    },
+    {
+      "page": 12,
+      "slug": "the-inferno",
+      "title": "The Inferno",
+      "author": "Dante Alighieri",
+      "publishedDate": "2025",
+      "isbn13": "9788124806166",
+      "pages": 206
+    },
+    {
+      "page": 12,
+      "slug": "the-interpretation-of-dreams",
+      "title": "The Interpretation of Dreams",
+      "author": "Sigmund Freud",
+      "publishedDate": "2025",
+      "isbn13": "9788124805459",
+      "pages": 562
+    },
+    {
+      "page": 12,
+      "slug": "the-man-in-the-iron-mask",
+      "title": "The Man in the Iron Mask",
+      "author": "Alexandre Dumas",
+      "publishedDate": "2025",
+      "isbn13": "9788124806968",
+      "pages": 594
+    },
+    {
+      "page": 12,
+      "slug": "the-merchant-of-venice",
+      "title": "The Merchant of Venice",
+      "author": "William Shakespeare",
+      "publishedDate": "2025",
+      "isbn13": "9788124800621",
+      "pages": 96
+    },
+    {
+      "page": 12,
+      "slug": "the-path-to-prosperity",
+      "title": "The Path to Prosperity",
+      "author": "James Allen",
+      "publishedDate": "2025",
+      "isbn13": "9788124807118",
+      "pages": 94
+    },
+    {
+      "page": 12,
+      "slug": "the-poverty-of-philosophy",
+      "title": "The Poverty of Philosophy",
+      "author": "Karl Marx",
+      "publishedDate": "2025",
+      "isbn13": "9788124805558",
+      "pages": 202
+    },
+    {
+      "page": 12,
+      "slug": "the-prince",
+      "title": "The Prince",
+      "author": "Nicolo Machiavelli",
+      "publishedDate": "2025",
+      "isbn13": "9788124803318",
+      "pages": 96
+    },
+    {
+      "page": 12,
+      "slug": "the-prophecies-of-nostradamus",
+      "title": "The Prophecies of Nostradamus",
+      "author": "Nostradamus",
+      "publishedDate": "2025",
+      "isbn13": "9788124806197",
+      "pages": 210
+    },
+    {
+      "page": 12,
+      "slug": "the-prophet",
+      "title": "The Prophet",
+      "author": "Kahlil Gibran",
+      "publishedDate": "2025",
+      "isbn13": "9788124805312",
+      "pages": 85
+    },
+    {
+      "page": 12,
+      "slug": "the-pursuit-of-happiness",
+      "title": "The Pursuit of Happiness",
+      "author": "Daniel G. Brinton",
+      "publishedDate": "2025",
+      "isbn13": "9788124805589",
+      "pages": 214
+    },
+    {
+      "page": 13,
+      "slug": "the-quick-and-easy-way-to-effective-speaking",
+      "title": "The Quick and Easy Way to Effective Speaking",
+      "author": "Dale Carnegie",
+      "publishedDate": "2025",
+      "isbn13": "9788124806999",
+      "pages": 202
+    },
+    {
+      "page": 13,
+      "slug": "the-railway-children",
+      "title": "The Railway Children",
+      "author": "E. Nesbit",
+      "publishedDate": "2025",
+      "isbn13": "9788124806203",
+      "pages": 204
+    },
+    {
+      "page": 13,
+      "slug": "the-secret-agent",
+      "title": "The Secret Agent",
+      "author": "Joseph Conrad",
+      "publishedDate": "2025",
+      "isbn13": "9788124800225",
+      "pages": 232
+    },
+    {
+      "page": 13,
+      "slug": "the-swiss-family-robinson",
+      "title": "The Swiss Family Robinson",
+      "author": "Johann David Wyss",
+      "publishedDate": "2025",
+      "isbn13": "9788124806227",
+      "pages": 384
+    },
+    {
+      "page": 13,
+      "slug": "the-theory-of-moral-sentiments",
+      "title": "The Theory of Moral Sentiments",
+      "author": "Adam Smith",
+      "publishedDate": "2025",
+      "isbn13": "9788124806425",
+      "pages": 324
+    },
+    {
+      "page": 13,
+      "slug": "the-upanishads",
+      "title": "The Upanishads",
+      "author": "Swami Paramananda",
+      "publishedDate": "2025",
+      "isbn13": "9788124806234",
+      "pages": 103
+    },
+    {
+      "page": 13,
+      "slug": "the-waves",
+      "title": "The Waves",
+      "author": "Virginia Woolf",
+      "publishedDate": "2025",
+      "isbn13": "9788124800157",
+      "pages": 208
+    },
+    {
+      "page": 13,
+      "slug": "the-way-of-the-world",
+      "title": "The Way Of The World",
+      "author": "William Congreve",
+      "publishedDate": "2025",
+      "isbn13": "9788124802649",
+      "pages": 108
+    },
+    {
+      "page": 13,
+      "slug": "uncle-toms-cabin",
+      "title": "Uncle Tom\u2019s Cabin",
+      "author": "Harriet Beecher Stowe",
+      "publishedDate": "2025",
+      "isbn13": "9788124807101",
+      "pages": 576
+    },
+    {
+      "page": 13,
+      "slug": "white-fang",
+      "title": "White Fang",
+      "author": "Jack London",
+      "publishedDate": "2025",
+      "isbn13": "9788124807187",
+      "pages": 226
+    },
+    {
+      "page": 13,
+      "slug": "an-enquiry-concerning-human-understanding",
+      "title": "An Enquiry Concerning Human Understanding",
+      "author": "David Hume",
+      "publishedDate": "2025",
+      "isbn13": "9788124807071",
+      "pages": 175
+    },
+    {
+      "page": 13,
+      "slug": "principles-of-economics",
+      "title": "Principles Of Economics",
+      "author": "Alfred Marshall",
+      "publishedDate": "2025",
+      "isbn13": "9788124805541",
+      "pages": 1020
+    },
+    {
+      "page": 13,
+      "slug": "alexander-the-great",
+      "title": "Alexander The Great",
+      "author": "Jacob Abbott",
+      "publishedDate": "2024",
+      "isbn13": "9788124805565",
+      "pages": 198
+    },
+    {
+      "page": 14,
+      "slug": "antony-and-cleopatra",
+      "title": "Antony And Cleopatra",
+      "author": "William Shakespeare",
+      "publishedDate": "2024",
+      "isbn13": "9788124800614",
+      "pages": 136
+    },
+    {
+      "page": 14,
+      "slug": "aristotles-politics",
+      "title": "Aristotle\u2019s Politics",
+      "author": "Translated by Benjamin Jowett",
+      "publishedDate": "2024",
+      "isbn13": "9788124804056",
+      "pages": 242
+    },
+    {
+      "page": 14,
+      "slug": "a-little-princess",
+      "title": "A Little Princess",
+      "author": "Frances Hodgson Burnett",
+      "publishedDate": "2024",
+      "isbn13": "9788124805503",
+      "pages": 234
+    },
+    {
+      "page": 14,
+      "slug": "candide",
+      "title": "Candide",
+      "author": "Voltaire",
+      "publishedDate": "2024",
+      "isbn13": "9788124805138",
+      "pages": 140
+    },
+    {
+      "page": 14,
+      "slug": "economic-doctrine-and-method",
+      "title": "Economic Doctrine And Method",
+      "author": "Joseph A. Schumpeter",
+      "publishedDate": "2024",
+      "isbn13": "9788124805787",
+      "pages": 196
+    },
+    {
+      "page": 14,
+      "slug": "far-from-the-madding-crowd",
+      "title": "Far From The Madding Crowd",
+      "author": "Thomas Hardy",
+      "publishedDate": "2024",
+      "isbn13": "9788124800072",
+      "pages": 382
+    },
+    {
+      "page": 14,
+      "slug": "fathers-and-sons",
+      "title": "Fathers And Sons",
+      "author": "Ivan Sergeyevich Turgenev",
+      "publishedDate": "2024",
+      "isbn13": "9788124805114",
+      "pages": 296
+    },
+    {
+      "page": 14,
+      "slug": "jacobs-room",
+      "title": "Jacob\u2019s Room",
+      "author": "Virginia Woolf",
+      "publishedDate": "2024",
+      "isbn13": "9788124805237",
+      "pages": 200
+    },
+    {
+      "page": 14,
+      "slug": "moll-flanders",
+      "title": "Moll Flanders",
+      "author": "Daniel Defoe",
+      "publishedDate": "2024",
+      "isbn13": "9788124800461",
+      "pages": 322
+    },
+    {
+      "page": 14,
+      "slug": "relativity-the-special-and-general-theory",
+      "title": "Relativity: The Special And General Theory",
+      "author": "Albert Einstein",
+      "publishedDate": "2024",
+      "isbn13": "9788124805374",
+      "pages": 142
+    },
+    {
+      "page": 14,
+      "slug": "the-autobiography-of-benjamin-franklin",
+      "title": "The Autobiography Of Benjamin Franklin",
+      "author": "Frank Woodworth Pine/E. Boyd Smith",
+      "publishedDate": "2024",
+      "isbn13": "9788124805398",
+      "pages": 236
+    },
+    {
+      "page": 15,
+      "slug": "the-call-of-the-wild",
+      "title": "The Call Of The Wild",
+      "author": "Jack London",
+      "publishedDate": "2024",
+      "isbn13": "9788124805152",
+      "pages": 98
+    },
+    {
+      "page": 15,
+      "slug": "the-prince-and-the-pauper",
+      "title": "The Prince and The Pauper",
+      "author": "Mark Twain",
+      "publishedDate": "2024",
+      "isbn13": "9788124805190",
+      "pages": 266
+    },
+    {
+      "page": 15,
+      "slug": "the-professor",
+      "title": "The Professor",
+      "author": "Charlotte Bronte",
+      "publishedDate": "2024",
+      "isbn13": "9788124805251",
+      "pages": 310
+    },
+    {
+      "page": 15,
+      "slug": "the-rainbow",
+      "title": "The Rainbow",
+      "author": "D.H. Lawrence",
+      "publishedDate": "2024",
+      "isbn13": "9788124800089",
+      "pages": 518
+    },
+    {
+      "page": 15,
+      "slug": "the-rubaiyat-of-omar-khayyam",
+      "title": "The Rub\u00e1iy\u00e1t of Omar Khayy\u00e1m",
+      "author": "Omar Khayyam",
+      "publishedDate": "2024",
+      "isbn13": "9788124803295",
+      "pages": 80
+    },
+    {
+      "page": 15,
+      "slug": "the-secret-garden",
+      "title": "The Secret Garden",
+      "author": "Frances Hodgson Burnett",
+      "publishedDate": "2024",
+      "isbn13": "9788124804742",
+      "pages": 284
+    },
+    {
+      "page": 15,
+      "slug": "the-sun-also-rises",
+      "title": "The Sun Also Rises",
+      "author": "Ernest Hemingway",
+      "publishedDate": "2024",
+      "isbn13": "9788124805350",
+      "pages": 226
+    },
+    {
+      "page": 15,
+      "slug": "the-taming-of-the-shrew",
+      "title": "The Taming Of The Shrew",
+      "author": "William Shakespeare",
+      "publishedDate": "2024",
+      "isbn13": "9788124805077",
+      "pages": 114
+    },
+    {
+      "page": 15,
+      "slug": "the-tempest",
+      "title": "The Tempest",
+      "author": "William Shakespeare",
+      "publishedDate": "2024",
+      "isbn13": "9788124800577",
+      "pages": 114
+    },
+    {
+      "page": 15,
+      "slug": "the-turn-of-the-screw",
+      "title": "The Turn Of The Screw",
+      "author": "Henry James",
+      "publishedDate": "2024",
+      "isbn13": "9788124804780",
+      "pages": 154
+    },
+    {
+      "page": 15,
+      "slug": "a-midsummer-nights-dream",
+      "title": "A Midsummer Night\u2019s Dream",
+      "author": "William Shakespeare",
+      "publishedDate": "2023",
+      "isbn13": "9788124800638",
+      "pages": 96
+    },
+    {
+      "page": 15,
+      "slug": "best-ghost-stories",
+      "title": "Best Ghost Stories",
+      "author": "Charles Dickens",
+      "publishedDate": "2023",
+      "isbn13": "9788124803967",
+      "pages": 350
+    },
+    {
+      "page": 15,
+      "slug": "heart-of-darkness",
+      "title": "Heart Of Darkness",
+      "author": "Joseph Conrad",
+      "publishedDate": "2023",
+      "isbn13": "9788124800713",
+      "pages": 102
+    },
+    {
+      "page": 16,
+      "slug": "kidnapped",
+      "title": "Kidnapped",
+      "author": "Robert Louis Stevenson",
+      "publishedDate": "2023",
+      "isbn13": "9788124804766",
+      "pages": 310
+    },
+    {
+      "page": 16,
+      "slug": "lady-chatterleys-lover",
+      "title": "Lady Chatterley\u2019s Lover",
+      "author": "D.H. Lawrence",
+      "publishedDate": "2023",
+      "isbn13": "9788124800973",
+      "pages": 336
+    },
+    {
+      "page": 16,
+      "slug": "much-ado-about-nothing",
+      "title": "Much Ado About Nothing",
+      "author": "William Shakespeare",
+      "publishedDate": "2023",
+      "isbn13": "9788124800522",
+      "pages": 96
+    },
+    {
+      "page": 16,
+      "slug": "on-war",
+      "title": "On War",
+      "author": "Carl Von Clausewitz",
+      "publishedDate": "2023",
+      "isbn13": "9788124805091",
+      "pages": 646
+    },
+    {
+      "page": 16,
+      "slug": "paradise-lost",
+      "title": "Paradise Lost",
+      "author": "John Milton",
+      "publishedDate": "2023",
+      "isbn13": "9788124803257",
+      "pages": 292
+    },
+    {
+      "page": 16,
+      "slug": "sense-and-sensibility",
+      "title": "Sense And Sensibility",
+      "author": "Jane Austen",
+      "publishedDate": "2023",
+      "isbn13": "9788124800256",
+      "pages": 334
+    },
+    {
+      "page": 16,
+      "slug": "the-comedy-of-errors",
+      "title": "The Comedy Of Errors",
+      "author": "William Shakespeare",
+      "publishedDate": "2023",
+      "isbn13": "9788124804889",
+      "pages": 98
+    },
+    {
+      "page": 16,
+      "slug": "the-importance-of-being-earnest",
+      "title": "The Importance of Being Earnest",
+      "author": "Oscar Wilde",
+      "publishedDate": "2023",
+      "isbn13": "9788124803271",
+      "pages": 80
+    },
+    {
+      "page": 16,
+      "slug": "the-mill-on-the-floss",
+      "title": "The Mill On The Floss",
+      "author": "George Eliot",
+      "publishedDate": "2023",
+      "isbn13": "9788124800164",
+      "pages": 566
+    },
+    {
+      "page": 16,
+      "slug": "the-pilgrims-progress",
+      "title": "The Pilgrim\u2019s Progress",
+      "author": "John Bunyan",
+      "publishedDate": "2023",
+      "isbn13": "9788124803776",
+      "pages": 304
+    },
+    {
+      "page": 16,
+      "slug": "gitanjali-song-offerings",
+      "title": "Gitanjali: Song Offerings",
+      "author": "Rabindranath Tagore",
+      "publishedDate": "2022",
+      "isbn13": "9788124802458",
+      "pages": 88
+    },
+    {
+      "page": 16,
+      "slug": "king-solomons-mines",
+      "title": "King Solomon\u2019s Mines",
+      "author": "H. Rider Haggard",
+      "publishedDate": "2022",
+      "isbn13": "9788124803202",
+      "pages": 204
+    },
+    {
+      "page": 17,
+      "slug": "major-barbara",
+      "title": "Major Barbara",
+      "author": "George Bernard Shaw",
+      "publishedDate": "2022",
+      "isbn13": "9788124804827",
+      "pages": 170
+    },
+    {
+      "page": 17,
+      "slug": "the-age-of-innocence",
+      "title": "The Age of Innocence",
+      "author": "Edith Wharton",
+      "publishedDate": "2022",
+      "isbn13": "9788124800980",
+      "pages": 310
+    },
+    {
+      "page": 17,
+      "slug": "the-apple-cart-a-political-extravaganza",
+      "title": "The Apple Cart: A Political Extravaganza",
+      "author": "George Bernard Shaw",
+      "publishedDate": "2022",
+      "isbn13": "9788124804865",
+      "pages": 132
+    },
+    {
+      "page": 17,
+      "slug": "two-treatises-of-government",
+      "title": "Two Treatises of Government",
+      "author": "John Locke",
+      "publishedDate": "2022",
+      "isbn13": "9788124803646",
+      "pages": 280
+    },
+    {
+      "page": 17,
+      "slug": "women-in-love",
+      "title": "Women In Love",
+      "author": "D.H. Lawrence",
+      "publishedDate": "2022",
+      "isbn13": "9788124800287",
+      "pages": 544
+    },
+    {
+      "page": 17,
+      "slug": "journey-to-the-centre-of-the-earth",
+      "title": "Journey to the Centre of The Earth",
+      "author": "Jules Verne",
+      "publishedDate": "2021",
+      "isbn13": "9788124803158",
+      "pages": 194
+    },
+    {
+      "page": 17,
+      "slug": "a-christmas-carol",
+      "title": "A Christmas Carol",
+      "author": "Charles Dickens",
+      "publishedDate": "2020",
+      "isbn13": "9788124803165",
+      "pages": 80
+    },
+    {
+      "page": 17,
+      "slug": "confessions-of-an-english-opium-eater",
+      "title": "Confessions of an English Opium Eater",
+      "author": "Thomas De Quincey",
+      "publishedDate": "2020",
+      "isbn13": "9788124804223",
+      "pages": 276
+    },
+    {
+      "page": 17,
+      "slug": "the-voyage-of-the-beagle",
+      "title": "The Voyage Of The Beagle",
+      "author": "Charles Darwin",
+      "publishedDate": "2020",
+      "isbn13": "9788124804469",
+      "pages": 556
+    },
+    {
+      "page": 17,
+      "slug": "a-tale-of-a-tub-and-other-works",
+      "title": "A Tale of a Tub and Other Works",
+      "author": "Jonathan Swift",
+      "publishedDate": "2019",
+      "isbn13": "9788124803905",
+      "pages": 198
+    },
+    {
+      "page": 17,
+      "slug": "aesops-fables",
+      "title": "Aesop\u2019s Fables",
+      "author": "Translated by V.S. Vernon Jones",
+      "publishedDate": "2019",
+      "isbn13": "9788124803752",
+      "pages": 184
+    },
+    {
+      "page": 17,
+      "slug": "english-fairy-tales",
+      "title": "English Fairy Tales",
+      "author": "Flora Annie Steel",
+      "publishedDate": "2019",
+      "isbn13": "9788124804247",
+      "pages": 268
+    },
+    {
+      "page": 17,
+      "slug": "the-best-of-saki",
+      "title": "The Best Of Saki",
+      "author": "Saki (H.H. Munro)",
+      "publishedDate": "2019",
+      "isbn13": "9788124803301",
+      "pages": 196
+    },
+    {
+      "page": 18,
+      "slug": "the-coral-island-a-tale-of-the-pacific-ocean",
+      "title": "The Coral Island: A Tale Of The Pacific Ocean",
+      "author": "R.M. Ballantyne",
+      "publishedDate": "2019",
+      "isbn13": "9788124804070",
+      "pages": 300
+    },
+    {
+      "page": 18,
+      "slug": "the-hound-of-the-baskervilles",
+      "title": "The Hound Of The Baskervilles",
+      "author": "A. Conan Doyle",
+      "publishedDate": "2019",
+      "isbn13": "9788124804261",
+      "pages": 186
+    },
+    {
+      "page": 18,
+      "slug": "the-red-badge-of-courage-and-other-stories",
+      "title": "The Red Badge of Courage and Other Stories",
+      "author": "Stephen Crane",
+      "publishedDate": "2019",
+      "isbn13": "9788124803684",
+      "pages": 174
+    },
+    {
+      "page": 18,
+      "slug": "the-strange-case-of-dr-jekyll-and-mr-hyde",
+      "title": "The Strange Case of Dr. Jekyll and Mr. Hyde",
+      "author": "R. L. Stevenson",
+      "publishedDate": "2019",
+      "isbn13": "9788124803264",
+      "pages": 80
+    },
+    {
+      "page": 18,
+      "slug": "three-men-in-a-boat",
+      "title": "Three Men In A Boat",
+      "author": "Jerome K. Jerome",
+      "publishedDate": "2019",
+      "isbn13": "9788124803141",
+      "pages": 160
+    },
+    {
+      "page": 18,
+      "slug": "a-defence-of-poesie-and-poems",
+      "title": "A Defence of Poesie and Poems",
+      "author": "Sir Philip Sidney",
+      "publishedDate": "2018",
+      "isbn13": "9788124804018",
+      "pages": 114
+    },
+    {
+      "page": 18,
+      "slug": "the-communist-manifesto",
+      "title": "The Communist Manifesto",
+      "author": "Karl Marx/Friedrick Engels",
+      "publishedDate": "2018",
+      "isbn13": "9788124803943",
+      "pages": 464
+    },
+    {
+      "page": 18,
+      "slug": "the-memoirs-of-sherlock-holmes",
+      "title": "The Memoirs Of Sherlock Holmes",
+      "author": "Sir Arthur Conan Doyle",
+      "publishedDate": "2018",
+      "isbn13": "9788124803622",
+      "pages": 256
+    },
+    {
+      "page": 18,
+      "slug": "the-return-of-sherlock-holmes",
+      "title": "The Return of Sherlock Holmes",
+      "author": "Sir Arthur Conan Doyle",
+      "publishedDate": "2018",
+      "isbn13": "9788124803608",
+      "pages": 330
+    },
+    {
+      "page": 18,
+      "slug": "twenty-thousand-leagues-under-the-sea",
+      "title": "Twenty Thousand Leagues Under the Sea",
+      "author": "Jules Verne",
+      "publishedDate": "2018",
+      "isbn13": "9788124803585",
+      "pages": 328
+    },
+    {
+      "page": 18,
+      "slug": "the-ambassadors",
+      "title": "The Ambassadors",
+      "author": "Henry James",
+      "publishedDate": "2017",
+      "isbn13": "9788124800379",
+      "pages": 468
+    },
+    {
+      "page": 18,
+      "slug": "the-wonderful-wizard-of-oz",
+      "title": "The Wonderful Wizard Of Oz",
+      "author": "L. Frank Baum",
+      "publishedDate": "2017",
+      "isbn13": "9788124804094",
+      "pages": 142
+    },
+    {
+      "page": 18,
+      "slug": "the-wind-in-the-willows",
+      "title": "The Wind In The Willows",
+      "author": "Kenneth Grahame",
+      "publishedDate": "2015",
+      "isbn13": "9788124803172",
+      "pages": 152
+    },
+    {
+      "page": 18,
+      "slug": "northanger-abbey",
+      "title": "Northanger Abbey",
+      "author": "Jane Austen",
+      "publishedDate": "2014",
+      "isbn13": "9788124800249",
+      "pages": 216
+    },
+    {
+      "page": 19,
+      "slug": "henry-v",
+      "title": "Henry V",
+      "author": "William Shakespeare",
+      "publishedDate": "2012",
+      "isbn13": "9788124800652",
+      "pages": 136
+    },
+    {
+      "page": 19,
+      "slug": "the-portrait-of-a-lady",
+      "title": "The Portrait of A Lady",
+      "author": "Henry James",
+      "publishedDate": "2012",
+      "isbn13": "9788124800010",
+      "pages": 592
+    },
+    {
+      "page": 19,
+      "slug": "adam-bede",
+      "title": "Adam Bede",
+      "author": "George Eliot",
+      "publishedDate": "2010",
+      "isbn13": "9788124800218",
+      "pages": 568
+    },
+    {
+      "page": 19,
+      "slug": "the-nigger-of-the-narcissus",
+      "title": "The Nigger of the \u2018Narcissus\u2019",
+      "author": "Joseph Conrad",
+      "publishedDate": "2009",
+      "isbn13": "9788124800386",
+      "pages": 144
+    }
+  ],
+  "skipped": [
+    [
+      "existing",
+      "A Portrait Of The Artist As A Young Man",
+      "9788124800171"
+    ],
+    [
+      "existing",
+      "Oliver Twist",
+      "9788124800034"
+    ],
+    [
+      "existing",
+      "Pride And Prejudice",
+      "9788124800195"
+    ],
+    [
+      "existing",
+      "Tao Te Ching",
+      "9788124806982"
+    ],
+    [
+      "existing",
+      "The Adventures Of Tom Sawyer",
+      "9788124802403"
+    ],
+    [
+      "existing",
+      "The Art of War",
+      "9788124806135"
+    ],
+    [
+      "existing",
+      "To The Lighthouse",
+      "9788124800126"
+    ],
+    [
+      "existing",
+      "Treasure Island",
+      "9788124800928"
+    ],
+    [
+      "existing",
+      "War & Peace",
+      "9788124805633"
+    ],
+    [
+      "existing",
+      "Crime and Punishment",
+      "9788124807217"
+    ],
+    [
+      "existing",
+      "Great Expectations",
+      "9788124800003"
+    ],
+    [
+      "existing",
+      "Jane Eyre",
+      "9788124800270"
+    ],
+    [
+      "existing",
+      "Kim",
+      "9788124803189"
+    ],
+    [
+      "existing",
+      "Meditations",
+      "9788124807026"
+    ],
+    [
+      "existing",
+      "Siddhartha",
+      "9788124806128"
+    ],
+    [
+      "existing",
+      "A Tale of Two Cities",
+      "9788124800027"
+    ],
+    [
+      "existing",
+      "The Alchemist",
+      "9788124802946"
+    ],
+    [
+      "existing",
+      "The Brothers Karamazov",
+      "9788124807255"
+    ],
+    [
+      "existing",
+      "The Hunchback of Notre-Dame",
+      "9788124807231"
+    ],
+    [
+      "existing",
+      "The Jungle Books",
+      "9788124800959"
+    ],
+    [
+      "existing",
+      "The Odyssey",
+      "9788124806401"
+    ],
+    [
+      "existing",
+      "The Old Man and the Sea",
+      "9788124805336"
+    ],
+    [
+      "existing",
+      "The Three Musketeers",
+      "9788124805817"
+    ],
+    [
+      "existing",
+      "The Trial",
+      "9788124807248"
+    ],
+    [
+      "existing",
+      "Ulysses",
+      "9788124805640"
+    ],
+    [
+      "existing",
+      "Animal Farm",
+      "9788124802380"
+    ],
+    [
+      "existing",
+      "David Copperfield",
+      "9788124805619"
+    ],
+    [
+      "existing",
+      "Little Women",
+      "9788124805176"
+    ],
+    [
+      "existing",
+      "Mrs Dalloway",
+      "9788124800133"
+    ],
+    [
+      "existing",
+      "Nineteen Eighty-Four",
+      "9788124802601"
+    ],
+    [
+      "existing",
+      "The Iliad",
+      "9788124805626"
+    ],
+    [
+      "existing",
+      "The Republic",
+      "9788124805510"
+    ],
+    [
+      "existing",
+      "Frankenstein",
+      "9788124800720"
+    ],
+    [
+      "existing",
+      "The Great Gatsby",
+      "9788124800706"
+    ],
+    [
+      "existing",
+      "The Picture Of Dorian Gray",
+      "9788124805213"
+    ],
+    [
+      "existing",
+      "The Scarlet Letter",
+      "9788124800102"
+    ],
+    [
+      "existing",
+      "Wuthering Heights",
+      "9788124800096"
+    ],
+    [
+      "existing",
+      "Silas Marner",
+      "9788124800454"
+    ],
+    [
+      "existing",
+      "Madame Bovary",
+      "9788124800911"
+    ],
+    [
+      "existing",
+      "Dracula",
+      "9788124800362"
+    ],
+    [
+      "existing",
+      "Dubliners",
+      "9788124800317"
+    ]
+  ],
+  "problems": [
+    [
+      "malformed",
+      5,
+      "9788124806395",
+      "",
+      "How to Stop Worrying and Start Living: Time-Tested Methods for Conquering Worry Dale Carnegie",
+      "PB | 2026 | 372 pp"
+    ],
+    [
+      "malformed",
+      7,
+      "9788124807019",
+      "",
+      "The Power of Your Subconscious Mind: One o the Most Powerful Self-Help Guides Ever Writte Joseph Murphy",
+      "PB | 2026 | 232 pp"
+    ],
+    [
+      "malformed",
+      7,
+      "9788124800508",
+      "f The Return Of The Native",
+      "nThomas Hardy",
+      "PB | 2026 | 440 pp"
+    ],
+    [
+      "malformed",
+      9,
+      "9788124807002",
+      "",
+      "How to Develop Self-Confidence & Influence People by Public Speaking Dale Carnegie",
+      "Dale Carnegie PB | 2025 | 226 pp"
+    ],
+    [
+      "malformed",
+      17,
+      "9788124800447",
+      "",
+      "The Adventures of Tom Sawyer and The Adventures of Huckleberry Finn Mark Twain",
+      "PB | 2022 | 274 pp"
+    ]
+  ]
+}

@@ -1,124 +1,142 @@
 "use client";
+/* eslint-disable @next/next/no-img-element */
 
-import Image from "next/image";
-import { FormEvent, useState, useTransition } from "react";
+import {
+  getCatalogCollections,
+  getFeaturedCatalogBooks,
+} from "@/lib/catalog";
+import { StorefrontHeader } from "@/app/components/StorefrontHeader";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { FormEvent, useEffect, useState } from "react";
 
-type BookResult = {
-  id: string;
-  title: string;
-  price: number | null;
-  priceText: string;
-  link: string;
-  store: "amazon" | "flipkart";
-  isFallback: boolean;
-};
+const homepageCollections = getCatalogCollections();
+const homepageFeaturedBooks = getFeaturedCatalogBooks(12);
 
-type GoogleBook = {
-  id: string;
-  title: string;
-  authors: string[];
-  thumbnail: string | null;
-  infoLink: string;
-  publishedDate: string | null;
-  publisher: string | null;
-};
+const shelfSlugs = [
+  "world-classics",
+  "prize-winners",
+  "indian-authors",
+];
 
-type SearchResponse = {
+const homepageShelves = shelfSlugs
+  .map((slug) => homepageCollections.find((collection) => collection.slug === slug))
+  .filter((collection): collection is NonNullable<(typeof homepageCollections)[number]> => Boolean(collection));
+
+type TopSearchEntry = {
+  normalizedQuery: string;
   query: string;
-  googleBook: GoogleBook | null;
-  amazon: BookResult[];
-  flipkart: BookResult[];
-  cheapestId: string | null;
-  notes: string[];
+  count: number;
+  lastSearchedAt: string;
+  book: {
+    id: string;
+    title: string;
+    authors: string[];
+    thumbnail: string | null;
+    publishedDate: string | null;
+    publisher: string | null;
+  } | null;
 };
 
-type BuyOptionsProps = {
-  amazonLink: string;
-  flipkartLink: string;
-};
+function formatAuthors(authors: string[]) {
+  return authors.length > 0 ? authors.join(", ") : "Unknown author";
+}
 
-function BuyOptions({ amazonLink, flipkartLink }: BuyOptionsProps) {
+function HeartIcon() {
   return (
-    <section className="rounded-[2rem] border border-slate-200 bg-slate-950 p-6 text-white shadow-xl">
-      <div className="grid gap-6 lg:grid-cols-[1fr_1.4fr] lg:items-center">
-        <div>
-          <span className="rounded-full bg-amber-300 px-3 py-1 text-xs font-semibold text-slate-950">
-            Buy / compare
-          </span>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight">
-            Check current book prices on trusted stores.
-          </h2>
-          <p className="mt-3 leading-7 text-slate-300">
-            We send you directly to the store search page so you can see today&apos;s
-            price, delivery date, seller, and available editions.
-          </p>
-        </div>
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="inline-icon">
+      <path
+        d="M12 20.25 4.9 13.3a4.61 4.61 0 0 1 6.52-6.52L12 7.36l.58-.58A4.61 4.61 0 0 1 19.1 13.3L12 20.25Z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
-        <div className="grid gap-4 sm:grid-cols-2">
-          <a
-            href={amazonLink}
-            target="_blank"
-            rel="noreferrer"
-            className="group rounded-3xl bg-white p-5 text-slate-950 transition hover:-translate-y-1 hover:bg-orange-50"
-          >
-            <div className="flex h-full flex-col justify-between gap-8">
-              <div>
-                <p className="text-sm font-semibold text-orange-700">Amazon India</p>
-                <h3 className="mt-2 text-2xl font-bold">View on Amazon</h3>
-              </div>
-              <span className="text-sm font-semibold text-slate-600 transition group-hover:text-orange-700">
-                Open store search
-              </span>
-            </div>
-          </a>
+function ArrowRightIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="inline-icon small">
+      <path d="M6 12h12M13 7l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
 
-          <a
-            href={flipkartLink}
-            target="_blank"
-            rel="noreferrer"
-            className="group rounded-3xl bg-white p-5 text-slate-950 transition hover:-translate-y-1 hover:bg-blue-50"
-          >
-            <div className="flex h-full flex-col justify-between gap-8">
-              <div>
-                <p className="text-sm font-semibold text-blue-700">Flipkart</p>
-                <h3 className="mt-2 text-2xl font-bold">View on Flipkart</h3>
-              </div>
-              <span className="text-sm font-semibold text-slate-600 transition group-hover:text-blue-700">
-                Open store search
-              </span>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
+function ShieldIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="feature-icon">
+      <path
+        d="M12 3.5 5.5 6v5.55c0 4.1 2.8 7.88 6.5 8.95 3.7-1.07 6.5-4.85 6.5-8.95V6L12 3.5Z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+      <path d="m9.5 11.8 1.7 1.7 3.3-3.7" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function TagIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="feature-icon">
+      <path
+        d="M20 10.2 12.2 18a2.1 2.1 0 0 1-3 0l-5.2-5.2a2.1 2.1 0 0 1 0-3L11.8 2H18a2 2 0 0 1 2 2v6.2Z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+      <circle cx="15.5" cy="6.5" r="1.2" fill="currentColor" />
+    </svg>
+  );
+}
+
+function BellIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="feature-icon">
+      <path
+        d="M7 10a5 5 0 0 1 10 0v4l1.5 2H5.5L7 14v-4Z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+      <path d="M10 18a2 2 0 0 0 4 0" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
   );
 }
 
 export default function Home() {
+  const router = useRouter();
   const [query, setQuery] = useState("");
-  const [data, setData] = useState<SearchResponse | null>(null);
+  const [topSearches, setTopSearches] = useState<TopSearchEntry[]>([]);
   const [error, setError] = useState("");
-  const [isPending, startTransition] = useTransition();
 
-  async function runSearch(nextQuery: string) {
-    try {
-      const response = await fetch(`/api/search?q=${encodeURIComponent(nextQuery)}`, {
-        cache: "no-store",
-      });
+  useEffect(() => {
+    async function loadCatalogInsights() {
+      try {
+        const response = await fetch("/api/catalog", { cache: "no-store" });
+        if (!response.ok) {
+          return;
+        }
 
-      if (!response.ok) {
-        const payload = (await response.json()) as { message?: string };
-        throw new Error(payload.message ?? "Search failed.");
+        const payload = (await response.json()) as { topSearches?: TopSearchEntry[] };
+        setTopSearches(payload.topSearches ?? []);
+      } catch {
+        // Keep homepage browse mode available if analytics fail.
       }
-
-      const payload = (await response.json()) as SearchResponse;
-      setData(payload);
-    } catch (searchError) {
-      setData(null);
-      setError(
-        searchError instanceof Error ? searchError.message : "Something went wrong."
-      );
     }
+
+    void loadCatalogInsights();
+  }, []);
+
+  function submitSearch(nextQuery: string) {
+    setError("");
+    router.push(`/search?q=${encodeURIComponent(nextQuery)}`);
   }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -126,168 +144,290 @@ export default function Home() {
 
     const trimmedQuery = query.trim();
     if (!trimmedQuery) {
-      setError("Please enter a book name.");
+      setError("Please enter a book name, author, or ISBN.");
       return;
     }
 
-    setError("");
-
-    startTransition(() => {
-      void runSearch(trimmedQuery);
-    });
+    submitSearch(trimmedQuery);
   }
 
+  const mostSearchedBooks = topSearches.length
+    ? topSearches
+        .filter((entry) => entry.book)
+        .slice(0, 6)
+        .map((entry) => ({
+          id: entry.normalizedQuery,
+          title: entry.book?.title ?? entry.query,
+          author: formatAuthors(entry.book?.authors ?? []),
+          cover: entry.book?.thumbnail ?? null,
+          count: entry.count,
+          query: entry.query,
+        }))
+    : homepageFeaturedBooks.slice(0, 6).map((book) => ({
+        id: book.id,
+        title: book.title,
+        author: formatAuthors(book.authors),
+        cover: book.thumbnail,
+        count: 0,
+        query: book.title,
+      }));
+  const shelfPairs = [
+    {
+      left: homepageShelves[0] ?? null,
+      right: homepageShelves[1] ?? null,
+    },
+    {
+      left: homepageShelves[2] ?? null,
+      right: null,
+    },
+  ];
+  const promoBestsellers =
+    homepageCollections.find((collection) => collection.slug === "bestsellers")?.books.slice(0, 4) ??
+    homepageFeaturedBooks.slice(0, 4);
+  const promoStarterBooks = homepageFeaturedBooks.slice(6, 10);
+  const heroDiscoveryBooks =
+    homepageCollections.find((collection) => collection.slug === "prize-winners")?.books.slice(0, 5) ??
+    homepageShelves[1]?.books.slice(0, 5) ??
+    homepageFeaturedBooks.slice(0, 5);
+
   return (
-    <main className="min-h-screen bg-[radial-gradient(circle_at_top,#fff8e8_0%,#eef4ff_50%,#f8fafc_100%)] px-4 py-10 text-slate-900 sm:px-6">
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-10">
-        <section className="rounded-[2rem] border border-white/70 bg-white/75 p-6 shadow-[0_20px_80px_rgba(15,23,42,0.08)] backdrop-blur sm:p-8">
-          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
-            <div className="space-y-5">
-              <div className="inline-flex rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white">
-                Book price comparison for India
-              </div>
-              <div className="space-y-3">
-                <h1 className="max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">
-                  Find book details and compare buying options in one search.
-                </h1>
-                <p className="max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
-                  Search a book, confirm the title with Google Books, then open fast
-                  Amazon and Flipkart buying links.
-                </p>
-              </div>
-            </div>
+    <main className="landing-shell bookstore-home">
+      <StorefrontHeader
+        query={query}
+        onQueryChange={setQuery}
+        onSubmit={handleSubmit}
+      />
 
-            <form
-              onSubmit={handleSubmit}
-              className="rounded-[1.75rem] bg-slate-950 p-5 text-white shadow-xl"
-            >
-              <label htmlFor="book-query" className="mb-3 block text-sm font-medium text-slate-300">
-                Search for a book
-              </label>
-              <div className="flex flex-col gap-3 sm:flex-row">
-                <input
-                  id="book-query"
-                  type="text"
-                  placeholder="Atomic Habits, Ikigai, Rich Dad Poor Dad..."
-                  value={query}
-                  onChange={(event) => setQuery(event.target.value)}
-                  className="min-w-0 flex-1 rounded-2xl border border-slate-700 bg-slate-900 px-4 py-3 text-base text-white outline-none ring-0 placeholder:text-slate-500 focus:border-amber-300"
-                />
-                <button
-                  type="submit"
-                  disabled={isPending}
-                  className="rounded-2xl bg-amber-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-amber-200 disabled:cursor-not-allowed disabled:opacity-70"
-                >
-                  {isPending ? "Searching..." : "Search now"}
-                </button>
+      <section className="home-hero-grid">
+        <article className="hero-panel hero-panel-main">
+          <div className="hero-side-books hero-side-books-left" aria-hidden="true">
+            {homepageShelves[0]?.books.slice(0, 4).map((book) => (
+              <div key={book.id} className="hero-lean-book">
+                {book.thumbnail ? <img src={book.thumbnail} alt="" width={64} height={128} className="hero-lean-book-cover" /> : null}
               </div>
-              <p className="mt-3 text-sm text-slate-400">
-                Tip: use the full book title for cleaner matches.
-              </p>
-            </form>
+            ))}
           </div>
-        </section>
+          <div className="hero-panel-copy">
+            <h1>
+              <span>Find the right book.</span>
+              <span>At the best price.</span>
+            </h1>
+            <p>
+              Compare prices across trusted stores and save on every book you love.
+            </p>
+          </div>
+          <div className="hero-book-stack hero-book-stack-right hero-book-stack-discovery" aria-hidden="true">
+            {heroDiscoveryBooks.map((book) => (
+              <div key={book.id} className="hero-book-card">
+                {book.thumbnail ? (
+                  <img src={book.thumbnail} alt="" width={86} height={126} className="hero-book-cover" />
+                ) : (
+                  <div className="hero-book-fallback">{book.title}</div>
+                )}
+              </div>
+            ))}
+          </div>
+          <div className="hero-cup" aria-hidden="true" />
+        </article>
 
-        {error ? (
-          <section className="rounded-3xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700">
-            {error}
-          </section>
-        ) : null}
+        <div className="hero-side-column">
+        <Link
+          href="/collections/bestsellers"
+          className="hero-panel hero-panel-side hero-panel-track promo-card-link"
+        >
+          <div className="promo-card-copy promo-card-copy-narrow">
+            <h2>Bestsellers This Week</h2>
+            <p>Reader favorites, habit books, money picks, and more.</p>
+          </div>
+          <div className="promo-mini-books promo-bestseller-books" aria-hidden="true">
+            {promoBestsellers.map((book) => (
+              <div key={book.id} className="promo-mini-book">
+                {book.thumbnail ? <img src={book.thumbnail} alt="" width={52} height={90} className="promo-mini-book-cover" /> : null}
+              </div>
+            ))}
+          </div>
+        </Link>
 
-        {data ? (
-          <>
-            {data.googleBook ? (
-              <section className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm">
-                <div className="grid gap-0 md:grid-cols-[180px_1fr]">
-                  <div className="flex items-center justify-center bg-slate-100 p-6">
-                    {data.googleBook.thumbnail ? (
-                      <Image
-                        src={data.googleBook.thumbnail}
-                        alt={data.googleBook.title}
-                        width={144}
-                        height={208}
-                        className="h-52 w-auto rounded-xl object-cover shadow-md"
-                        unoptimized
-                      />
-                    ) : (
-                      <div className="flex h-52 w-36 items-center justify-center rounded-xl bg-slate-200 text-sm font-medium text-slate-500">
-                        No cover
-                      </div>
-                    )}
+        <Link
+          href="/guides"
+          className="hero-panel hero-panel-side hero-panel-arrivals promo-card-link"
+        >
+          <div className="promo-card-copy">
+            <h2>First Book? Start Here</h2>
+            <p>Easy, loved reads to begin your reading habit with confidence.</p>
+          </div>
+          <div className="promo-mini-books" aria-hidden="true">
+            {promoStarterBooks.map((book) => (
+              <div key={book.id} className="promo-mini-book">
+                {book.thumbnail ? <img src={book.thumbnail} alt="" width={52} height={90} className="promo-mini-book-cover" /> : null}
+              </div>
+            ))}
+          </div>
+        </Link>
+        </div>
+      </section>
+
+      <section className="homepage-shelf-grid">
+        {shelfPairs.map((pair, index) => (
+          <div key={index} className="homepage-shelf-row">
+            {pair.left ? (
+              <section className="shelf-section shelf-card">
+                <div className="shelf-head">
+                  <div>
+                    <h2>{pair.left.label}</h2>
+                    <p>{pair.left.description}</p>
                   </div>
-
-                  <div className="space-y-4 p-6">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-900">
-                        Google Books match
-                      </span>
-                      {data.googleBook.publishedDate ? (
-                        <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
-                          Published {data.googleBook.publishedDate}
-                        </span>
-                      ) : null}
-                    </div>
-
-                    <div>
-                      <h2 className="text-2xl font-bold text-slate-900">
-                        {data.googleBook.title}
-                      </h2>
-                      {data.googleBook.authors.length > 0 ? (
-                        <p className="mt-2 text-base text-slate-600">
-                          By {data.googleBook.authors.join(", ")}
-                        </p>
-                      ) : null}
-                      {data.googleBook.publisher ? (
-                        <p className="mt-1 text-sm text-slate-500">
-                          Publisher: {data.googleBook.publisher}
-                        </p>
-                      ) : null}
-                    </div>
-
-                    <a
-                      href={data.googleBook.infoLink}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center rounded-full bg-amber-300 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-amber-200"
-                    >
-                      View Google Books info
-                    </a>
-                  </div>
+                  <Link href={`/collections/${pair.left.slug}`} className="view-more">
+                    View all
+                    <ArrowRightIcon />
+                  </Link>
                 </div>
-              </section>
-            ) : null}
 
-            {data.notes.length > 0 ? (
-              <section className="rounded-3xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
-                <div className="space-y-2">
-                  {data.notes.map((note) => (
-                    <p key={note}>{note}</p>
+                <div className="book-shelf-grid compact-shelf-grid">
+                  {pair.left.books.slice(0, 6).map((book) => (
+                    <article key={book.id} className="shelf-book-card compact-book-card">
+                      <Link href={`/collections/${pair.left!.slug}`} className="shelf-book-cover-link">
+                        {book.thumbnail ? (
+                          <img
+                            src={book.thumbnail}
+                            alt={book.title}
+                            width={104}
+                            height={156}
+                            className="shelf-book-cover compact-cover"
+                          />
+                        ) : (
+                          <div className="shelf-book-cover shelf-book-fallback compact-cover">{book.title}</div>
+                        )}
+                      </Link>
+                      <div className="shelf-book-copy compact-book-copy">
+                        <h3>{book.title}</h3>
+                        <p>{formatAuthors(book.authors)}</p>
+                      </div>
+                    </article>
                   ))}
                 </div>
               </section>
             ) : null}
 
-            <BuyOptions
-              amazonLink={data.amazon[0]?.link ?? "https://www.amazon.in/s?k=books&i=stripbooks"}
-              flipkartLink={data.flipkart[0]?.link ?? "https://www.flipkart.com/search?q=books"}
-            />
-          </>
-        ) : (
-          <section className="grid gap-4 md:grid-cols-3">
-            {["Search both stores", "See top 3 results", "Spot the cheapest deal"].map((item) => (
-              <article
-                key={item}
-                className="rounded-3xl border border-slate-200 bg-white/80 p-5 shadow-sm"
-              >
-                <h2 className="text-lg font-semibold text-slate-900">{item}</h2>
-                <p className="mt-2 text-sm leading-6 text-slate-600">
-                  The app keeps the flow simple so you can grow it into a bigger product later.
-                </p>
-              </article>
-            ))}
-          </section>
-        )}
-      </div>
+            {pair.right ? (
+              <section className="shelf-section shelf-card">
+                <div className="shelf-head">
+                  <div>
+                    <h2>{pair.right.label}</h2>
+                    <p>{pair.right.description}</p>
+                  </div>
+                  <Link href={`/collections/${pair.right.slug}`} className="view-more">
+                    View all
+                    <ArrowRightIcon />
+                  </Link>
+                </div>
+
+                <div className="book-shelf-grid compact-shelf-grid">
+                  {pair.right.books.slice(0, 6).map((book) => (
+                    <article key={book.id} className="shelf-book-card compact-book-card">
+                      <Link href={`/collections/${pair.right!.slug}`} className="shelf-book-cover-link">
+                        {book.thumbnail ? (
+                          <img
+                            src={book.thumbnail}
+                            alt={book.title}
+                            width={104}
+                            height={156}
+                            className="shelf-book-cover compact-cover"
+                          />
+                        ) : (
+                          <div className="shelf-book-cover shelf-book-fallback compact-cover">{book.title}</div>
+                        )}
+                      </Link>
+                      <div className="shelf-book-copy compact-book-copy">
+                        <h3>{book.title}</h3>
+                        <p>{formatAuthors(book.authors)}</p>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            ) : (
+              <section className="shelf-section shelf-card">
+                <div className="shelf-head">
+                  <div>
+                    <h2>Most Searched Books</h2>
+                    <p>Saved from real reader intent so popular searches stay one click away.</p>
+                  </div>
+                  <span className="view-more">View all <ArrowRightIcon /></span>
+                </div>
+
+                <div className="book-shelf-grid compact-shelf-grid">
+                  {mostSearchedBooks.slice(0, 6).map((book) => (
+                    <article key={book.id} className="shelf-book-card compact-book-card">
+                      <button
+                        type="button"
+                        className="searchable-shelf-card"
+                        onClick={() => {
+                          setQuery(book.query);
+                          submitSearch(book.query);
+                        }}
+                      >
+                        {book.cover ? (
+                          <img
+                            src={book.cover}
+                            alt={book.title}
+                            width={104}
+                            height={156}
+                            className="shelf-book-cover compact-cover"
+                          />
+                        ) : (
+                          <div className="shelf-book-cover shelf-book-fallback compact-cover">{book.title}</div>
+                        )}
+                        <div className="shelf-book-copy compact-book-copy">
+                          <h3>{book.title}</h3>
+                          <p>{book.author}</p>
+                        </div>
+                      </button>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            )}
+          </div>
+        ))}
+      </section>
+
+      <section className="trust-band storefront-trust-band">
+        <article className="trust-item">
+          <ShieldIcon />
+          <div>
+            <h3>Safe Store Links</h3>
+            <p>All outbound clicks go to approved stores only.</p>
+          </div>
+        </article>
+        <article className="trust-item">
+          <TagIcon />
+          <div>
+            <h3>No False Prices</h3>
+            <p>We only show prices when a trusted catalog match exists.</p>
+          </div>
+        </article>
+        <article className="trust-item">
+          <BellIcon />
+          <div>
+            <h3>Saved Searches Stay</h3>
+            <p>Most Searched Books continue to build from reader activity.</p>
+          </div>
+        </article>
+        <article className="trust-item">
+          <HeartIcon />
+          <div>
+            <h3>Discovery First</h3>
+            <p>Browse shelves before searching individual titles.</p>
+          </div>
+        </article>
+      </section>
+
+      {error ? (
+        <div className="error-box" role="alert">
+          {error}
+        </div>
+      ) : null}
     </main>
   );
 }

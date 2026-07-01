@@ -1,0 +1,34 @@
+[
+  {
+    "normalizedQuery": "dungeon crawler carl",
+    "query": "dungeon crawler carl",
+    "count": 22,
+    "lastSearchedAt": "2026-06-29T11:11:53.949Z",
+    "book": {
+      "id": "canonical-dungeon-crawler-carl",
+      "title": "Dungeon Crawler Carl",
+      "authors": [
+        "Matt Dinniman"
+      ],
+      "thumbnail": null,
+      "publishedDate": "2020",
+      "publisher": "Ace"
+    }
+  },
+  {
+    "normalizedQuery": "atomic habits",
+    "query": "Atomic Habits",
+    "count": 1,
+    "lastSearchedAt": "2026-06-29T10:43:13.375Z",
+    "book": {
+      "id": "/works/OL17930368W",
+      "title": "Atomic Habits",
+      "authors": [
+        "James Clear"
+      ],
+      "thumbnail": "https://covers.openlibrary.org/b/id/12539702-M.jpg",
+      "publishedDate": "2016",
+      "publisher": "Editorial Planeta, S. A."
+    }
+  }
+]
