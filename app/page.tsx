@@ -186,9 +186,12 @@ export default function Home() {
     homepageFeaturedBooks.slice(0, 4);
   const promoStarterBooks = homepageFeaturedBooks.slice(6, 10);
   const heroDiscoveryBooks =
-    homepageCollections.find((collection) => collection.slug === "prize-winners")?.books.slice(0, 5) ??
-    homepageShelves[1]?.books.slice(0, 5) ??
-    homepageFeaturedBooks.slice(0, 5);
+    homepageCollections
+      .find((collection) => collection.slug === "prize-winners")
+      ?.books.filter((book) => book.thumbnail)
+      .slice(0, 5) ??
+    homepageShelves[1]?.books.filter((book) => book.thumbnail).slice(0, 5) ??
+    homepageFeaturedBooks.filter((book) => book.thumbnail).slice(0, 5);
 
   return (
     <main className="landing-shell bookstore-home">

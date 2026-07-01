@@ -943,7 +943,7 @@ export const CATALOG_BOOKS: CatalogBookRecord[] = [
     description:
       "An imaginative Booker Prize-winning novel of survival, storytelling, and wonder.",
     category: "fiction",
-    thumbnail: "https://covers.openlibrary.org/b/isbn/9781786891686-L.jpg",
+    thumbnail: null,
     publisher: "Canongate Books",
     publishedDate: "2001",
     isbn13: "9781786891686",
