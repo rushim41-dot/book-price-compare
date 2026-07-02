@@ -624,6 +624,11 @@ const INDIAN_AUTHORS_SEED_BOOKS: CatalogBookRecord[] = INDIAN_AUTHORS_SEED_ROWS.
     })
 );
 
+const PEACOCK_SELF_HELP_SLUGS = new Set([
+  "as-a-man-thinketh",
+  "how-to-win-friends-and-influence-people",
+]);
+
 const PEACOCK_CLASSICS_SEED_BOOKS: CatalogBookRecord[] =
   PEACOCK_CLASSICS_SEED_ROWS.map(
     ([slug, title, author, publishedDate, isbn13, pages, sourcePage]) =>
@@ -927,6 +932,72 @@ const FIRST_READ_SEED_ROWS = [
   shelfGenre: string;
   publisher: string | null;
 }>;
+
+const SELF_HELP_SEED_ROWS = [
+  [2, "the-7-habits-of-highly-effective-people", "The 7 Habits of Highly Effective People", ["Stephen R. Covey"], "Personal effectiveness", "1989", "Classic personal-development book; useful for evergreen self-help catalogue."],
+  [5, "the-power-of-now", "The Power of Now", ["Eckhart Tolle"], "Mindfulness & spirituality", "1997", "Major spiritual self-help title; edition details vary widely."],
+  [7, "the-four-agreements", "The Four Agreements", ["Don Miguel Ruiz"], "Mindset & spirituality", "1997", "Evergreen spiritual/personal freedom self-help title."],
+  [8, "mans-search-for-meaning", "Man's Search for Meaning", ["Viktor E. Frankl"], "Meaning & resilience", "1946", "Classic meaning/resilience book; often shelved with self-help and psychology."],
+  [9, "mindset", "Mindset", ["Carol S. Dweck"], "Growth mindset", "2006", "Important psychology-backed self-improvement title."],
+  [12, "essentialism", "Essentialism", ["Greg McKeown"], "Focus & prioritization", "2014", "Popular minimalism/prioritization book for productivity readers."],
+  [13, "getting-things-done", "Getting Things Done", ["David Allen"], "Productivity system", "2001", "Classic productivity system; revised editions are common."],
+  [14, "eat-that-frog", "Eat That Frog!", ["Brian Tracy"], "Productivity & procrastination", "2001", "Short, popular productivity/procrastination title."],
+  [15, "make-time", "Make Time", ["Jake Knapp", "John Zeratsky"], "Focus & time management", "2018", "Modern practical productivity title."],
+  [16, "the-one-thing", "The ONE Thing", ["Gary Keller", "Jay Papasan"], "Focus & success", "2013", "Popular focus/success productivity book."],
+  [17, "grit", "Grit", ["Angela Duckworth"], "Resilience & perseverance", "2016", "Psychology-backed success/resilience bestseller."],
+  [18, "drive", "Drive", ["Daniel H. Pink"], "Motivation", "2009", "Popular motivation book used in business and personal-development categories."],
+  [19, "daring-greatly", "Daring Greatly", ["Brené Brown"], "Courage & vulnerability", "2012", "Major vulnerability/courage self-development title."],
+  [20, "the-gifts-of-imperfection", "The Gifts of Imperfection", ["Brené Brown"], "Self-acceptance", "2010", "Popular self-acceptance and shame-resilience title."],
+  [21, "cant-hurt-me", "Can't Hurt Me", ["David Goggins"], "Discipline & resilience", "2018", "High-demand discipline/resilience memoir-self-help hybrid."],
+  [22, "awaken-the-giant-within", "Awaken the Giant Within", ["Tony Robbins"], "Motivation & personal power", "1991", "Major Tony Robbins personal-development title."],
+  [23, "unlimited-power", "Unlimited Power", ["Tony Robbins"], "Motivation & personal power", "1986", "Earlier Tony Robbins success and performance title."],
+  [24, "the-magic-of-thinking-big", "The Magic of Thinking Big", ["David J. Schwartz"], "Success mindset", "1959", "Classic confidence and success mindset book."],
+  [25, "psycho-cybernetics", "Psycho-Cybernetics", ["Maxwell Maltz"], "Self-image & confidence", "1960", "Classic self-image and performance-improvement title."],
+  [27, "the-power-of-positive-thinking", "The Power of Positive Thinking", ["Norman Vincent Peale"], "Positive thinking", "1952", "Classic positive-thinking/self-help bestseller."],
+  [28, "the-mountain-is-you", "The Mountain Is You", ["Brianna Wiest"], "Self-sabotage & emotional growth", "2020", "Modern BookTok/self-help bestseller."],
+  [29, "101-essays-that-will-change-the-way-you-think", "101 Essays That Will Change the Way You Think", ["Brianna Wiest"], "Mindset & emotional growth", "2016", "Popular modern self-reflection essay collection."],
+  [31, "who-moved-my-cheese", "Who Moved My Cheese?", ["Spencer Johnson"], "Change management", "1998", "Short business/self-help classic about adapting to change."],
+  [32, "the-war-of-art", "The War of Art", ["Steven Pressfield"], "Creativity & resistance", "2002", "Important creativity/procrastination title."],
+  [33, "do-the-work", "Do the Work", ["Steven Pressfield"], "Creativity & execution", "2011", "Short action/execution book; pairs with The War of Art."],
+  [34, "show-your-work", "Show Your Work!", ["Austin Kleon"], "Creativity & career", "2014", "Popular creative-career self-development title."],
+  [35, "steal-like-an-artist", "Steal Like an Artist", ["Austin Kleon"], "Creativity", "2012", "Popular creativity/personal-development title."],
+  [36, "big-magic", "Big Magic", ["Elizabeth Gilbert"], "Creativity & courage", "2015", "Popular creativity and fear-management title."],
+  [38, "the-courage-to-be-disliked", "The Courage to Be Disliked", ["Ichiro Kishimi", "Fumitake Koga"], "Happiness & psychology", "2013", "Japanese-origin self-development bestseller based on Adlerian psychology."],
+  [39, "the-life-changing-magic-of-tidying-up", "The Life-Changing Magic of Tidying Up", ["Marie Kondo"], "Decluttering & lifestyle", "2011", "Major lifestyle/self-improvement book; many translated editions exist."],
+  [40, "the-happiness-project", "The Happiness Project", ["Gretchen Rubin"], "Happiness & habits", "2009", "Popular happiness/habit experiment book."],
+  [41, "the-miracle-morning", "The Miracle Morning", ["Hal Elrod"], "Morning routine & productivity", "2012", "Popular morning routine and productivity title."],
+  [42, "make-your-bed", "Make Your Bed", ["William H. McRaven"], "Discipline & resilience", "2017", "Short motivational discipline book based on McRaven's speech."],
+  [43, "mini-habits", "Mini Habits", ["Stephen Guise"], "Habits & behavior change", "2013", "Practical small-habit book; useful for habit subcategory."],
+  [44, "tiny-habits", "Tiny Habits", ["B. J. Fogg"], "Habits & behavior change", "2019", "Behavior-design habit book by Stanford researcher BJ Fogg."],
+  [45, "the-12-week-year", "The 12 Week Year", ["Brian P. Moran", "Michael Lennington"], "Goals & execution", "2013", "Popular goal-setting/execution system."],
+  [46, "the-compound-effect", "The Compound Effect", ["Darren Hardy"], "Habits & success", "2010", "Popular compounding-actions self-improvement title."],
+  [47, "high-performance-habits", "High Performance Habits", ["Brendon Burchard"], "Performance & habits", "2017", "Modern high-performance personal-development title."],
+  [48, "you-are-a-badass", "You Are a Badass", ["Jen Sincero"], "Confidence & motivation", "2013", "Popular confidence/motivation title."],
+  [49, "feel-the-fear-and-do-it-anyway", "Feel the Fear and Do It Anyway", ["Susan Jeffers"], "Confidence & fear", "1987", "Classic fear/confidence self-help book."],
+  [50, "the-confidence-code", "The Confidence Code", ["Katty Kay", "Claire Shipman"], "Confidence", "2014", "Popular confidence book with strong catalogue demand."],
+  [51, "emotional-intelligence-2-0", "Emotional Intelligence 2.0", ["Travis Bradberry", "Jean Greaves"], "Emotional intelligence", "2009", "Popular EQ/self-management title."],
+  [52, "nonviolent-communication", "Nonviolent Communication", ["Marshall B. Rosenberg"], "Communication & relationships", "1999", "Classic communication/relationship self-development book."],
+  [53, "crucial-conversations", "Crucial Conversations", ["Kerry Patterson", "Joseph Grenny", "Ron McMillan", "Al Switzler"], "Communication & leadership", "2002", "Popular communication/business self-development title."],
+  [54, "boundaries", "Boundaries", ["Henry Cloud", "John Townsend"], "Boundaries & relationships", "1992", "Evergreen relationships/boundaries self-help title."],
+  [55, "attached", "Attached", ["Amir Levine", "Rachel S. F. Heller"], "Relationships", "2010", "Popular attachment-style relationship self-help title."],
+  [56, "the-art-of-thinking-clearly", "The Art of Thinking Clearly", ["Rolf Dobelli"], "Decision-making & cognitive bias", "2011", "Popular clear-thinking/decision-making title."],
+  [57, "the-daily-stoic", "The Daily Stoic", ["Ryan Holiday", "Stephen Hanselman"], "Stoicism & daily practice", "2016", "Popular daily stoicism/self-improvement title."],
+  [58, "the-obstacle-is-the-way", "The Obstacle Is the Way", ["Ryan Holiday"], "Stoicism & resilience", "2014", "Popular modern stoicism/resilience book."],
+  [59, "ego-is-the-enemy", "Ego Is the Enemy", ["Ryan Holiday"], "Ego & discipline", "2016", "Popular modern stoicism/personal discipline title."],
+  [60, "the-let-them-theory", "The Let Them Theory", ["Mel Robbins"], "Control, relationships & mindset", "2024", "Recent major self-help bestseller; strong current search demand."],
+] satisfies Array<[
+  rank: number,
+  slug: string,
+  title: string,
+  authors: string[],
+  subCategory: string,
+  firstPublishedYear: string,
+  catalogueNote: string,
+]>;
+
+const SELF_HELP_SEED_BOOKS: CatalogBookRecord[] = SELF_HELP_SEED_ROWS.map(
+  buildSelfHelpSeedBook
+);
 
 const FIRST_READ_SEED_BOOKS: CatalogBookRecord[] = FIRST_READ_SEED_ROWS.map(
   buildFirstReadSeedBook
@@ -1413,6 +1484,7 @@ export const CATALOG_BOOKS: CatalogBookRecord[] = [
     featuredCollectionSlugs: ["world-classics", "nobel-prize-winners"],
     offers: buildCatalogOffers("the-plague", "The Plague", ["Albert Camus"]),
   },
+  ...SELF_HELP_SEED_BOOKS,
   ...WORLD_CLASSICS_SEED_BOOKS,
   ...PEACOCK_CLASSICS_SEED_BOOKS,
   ...INDIAN_AUTHORS_SEED_BOOKS,
@@ -1643,15 +1715,17 @@ function buildPeacockClassicSeedBook(book: {
   sourcePage: number;
 }): CatalogBookRecord {
   void book.sourcePage;
+  const isSelfHelp = PEACOCK_SELF_HELP_SLUGS.has(book.slug);
 
   return {
     id: `catalog-${book.slug}`,
     slug: book.slug,
     title: book.title,
     authors: [book.author],
-    description:
-      "A Peacock Books World Classics paperback catalog seed using the publisher-listed ISBN-13 for safer catalog matching.",
-    category: "fiction",
+    description: isSelfHelp
+      ? "A Peacock Books paperback catalog seed for a self-help classic using the publisher-listed ISBN-13 for safer catalog matching."
+      : "A Peacock Books World Classics paperback catalog seed using the publisher-listed ISBN-13 for safer catalog matching.",
+    category: isSelfHelp ? "self-help" : "fiction",
     thumbnail: `https://covers.openlibrary.org/b/isbn/${book.isbn13}-L.jpg`,
     publisher: "Peacock Books",
     publishedDate: book.publishedDate,
@@ -1660,14 +1734,51 @@ function buildPeacockClassicSeedBook(book: {
     language: "English",
     format: "Paperback",
     pages: book.pages,
-    tags: [
-      "peacock classics",
-      "world classic",
-      "classic",
-      "publisher catalog seed",
-    ],
+    tags: isSelfHelp
+      ? ["peacock classics", "self help", "classic", "publisher catalog seed"]
+      : [
+          "peacock classics",
+          "world classic",
+          "classic",
+          "publisher catalog seed",
+        ],
     featuredCollectionSlugs: ["peacock-classics"],
     offers: buildCatalogOffers(book.slug, book.title, [book.author]),
+  };
+}
+
+function buildSelfHelpSeedBook(
+  [
+    rank,
+    slug,
+    title,
+    authors,
+    subCategory,
+    firstPublishedYear,
+    catalogueNote,
+  ]: (typeof SELF_HELP_SEED_ROWS)[number]
+): CatalogBookRecord {
+  void rank;
+  const subCategoryTag = subCategory.toLowerCase();
+
+  return {
+    id: `catalog-${slug}`,
+    slug,
+    title,
+    authors,
+    description: `A self-help and personal-development pick in ${subCategoryTag}, first published in ${firstPublishedYear}. ${catalogueNote}`,
+    category: "self-help",
+    thumbnail: null,
+    publisher: null,
+    publishedDate: firstPublishedYear,
+    isbn13: null,
+    isbn10: null,
+    language: "English",
+    format: "Paperback / common retail edition",
+    pages: null,
+    tags: ["self help", "personal development", subCategoryTag, "seed edition"],
+    featuredCollectionSlugs: [],
+    offers: buildCatalogOffers(slug, title, authors),
   };
 }
 
