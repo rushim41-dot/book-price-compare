@@ -33,8 +33,12 @@ export default function ContactPage() {
         <article className="trust-content-card">
           <h2>Business and affiliate contact</h2>
           <p>
-            Email support@books2buy.org for Amazon Associates, Bookswagon,
-            publisher, partnership, and reader inquiries.
+            Email{" "}
+            <a className="trust-page-link" href="mailto:support@books2buy.org">
+              support@books2buy.org
+            </a>{" "}
+            for Amazon Associates, Bookswagon, publisher, partnership, and reader
+            inquiries.
           </p>
           <p className="trust-muted">
             We review catalog corrections and partnership messages carefully so

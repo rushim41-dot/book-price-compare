@@ -10,7 +10,7 @@ const SITE_URL = (
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://books2buy.org"
 ).replace(/\/$/, "");
 
-const LAST_MODIFIED = new Date("2026-06-26");
+const LAST_MODIFIED = new Date("2026-07-02");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
