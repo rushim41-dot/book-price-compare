@@ -46,29 +46,6 @@ a {
   text-decoration: none;
 }
 
-.book-cover-image-frame {
-  display: grid;
-  width: fit-content;
-  max-width: 100%;
-}
-
-.book-cover-image-frame > * {
-  grid-area: 1 / 1;
-}
-
-.book-cover-image {
-  opacity: 0;
-  transition: opacity 140ms ease;
-}
-
-.book-cover-image-loaded {
-  opacity: 1;
-}
-
-.book-cover-image-hidden {
-  visibility: hidden;
-}
-
 button,
 input {
   font: inherit;
