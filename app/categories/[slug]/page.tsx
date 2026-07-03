@@ -103,6 +103,8 @@ export default async function CategoryPage(props: CategoryPageProps) {
                   height={128}
                   className="catalog-hero-cover"
                   fallbackClassName="catalog-hero-cover fallback-mini-cover"
+                  fallbackText={book.title}
+                  loading="eager"
                 />
               </div>
             ))}

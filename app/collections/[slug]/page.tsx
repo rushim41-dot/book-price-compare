@@ -106,6 +106,8 @@ export default async function CollectionPage(props: CollectionPageProps) {
                   height={128}
                   className="catalog-hero-cover"
                   fallbackClassName="catalog-hero-cover fallback-mini-cover"
+                  fallbackText={book.title}
+                  loading="eager"
                 />
               </div>
             ))}

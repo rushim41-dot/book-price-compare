@@ -216,7 +216,9 @@ export default function Home() {
                   width={64}
                   height={128}
                   className="hero-lean-book-cover"
-                  fallbackClassName="hero-lean-book-cover"
+                  fallbackClassName="hero-lean-book-cover shelf-book-fallback"
+                  fallbackText={book.title}
+                  loading="eager"
                 />
               </div>
             ))}
@@ -241,6 +243,7 @@ export default function Home() {
                   className="hero-book-cover"
                   fallbackClassName="hero-book-fallback"
                   fallbackText={book.title}
+                  loading="eager"
                 />
               </div>
             ))}
@@ -268,6 +271,7 @@ export default function Home() {
                   className="promo-mini-book-cover"
                   fallbackClassName="promo-mini-book-cover promo-mini-book-fallback"
                   fallbackText={book.title}
+                  loading="eager"
                 />
               </div>
             ))}
@@ -293,6 +297,7 @@ export default function Home() {
                   className="promo-mini-book-cover"
                   fallbackClassName="promo-mini-book-cover promo-mini-book-fallback"
                   fallbackText={book.title}
+                  loading="eager"
                 />
               </div>
             ))}
