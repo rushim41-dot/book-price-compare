@@ -339,7 +339,7 @@ function enrichBookWithCatalog(book: SearchableBook): CatalogBook {
 
   return {
     ...book,
-    thumbnail: book.thumbnail ?? trustedMatch?.book.thumbnail ?? null,
+    thumbnail: trustedMatch?.book.thumbnail ?? book.thumbnail ?? null,
     description: trustedMatch?.book.description ?? book.description,
     language: trustedMatch?.book.language ?? book.language,
     pageCount: trustedMatch?.book.pages ?? book.pageCount,

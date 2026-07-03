@@ -1,4 +1,5 @@
 import { scoreQueryAgainstBook } from "@/lib/book-matching";
+import { resolveVerifiedCover } from "@/lib/cover-overrides";
 import { PEACOCK_CLASSICS_SEED_ROWS } from "@/lib/peacock-classics";
 
 export type StoreName = "amazon" | "flipkart" | "bookswagon";
@@ -1003,7 +1004,7 @@ const FIRST_READ_SEED_BOOKS: CatalogBookRecord[] = FIRST_READ_SEED_ROWS.map(
   buildFirstReadSeedBook
 );
 
-export const CATALOG_BOOKS: CatalogBookRecord[] = [
+const RAW_CATALOG_BOOKS: CatalogBookRecord[] = [
   {
     id: "catalog-atomic-habits",
     slug: "atomic-habits",
@@ -1530,6 +1531,20 @@ export const CATALOG_BOOKS: CatalogBookRecord[] = [
     offers: buildCatalogOffers("a-suitable-boy", "A Suitable Boy", ["Vikram Seth"]),
   },
 ];
+
+export const CATALOG_BOOKS: CatalogBookRecord[] = RAW_CATALOG_BOOKS.map(
+  applyCatalogCoverOverride
+);
+
+function applyCatalogCoverOverride(book: CatalogBookRecord): CatalogBookRecord {
+  const thumbnail = resolveVerifiedCover({
+    slug: book.slug,
+    isbn13: book.isbn13,
+    thumbnail: book.thumbnail,
+  });
+
+  return thumbnail === book.thumbnail ? book : { ...book, thumbnail };
+}
 
 export function getCatalogCategories() {
   return CATEGORY_RECORDS;
