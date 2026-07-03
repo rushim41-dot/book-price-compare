@@ -1,5 +1,7 @@
 import type { StoreName } from "@/lib/catalog";
 
+const DEFAULT_AMAZON_AFFILIATE_TAG = "books2buy0e-21";
+
 const STORE_CONFIG: Record<
   StoreName,
   {
@@ -28,7 +30,11 @@ export function buildApprovedStoreLink(store: StoreName, query: string) {
     const url = new URL("/s", STORE_CONFIG.amazon.baseUrl);
     url.searchParams.set("k", normalizedQuery);
     url.searchParams.set("i", "stripbooks");
-    addOptionalParam(url, "tag", process.env.AMAZON_AFFILIATE_TAG);
+    addOptionalParam(
+      url,
+      "tag",
+      process.env.AMAZON_AFFILIATE_TAG ?? DEFAULT_AMAZON_AFFILIATE_TAG
+    );
     return validateApprovedStoreUrl("amazon", url.toString());
   }
 

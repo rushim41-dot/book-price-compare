@@ -1,10 +1,10 @@
 "use client";
-/* eslint-disable @next/next/no-img-element */
 
 import {
   getCatalogCollections,
   getFeaturedCatalogBooks,
 } from "@/lib/catalog";
+import { BookCoverImage } from "@/app/components/BookCoverImage";
 import { StorefrontHeader } from "@/app/components/StorefrontHeader";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -210,7 +210,14 @@ export default function Home() {
           <div className="hero-side-books hero-side-books-left" aria-hidden="true">
             {homepageShelves[0]?.books.slice(0, 4).map((book) => (
               <div key={book.id} className="hero-lean-book">
-                {book.thumbnail ? <img src={book.thumbnail} alt="" width={64} height={128} className="hero-lean-book-cover" /> : null}
+                <BookCoverImage
+                  src={book.thumbnail}
+                  alt=""
+                  width={64}
+                  height={128}
+                  className="hero-lean-book-cover"
+                  fallbackClassName="hero-lean-book-cover"
+                />
               </div>
             ))}
           </div>
@@ -226,11 +233,15 @@ export default function Home() {
           <div className="hero-book-stack hero-book-stack-right hero-book-stack-discovery" aria-hidden="true">
             {heroDiscoveryBooks.map((book) => (
               <div key={book.id} className="hero-book-card">
-                {book.thumbnail ? (
-                  <img src={book.thumbnail} alt="" width={86} height={126} className="hero-book-cover" />
-                ) : (
-                  <div className="hero-book-fallback">{book.title}</div>
-                )}
+                <BookCoverImage
+                  src={book.thumbnail}
+                  alt=""
+                  width={86}
+                  height={126}
+                  className="hero-book-cover"
+                  fallbackClassName="hero-book-fallback"
+                  fallbackText={book.title}
+                />
               </div>
             ))}
           </div>
@@ -249,7 +260,15 @@ export default function Home() {
           <div className="promo-mini-books promo-bestseller-books" aria-hidden="true">
             {promoBestsellers.map((book) => (
               <div key={book.id} className="promo-mini-book">
-                {book.thumbnail ? <img src={book.thumbnail} alt="" width={52} height={90} className="promo-mini-book-cover" /> : null}
+                <BookCoverImage
+                  src={book.thumbnail}
+                  alt=""
+                  width={52}
+                  height={90}
+                  className="promo-mini-book-cover"
+                  fallbackClassName="promo-mini-book-cover promo-mini-book-fallback"
+                  fallbackText={book.title}
+                />
               </div>
             ))}
           </div>
@@ -266,11 +285,15 @@ export default function Home() {
           <div className="promo-mini-books" aria-hidden="true">
             {promoStarterBooks.map((book) => (
               <div key={book.id} className="promo-mini-book">
-                {book.thumbnail ? (
-                  <img src={book.thumbnail} alt="" width={52} height={90} className="promo-mini-book-cover" />
-                ) : (
-                  <div className="promo-mini-book-cover promo-mini-book-fallback">{book.title}</div>
-                )}
+                <BookCoverImage
+                  src={book.thumbnail}
+                  alt=""
+                  width={52}
+                  height={90}
+                  className="promo-mini-book-cover"
+                  fallbackClassName="promo-mini-book-cover promo-mini-book-fallback"
+                  fallbackText={book.title}
+                />
               </div>
             ))}
           </div>
@@ -298,17 +321,15 @@ export default function Home() {
                   {pair.left.books.slice(0, 6).map((book) => (
                     <article key={book.id} className="shelf-book-card compact-book-card">
                       <Link href={`/collections/${pair.left!.slug}`} className="shelf-book-cover-link">
-                        {book.thumbnail ? (
-                          <img
-                            src={book.thumbnail}
-                            alt={book.title}
-                            width={104}
-                            height={156}
-                            className="shelf-book-cover compact-cover"
-                          />
-                        ) : (
-                          <div className="shelf-book-cover shelf-book-fallback compact-cover">{book.title}</div>
-                        )}
+                        <BookCoverImage
+                          src={book.thumbnail}
+                          alt={book.title}
+                          width={104}
+                          height={156}
+                          className="shelf-book-cover compact-cover"
+                          fallbackClassName="shelf-book-cover shelf-book-fallback compact-cover"
+                          fallbackText={book.title}
+                        />
                       </Link>
                       <div className="shelf-book-copy compact-book-copy">
                         <h3>{book.title}</h3>
@@ -337,17 +358,15 @@ export default function Home() {
                   {pair.right.books.slice(0, 6).map((book) => (
                     <article key={book.id} className="shelf-book-card compact-book-card">
                       <Link href={`/collections/${pair.right!.slug}`} className="shelf-book-cover-link">
-                        {book.thumbnail ? (
-                          <img
-                            src={book.thumbnail}
-                            alt={book.title}
-                            width={104}
-                            height={156}
-                            className="shelf-book-cover compact-cover"
-                          />
-                        ) : (
-                          <div className="shelf-book-cover shelf-book-fallback compact-cover">{book.title}</div>
-                        )}
+                        <BookCoverImage
+                          src={book.thumbnail}
+                          alt={book.title}
+                          width={104}
+                          height={156}
+                          className="shelf-book-cover compact-cover"
+                          fallbackClassName="shelf-book-cover shelf-book-fallback compact-cover"
+                          fallbackText={book.title}
+                        />
                       </Link>
                       <div className="shelf-book-copy compact-book-copy">
                         <h3>{book.title}</h3>
@@ -378,17 +397,15 @@ export default function Home() {
                           submitSearch(book.query);
                         }}
                       >
-                        {book.cover ? (
-                          <img
-                            src={book.cover}
-                            alt={book.title}
-                            width={104}
-                            height={156}
-                            className="shelf-book-cover compact-cover"
-                          />
-                        ) : (
-                          <div className="shelf-book-cover shelf-book-fallback compact-cover">{book.title}</div>
-                        )}
+                        <BookCoverImage
+                          src={book.cover}
+                          alt={book.title}
+                          width={104}
+                          height={156}
+                          className="shelf-book-cover compact-cover"
+                          fallbackClassName="shelf-book-cover shelf-book-fallback compact-cover"
+                          fallbackText={book.title}
+                        />
                         <div className="shelf-book-copy compact-book-copy">
                           <h3>{book.title}</h3>
                           <p>{book.author}</p>

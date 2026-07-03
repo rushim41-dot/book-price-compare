@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { BookCoverImage } from "@/app/components/BookCoverImage";
 import { CatalogPagination } from "@/app/components/CatalogPagination";
 import { StorefrontHeader } from "@/app/components/StorefrontHeader";
 import {
@@ -99,16 +99,14 @@ export default async function CollectionPage(props: CollectionPageProps) {
           <div className="catalog-hero-covers" aria-hidden="true">
             {heroBooks.map((book) => (
               <div key={book.id} className="catalog-hero-cover-card">
-                {book.thumbnail ? (
-                  <Image
-                    src={book.thumbnail}
-                    alt=""
-                    width={86}
-                    height={128}
-                    className="catalog-hero-cover"
-                    unoptimized
-                  />
-                ) : null}
+                <BookCoverImage
+                  src={book.thumbnail}
+                  alt=""
+                  width={86}
+                  height={128}
+                  className="catalog-hero-cover"
+                  fallbackClassName="catalog-hero-cover fallback-mini-cover"
+                />
               </div>
             ))}
           </div>
@@ -188,20 +186,15 @@ export default async function CollectionPage(props: CollectionPageProps) {
               <article key={book.id} className="category-book-card">
                 <div className="category-book-cover-wrap">
                   <Link href={`/books/${book.slug}`} className="category-book-cover-link">
-                    {book.thumbnail ? (
-                      <Image
-                        src={book.thumbnail}
-                        alt={book.title}
-                        width={120}
-                        height={176}
-                        className="category-book-cover"
-                        unoptimized
-                      />
-                    ) : (
-                      <div className="category-book-cover fallback-mini-cover">
-                        <span>{book.title}</span>
-                      </div>
-                    )}
+                    <BookCoverImage
+                      src={book.thumbnail}
+                      alt={book.title}
+                      width={120}
+                      height={176}
+                      className="category-book-cover"
+                      fallbackClassName="category-book-cover fallback-mini-cover"
+                      fallbackText={book.title}
+                    />
                   </Link>
                 </div>
 

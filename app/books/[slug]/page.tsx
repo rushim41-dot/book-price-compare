@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { BookCoverImage } from "@/app/components/BookCoverImage";
 import { StorefrontHeader } from "@/app/components/StorefrontHeader";
 import {
   CATALOG_BOOKS,
@@ -68,20 +68,15 @@ export default async function BookPage(props: BookPageProps) {
         <div className="book-detail-grid">
           <aside className="book-cover-panel">
             <div className="book-detail-cover-frame">
-              {book.thumbnail ? (
-                <Image
-                  src={book.thumbnail}
-                  alt={book.title}
-                  width={260}
-                  height={390}
-                  className="book-detail-cover"
-                  unoptimized
-                />
-              ) : (
-                <div className="book-detail-cover book-detail-cover-fallback">
-                  {book.title}
-                </div>
-              )}
+              <BookCoverImage
+                src={book.thumbnail}
+                alt={book.title}
+                width={260}
+                height={390}
+                className="book-detail-cover"
+                fallbackClassName="book-detail-cover book-detail-cover-fallback"
+                fallbackText={book.title}
+              />
             </div>
             <a href="#store-links" className="book-secondary-action">Check stores</a>
           </aside>
@@ -204,18 +199,15 @@ export default async function BookPage(props: BookPageProps) {
           <div className="book-detail-related-grid">
             {relatedBooks.map((related) => (
               <Link key={related.id} href={`/books/${related.slug}`} className="book-related-card">
-                {related.thumbnail ? (
-                  <Image
-                    src={related.thumbnail}
-                    alt={related.title}
-                    width={110}
-                    height={164}
-                    className="category-book-cover"
-                    unoptimized
-                  />
-                ) : (
-                  <div className="category-book-cover fallback-mini-cover">{related.title}</div>
-                )}
+                <BookCoverImage
+                  src={related.thumbnail}
+                  alt={related.title}
+                  width={110}
+                  height={164}
+                  className="category-book-cover"
+                  fallbackClassName="category-book-cover fallback-mini-cover"
+                  fallbackText={related.title}
+                />
                 <strong>{related.title}</strong>
                 <span>{related.authors.join(", ")}</span>
               </Link>
