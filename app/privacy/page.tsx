@@ -34,7 +34,7 @@ export default function PrivacyPage() {
 
         <h2>Future features</h2>
         <p>
-          If we add accounts, saved books, alerts, or verified price tracking, this policy
+          If we add accounts, saved books, or verified exact product links, this policy
           should be updated before those features go live.
         </p>
 

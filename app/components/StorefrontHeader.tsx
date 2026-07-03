@@ -69,20 +69,6 @@ export function StorefrontHeader({
           </button>
         </form>
 
-        <div className="storefront-actions">
-          <a href="#account" className="nav-action">
-            <UserIcon />
-            <span>Account</span>
-          </a>
-          <a href="#wishlist" className="nav-action">
-            <HeartIcon />
-            <span>Wishlist</span>
-          </a>
-          <a href="#cart" className="nav-action">
-            <CartIcon />
-            <span>Cart</span>
-          </a>
-        </div>
       </div>
 
       <nav className="storefront-nav" aria-label="Storefront navigation">
@@ -137,34 +123,10 @@ function SearchIcon() {
   );
 }
 
-function UserIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className="inline-icon">
-      <path d="M20 21a8 8 0 0 0-16 0M12 13a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function HeartIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className="inline-icon">
-      <path d="M20.8 5.6a5.2 5.2 0 0 0-7.4 0L12 7l-1.4-1.4a5.2 5.2 0 1 0-7.4 7.4L12 21.8l8.8-8.8a5.2 5.2 0 0 0 0-7.4Z" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
 function HomeIcon() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" className="inline-icon">
       <path d="m3 11 9-8 9 8M5 10v10h5v-6h4v6h5V10" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function CartIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className="inline-icon">
-      <path d="M3 4h2l2.1 10.2A2 2 0 0 0 9 16h8.4a2 2 0 0 0 1.9-1.4L21 8H6M9 21a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM18 21a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }

@@ -247,7 +247,7 @@ export const GUIDE_RECORDS: GuideRecord[] = [
       {
         heading: "Exact product verification comes later",
         body:
-          "Price tracking should use verified store product URLs, ASINs, or product IDs. Until those are connected, Books2Buy keeps price labels conservative.",
+          "Exact product links should use verified store product URLs, ASINs, or product IDs. Until those are connected, Books2Buy keeps price labels conservative.",
       },
       {
         heading: "This protects readers",

@@ -23,6 +23,15 @@ export default function AffiliateDisclosurePage() {
       </section>
 
       <section className="trust-policy-body">
+        <h2>Amazon Associate disclosure</h2>
+        <p>
+          As an Amazon Associate I earn from qualifying purchases.
+        </p>
+        <p className="trust-muted">
+          Amazon Associate links are added only through approved Amazon link formats
+          after acceptance into the program.
+        </p>
+
         <h2>Our current link policy</h2>
         <p>
           Store buttons open approved outbound searches or verified product links when

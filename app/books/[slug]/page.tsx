@@ -83,7 +83,7 @@ export default async function BookPage(props: BookPageProps) {
                 </div>
               )}
             </div>
-            <button type="button" className="book-secondary-action">Add to wishlist</button>
+            <a href="#store-links" className="book-secondary-action">Check stores</a>
           </aside>
 
           <section className="book-main-panel">
@@ -132,7 +132,7 @@ export default async function BookPage(props: BookPageProps) {
             </div>
           </section>
 
-          <aside className="book-buy-panel">
+          <aside id="store-links" className="book-buy-panel">
             <p className="catalog-kicker">Compare safely</p>
             <h2>Store links</h2>
             <p>We open trusted stores directly. Prices stay hidden until verified.</p>
@@ -157,10 +157,6 @@ export default async function BookPage(props: BookPageProps) {
                 </a>
               ))}
             </div>
-
-            <button type="button" className="book-track-button">
-              Notify me when price tracking is ready
-            </button>
           </aside>
         </div>
       </section>
@@ -173,20 +169,21 @@ export default async function BookPage(props: BookPageProps) {
         </article>
 
         <article className="book-info-card">
-          <p className="catalog-kicker">Price tracking</p>
-          <h2>Price history</h2>
-          <div className="book-price-chart" aria-hidden="true">
-            <span />
-            <span />
-            <span />
-          </div>
-          <p>Tracking will start after verified price sources are connected. No fake price graph is shown.</p>
+          <p className="catalog-kicker">Buying checks</p>
+          <h2>Before you buy</h2>
+          <p>
+            Confirm the final price, delivery estimate, seller, and edition on the
+            store website before placing an order.
+          </p>
         </article>
 
         <article className="book-info-card">
-          <p className="catalog-kicker">Reviews</p>
-          <h2>Reader notes</h2>
-          <p>User reviews and saved-search signals will appear here once accounts are connected.</p>
+          <p className="catalog-kicker">Catalog quality</p>
+          <h2>Edition notes</h2>
+          <p>
+            We keep author, ISBN, publisher, pages, and cover data for matching quality,
+            but store links use the book title unless an exact product URL is verified.
+          </p>
         </article>
       </section>
 

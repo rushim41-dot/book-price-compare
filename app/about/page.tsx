@@ -56,8 +56,8 @@ export default function AboutPage() {
         <h2>Where we are headed</h2>
         <p>
           The next stage is affiliate approval, original buying guides, and verified
-          exact product matching for price tracking. Until then, store links stay safe
-          and prices remain hidden.
+          exact product matching for safer outbound links. Until then, store links
+          stay safe and prices remain hidden.
         </p>
         <Link href="/affiliate-disclosure" className="trust-page-link">
           Read our affiliate disclosure
