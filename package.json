@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "audit:covers": "node scripts/audit-visible-covers.mjs"
+    "audit:covers": "node scripts/audit-visible-covers.mjs",
+    "export:catalog-seed": "node scripts/export-catalog-seed.mjs"
   },
   "dependencies": {
     "next": "16.2.3",

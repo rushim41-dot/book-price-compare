@@ -1,6 +1,6 @@
-import { scoreQueryAgainstBook } from "@/lib/book-matching";
-import { resolveCoverFallback, resolveVerifiedCover } from "@/lib/cover-overrides";
-import { PEACOCK_CLASSICS_SEED_ROWS } from "@/lib/peacock-classics";
+import { scoreQueryAgainstBook } from "./book-matching";
+import { resolveCoverFallback, resolveVerifiedCover } from "./cover-overrides";
+import { PEACOCK_CLASSICS_SEED_ROWS } from "./peacock-classics";
 
 export type StoreName = "amazon" | "flipkart" | "bookswagon";
 
