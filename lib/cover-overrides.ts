@@ -7,10 +7,22 @@ type CoverOverride = {
 
 const COVER_OVERRIDES: CoverOverride[] = [
   {
+    slug: "none-of-this-is-true",
+    isbn13: "9781804940204",
+    thumbnail: "https://covers.openlibrary.org/b/id/14424771-L.jpg",
+    note: "Exact OpenLibrary work cover for the curated UK paperback ISBN, replacing the no-cover ISBN response.",
+  },
+  {
     slug: "life-of-pi",
     isbn13: "9781786891686",
     thumbnail: "https://covers.openlibrary.org/b/id/7537383-L.jpg",
     note: "Curated display cover from an English OpenLibrary edition of the same base work.",
+  },
+  {
+    slug: "gitanjali",
+    isbn13: "9788171676118",
+    thumbnail: "https://covers.openlibrary.org/b/id/8246100-L.jpg",
+    note: "Correct Rabindranath Tagore Gitanjali work cover; the ISBN route resolves to unrelated OpenLibrary metadata.",
   },
 ];
 
