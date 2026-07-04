@@ -160,6 +160,7 @@ export default function Home() {
           title: entry.book?.title ?? entry.query,
           author: formatAuthors(entry.book?.authors ?? []),
           cover: entry.book?.thumbnail ?? null,
+          coverFallback: null,
           count: entry.count,
           query: entry.query,
         }))
@@ -168,6 +169,7 @@ export default function Home() {
         title: book.title,
         author: formatAuthors(book.authors),
         cover: book.thumbnail,
+        coverFallback: book.coverFallback ?? null,
         count: 0,
         query: book.title,
       }));
@@ -212,6 +214,7 @@ export default function Home() {
               <div key={book.id} className="hero-lean-book">
                 <BookCoverImage
                   src={book.thumbnail}
+                  fallbackSrc={book.coverFallback}
                   alt=""
                   width={64}
                   height={128}
@@ -237,6 +240,7 @@ export default function Home() {
               <div key={book.id} className="hero-book-card">
                 <BookCoverImage
                   src={book.thumbnail}
+                  fallbackSrc={book.coverFallback}
                   alt=""
                   width={86}
                   height={126}
@@ -265,6 +269,7 @@ export default function Home() {
               <div key={book.id} className="promo-mini-book">
                 <BookCoverImage
                   src={book.thumbnail}
+                  fallbackSrc={book.coverFallback}
                   alt=""
                   width={52}
                   height={90}
@@ -291,6 +296,7 @@ export default function Home() {
               <div key={book.id} className="promo-mini-book">
                 <BookCoverImage
                   src={book.thumbnail}
+                  fallbackSrc={book.coverFallback}
                   alt=""
                   width={52}
                   height={90}
@@ -328,6 +334,7 @@ export default function Home() {
                       <Link href={`/collections/${pair.left!.slug}`} className="shelf-book-cover-link">
                         <BookCoverImage
                           src={book.thumbnail}
+                          fallbackSrc={book.coverFallback}
                           alt={book.title}
                           width={104}
                           height={156}
@@ -365,6 +372,7 @@ export default function Home() {
                       <Link href={`/collections/${pair.right!.slug}`} className="shelf-book-cover-link">
                         <BookCoverImage
                           src={book.thumbnail}
+                          fallbackSrc={book.coverFallback}
                           alt={book.title}
                           width={104}
                           height={156}
@@ -404,6 +412,7 @@ export default function Home() {
                       >
                         <BookCoverImage
                           src={book.cover}
+                          fallbackSrc={book.coverFallback}
                           alt={book.title}
                           width={104}
                           height={156}

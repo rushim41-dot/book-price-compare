@@ -11,6 +11,7 @@ type BookCoverImageProps = {
   className: string;
   fallbackClassName: string;
   fallbackText?: string;
+  fallbackSrc?: string | null;
   loading?: "eager" | "lazy";
 };
 
@@ -22,12 +23,69 @@ export function BookCoverImage({
   className,
   fallbackClassName,
   fallbackText,
+  fallbackSrc,
   loading = "lazy",
 }: BookCoverImageProps) {
-  const [failedSrc, setFailedSrc] = useState<string | null>(null);
-  const isMissingOrFailed = !src || failedSrc === src;
+  const [failedSources, setFailedSources] = useState<string[]>([]);
+  const primarySrc = src && !failedSources.includes(src) ? src : null;
+  const backupSrc =
+    fallbackSrc && !failedSources.includes(fallbackSrc) ? fallbackSrc : null;
+  const hasAnyImage = Boolean(primarySrc || backupSrc);
 
-  if (isMissingOrFailed) {
+  function markFailed(nextSrc: string) {
+    setFailedSources((currentSources) =>
+      currentSources.includes(nextSrc)
+        ? currentSources
+        : [...currentSources, nextSrc]
+    );
+  }
+
+  if (!hasAnyImage) {
+    return (
+      <div className={`${fallbackClassName} book-cover-image-fallback`}>
+        {fallbackText}
+      </div>
+    );
+  }
+
+  if (backupSrc) {
+    return (
+      <span className="book-cover-stack">
+        <img
+          src={backupSrc}
+          alt=""
+          width={width}
+          height={height}
+          className={className}
+          decoding="async"
+          loading={loading}
+          aria-hidden="true"
+          onError={() => markFailed(backupSrc)}
+        />
+        {primarySrc ? (
+          <img
+            src={primarySrc}
+            alt={alt}
+            width={width}
+            height={height}
+            className={className}
+            decoding="async"
+            loading={loading}
+            onError={() => markFailed(primarySrc)}
+            onLoad={(event) => {
+              const image = event.currentTarget;
+
+              if (image.naturalWidth <= 2 || image.naturalHeight <= 2) {
+                markFailed(primarySrc);
+              }
+            }}
+          />
+        ) : null}
+      </span>
+    );
+  }
+
+  if (!primarySrc) {
     return (
       <div className={`${fallbackClassName} book-cover-image-fallback`}>
         {fallbackText}
@@ -37,19 +95,19 @@ export function BookCoverImage({
 
   return (
     <img
-      src={src}
+      src={primarySrc}
       alt={alt}
       width={width}
       height={height}
       className={className}
       decoding="async"
       loading={loading}
-      onError={() => setFailedSrc(src)}
+      onError={() => markFailed(primarySrc)}
       onLoad={(event) => {
         const image = event.currentTarget;
 
         if (image.naturalWidth <= 2 || image.naturalHeight <= 2) {
-          setFailedSrc(src);
+          markFailed(primarySrc);
         }
       }}
     />

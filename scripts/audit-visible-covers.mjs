@@ -19,9 +19,7 @@ async function main() {
   const books = collectVisibleBooks(catalog);
   const rows = [];
 
-  for (const book of books) {
-    rows.push(await auditBookCover(book));
-  }
+  rows.push(...(await Promise.all(books.map((book) => auditBookCover(book)))));
 
   printRows(rows);
 
@@ -66,13 +64,16 @@ function collectVisibleBooks(catalog) {
 }
 
 async function auditBookCover(book) {
+  const fallbackProbe = book.coverFallback
+    ? await probeUrl(
+        book.coverFallback.startsWith("/")
+          ? new URL(book.coverFallback, baseUrl).href
+          : book.coverFallback
+      )
+    : null;
+
   if (!book.thumbnail) {
-    return {
-      slug: book.slug,
-      title: book.title,
-      status: "missing",
-      detail: "No thumbnail",
-    };
+    return buildFallbackAuditResult(book, fallbackProbe, "No primary thumbnail");
   }
 
   const targetUrl = book.thumbnail.startsWith("/")
@@ -82,21 +83,19 @@ async function auditBookCover(book) {
   const probe = await probeUrl(targetUrl);
 
   if (!probe.ok) {
-    return {
-      slug: book.slug,
-      title: book.title,
-      status: "bad",
-      detail: probe.error ?? `HTTP ${probe.statusCode ?? "unknown"}`,
-    };
+    return buildFallbackAuditResult(
+      book,
+      fallbackProbe,
+      probe.error ?? `Primary HTTP ${probe.statusCode ?? "unknown"}`
+    );
   }
 
   if (probe.bytes <= 1_000) {
-    return {
-      slug: book.slug,
-      title: book.title,
-      status: "bad",
-      detail: `Suspiciously small response (${probe.bytes} bytes)`,
-    };
+    return buildFallbackAuditResult(
+      book,
+      fallbackProbe,
+      `Primary suspiciously small response (${probe.bytes} bytes)`
+    );
   }
 
   return {
@@ -104,6 +103,35 @@ async function auditBookCover(book) {
     title: book.title,
     status: "ok",
     detail: `${probe.statusCode} ${probe.contentType ?? "unknown"} ${probe.bytes}+ bytes`,
+  };
+}
+
+function buildFallbackAuditResult(book, fallbackProbe, primaryProblem) {
+  if (!fallbackProbe) {
+    return {
+      slug: book.slug,
+      title: book.title,
+      status: "bad",
+      detail: primaryProblem,
+    };
+  }
+
+  if (fallbackProbe.ok && fallbackProbe.bytes > 1_000) {
+    return {
+      slug: book.slug,
+      title: book.title,
+      status: "ok",
+      detail: `${primaryProblem}; fallback ok ${fallbackProbe.statusCode} ${fallbackProbe.contentType ?? "unknown"} ${fallbackProbe.bytes}+ bytes`,
+    };
+  }
+
+  return {
+    slug: book.slug,
+    title: book.title,
+    status: "bad",
+    detail: `${primaryProblem}; fallback failed ${
+      fallbackProbe.error ?? `HTTP ${fallbackProbe.statusCode ?? "unknown"}`
+    }`,
   };
 }
 
@@ -119,7 +147,7 @@ function probeUrl(url, redirectCount = 0) {
       parsedUrl,
       {
         method: "GET",
-        timeout: 12_000,
+        timeout: 4_000,
         rejectUnauthorized: !insecureTls,
         headers: {
           Range: `bytes=0-${maxBytes - 1}`,

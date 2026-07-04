@@ -101,6 +101,7 @@ export default async function CollectionPage(props: CollectionPageProps) {
               <div key={book.id} className="catalog-hero-cover-card">
                 <BookCoverImage
                   src={book.thumbnail}
+                  fallbackSrc={book.coverFallback}
                   alt=""
                   width={86}
                   height={128}
@@ -190,6 +191,7 @@ export default async function CollectionPage(props: CollectionPageProps) {
                   <Link href={`/books/${book.slug}`} className="category-book-cover-link">
                     <BookCoverImage
                       src={book.thumbnail}
+                      fallbackSrc={book.coverFallback}
                       alt={book.title}
                       width={120}
                       height={176}

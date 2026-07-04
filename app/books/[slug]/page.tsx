@@ -70,6 +70,7 @@ export default async function BookPage(props: BookPageProps) {
             <div className="book-detail-cover-frame">
               <BookCoverImage
                 src={book.thumbnail}
+                fallbackSrc={book.coverFallback}
                 alt={book.title}
                 width={260}
                 height={390}
@@ -201,6 +202,7 @@ export default async function BookPage(props: BookPageProps) {
               <Link key={related.id} href={`/books/${related.slug}`} className="book-related-card">
                 <BookCoverImage
                   src={related.thumbnail}
+                  fallbackSrc={related.coverFallback}
                   alt={related.title}
                   width={110}
                   height={164}

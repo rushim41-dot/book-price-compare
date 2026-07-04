@@ -1,5 +1,5 @@
 import { scoreQueryAgainstBook } from "@/lib/book-matching";
-import { resolveVerifiedCover } from "@/lib/cover-overrides";
+import { resolveCoverFallback, resolveVerifiedCover } from "@/lib/cover-overrides";
 import { PEACOCK_CLASSICS_SEED_ROWS } from "@/lib/peacock-classics";
 
 export type StoreName = "amazon" | "flipkart" | "bookswagon";
@@ -36,6 +36,7 @@ export type CatalogBookRecord = {
   description: string;
   category: BookCategory;
   thumbnail: string | null;
+  coverFallback?: string | null;
   publisher: string | null;
   publishedDate: string | null;
   isbn13: string | null;
@@ -1542,8 +1543,14 @@ function applyCatalogCoverOverride(book: CatalogBookRecord): CatalogBookRecord {
     isbn13: book.isbn13,
     thumbnail: book.thumbnail,
   });
+  const coverFallback = resolveCoverFallback({
+    slug: book.slug,
+    isbn13: book.isbn13,
+  });
 
-  return thumbnail === book.thumbnail ? book : { ...book, thumbnail };
+  return thumbnail === book.thumbnail && coverFallback === book.coverFallback
+    ? book
+    : { ...book, thumbnail, coverFallback };
 }
 
 export function getCatalogCategories() {
