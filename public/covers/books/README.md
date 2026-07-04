@@ -7,7 +7,9 @@ Do not copy remote OpenLibrary, Amazon, Flipkart, BooksWagon, publisher, or reta
 Use local cover paths from `lib/cover-overrides.ts` only after the asset is approved, for example:
 
 ```ts
-thumbnail: "/covers/books/example-title.jpg"
+thumbnail: "/covers/books/example-title"
 ```
 
 Until then, prefer verified remote cover URLs and document each override note.
+
+The app may also serve generated Books2Buy display covers from `app/covers/books/[slug]/route.ts` for titles whose remote cover routes are unreliable. These are intentionally branded as display covers and must not be treated as official publisher or retailer cover art.
