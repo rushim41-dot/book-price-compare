@@ -79,3 +79,11 @@ npm run db:check
 ```
 
 The script verifies that the seeded catalog is reachable from local code without switching the public site to database reads.
+
+To compare the seeded database against the generated local seed, run:
+
+```bash
+npm run db:compare-catalog
+```
+
+This checks table counts, book identity fields, cover fields, and current safe store-link metadata. Public pages should not switch to database reads until this comparison passes.

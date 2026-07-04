@@ -9,7 +9,8 @@
     "lint": "eslint",
     "audit:covers": "node scripts/audit-visible-covers.mjs",
     "export:catalog-seed": "node scripts/export-catalog-seed.mjs",
-    "db:check": "node scripts/check-database.mjs"
+    "db:check": "node scripts/check-database.mjs",
+    "db:compare-catalog": "node scripts/compare-db-catalog.mjs"
   },
   "dependencies": {
     "next": "16.2.3",
