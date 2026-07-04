@@ -69,3 +69,13 @@ The script writes:
 
 - `db/seed-catalog.sql`: paste into Supabase SQL Editor after `db/schema.sql`.
 - `data/catalog-database-seed.json`: reviewable structured export of the same seed data.
+
+## Database Check
+
+After adding the Supabase pooled connection string to `.env.local` as `DATABASE_URL`, run:
+
+```bash
+npm run db:check
+```
+
+The script verifies that the seeded catalog is reachable from local code without switching the public site to database reads.
