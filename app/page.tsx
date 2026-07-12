@@ -331,7 +331,7 @@ export default function Home() {
                 <div className="book-shelf-grid compact-shelf-grid">
                   {pair.left.books.slice(0, 6).map((book) => (
                     <article key={book.id} className="shelf-book-card compact-book-card">
-                      <Link href={`/collections/${pair.left!.slug}`} className="shelf-book-cover-link">
+                      <Link href={`/books/${book.slug}`} className="shelf-book-cover-link">
                         <BookCoverImage
                           src={book.thumbnail}
                           fallbackSrc={book.coverFallback}
@@ -344,7 +344,7 @@ export default function Home() {
                         />
                       </Link>
                       <div className="shelf-book-copy compact-book-copy">
-                        <h3>{book.title}</h3>
+                        <h3><Link href={`/books/${book.slug}`}>{book.title}</Link></h3>
                         <p>{formatAuthors(book.authors)}</p>
                       </div>
                     </article>
@@ -369,7 +369,7 @@ export default function Home() {
                 <div className="book-shelf-grid compact-shelf-grid">
                   {pair.right.books.slice(0, 6).map((book) => (
                     <article key={book.id} className="shelf-book-card compact-book-card">
-                      <Link href={`/collections/${pair.right!.slug}`} className="shelf-book-cover-link">
+                      <Link href={`/books/${book.slug}`} className="shelf-book-cover-link">
                         <BookCoverImage
                           src={book.thumbnail}
                           fallbackSrc={book.coverFallback}
@@ -382,7 +382,7 @@ export default function Home() {
                         />
                       </Link>
                       <div className="shelf-book-copy compact-book-copy">
-                        <h3>{book.title}</h3>
+                        <h3><Link href={`/books/${book.slug}`}>{book.title}</Link></h3>
                         <p>{formatAuthors(book.authors)}</p>
                       </div>
                     </article>

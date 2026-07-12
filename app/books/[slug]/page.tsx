@@ -3,12 +3,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BookCoverImage } from "@/app/components/BookCoverImage";
 import { StorefrontHeader } from "@/app/components/StorefrontHeader";
+import { CATALOG_BOOKS } from "@/lib/catalog";
 import {
-  CATALOG_BOOKS,
-  getCatalogBookBySlug,
-  getCatalogBooksByCategory,
+  getCatalogBookFromSourceBySlug,
+  getCatalogBooksFromSourceByCategory,
   getCatalogCategoryBySlug,
-} from "@/lib/catalog";
+} from "@/lib/catalog-source";
 import { buildApprovedStoreLink } from "@/lib/store-links";
 
 type BookPageProps = {
@@ -25,7 +25,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata(props: BookPageProps): Promise<Metadata> {
   const { slug } = await props.params;
-  const book = getCatalogBookBySlug(slug);
+  const book = await getCatalogBookFromSourceBySlug(slug);
 
   if (!book) {
     return {
@@ -41,14 +41,14 @@ export async function generateMetadata(props: BookPageProps): Promise<Metadata> 
 
 export default async function BookPage(props: BookPageProps) {
   const { slug } = await props.params;
-  const book = getCatalogBookBySlug(slug);
+  const book = await getCatalogBookFromSourceBySlug(slug);
 
   if (!book) {
     notFound();
   }
 
   const category = getCatalogCategoryBySlug(book.category);
-  const relatedBooks = getCatalogBooksByCategory(book.category)
+  const relatedBooks = (await getCatalogBooksFromSourceByCategory(book.category))
     .filter((item) => item.slug !== book.slug)
     .slice(0, 5);
 
@@ -79,7 +79,6 @@ export default async function BookPage(props: BookPageProps) {
                 fallbackText={book.title}
               />
             </div>
-            <a href="#store-links" className="book-secondary-action">Check stores</a>
           </aside>
 
           <section className="book-main-panel">
@@ -89,7 +88,6 @@ export default async function BookPage(props: BookPageProps) {
 
             <div className="book-rating-row" aria-label="Book metadata">
               <span>Catalog preview</span>
-              <span>No user reviews yet</span>
             </div>
 
             <p className="book-detail-description">{book.description}</p>

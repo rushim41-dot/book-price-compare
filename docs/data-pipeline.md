@@ -53,6 +53,18 @@ This avoids importing millions of books before we know readers need them.
 - `store_offers.link_type = 'verified_product'` only after exact product URL/product ID review.
 - Prices and alerts remain disabled until Amazon approval/agreement and exact product matching are ready.
 
+## Manual Catalog Add Workflow
+
+Use the manual add validator before pasting any new curated books into `lib/catalog.ts`:
+
+```bash
+npm run catalog:add:check -- data/manual-catalog-add.template.json
+```
+
+The validator checks the published catalog plus the candidate file for safe categories, collections, duplicate slugs or titles, title-only store queries, and missing/fake price data. Candidate `offers` can be omitted; the generated snippet uses `buildCatalogOffers(slug, title, authors)` so Amazon, Flipkart, and Bookswagon queries stay title-only.
+
+For a stock-market shelf, prefer a collection such as `investing` first. Keep each book in the existing `personal-finance` or `business` category unless we intentionally add a new category across TypeScript, database seed data, and UI navigation.
+
 ## Scale Plan
 
 Start with hundreds or thousands of high-demand books. Add more from search analytics, curated category lists, public-domain collections, and bestseller demand. Millions of records can wait until the matching and review pipeline is mature.
@@ -69,6 +81,12 @@ The script writes:
 
 - `db/seed-catalog.sql`: paste into Supabase SQL Editor after `db/schema.sql`.
 - `data/catalog-database-seed.json`: reviewable structured export of the same seed data.
+
+To apply the generated catalog seed through the configured `DATABASE_URL`, run:
+
+```bash
+npm run db:seed-catalog
+```
 
 ## Database Check
 

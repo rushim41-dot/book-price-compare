@@ -132,6 +132,7 @@ export function buildCatalogDatabaseSeed(
   const authorSeeds = new Map<string, DatabaseAuthorSeed>();
   const collections = getCatalogCollections();
   const collectionPositions = buildCollectionPositions(collections);
+  const publishedBookSlugs = new Set(books.map((book) => book.slug));
 
   return {
     categories: getCatalogCategories().map((category) => ({ ...category })),
@@ -143,12 +144,14 @@ export function buildCatalogDatabaseSeed(
     books: books.map(toBookSeed),
     authors: collectAuthorSeeds(books, authorSeeds),
     bookAuthors: books.flatMap((book) => toBookAuthorSeeds(book, authorSeeds)),
-    bookCollections: books.flatMap((book) =>
-      book.featuredCollectionSlugs.map((collectionSlug) => ({
-        bookSlug: book.slug,
-        collectionSlug,
-        position: collectionPositions.get(`${collectionSlug}:${book.slug}`) ?? 0,
-      }))
+    bookCollections: collections.flatMap((collection) =>
+      collection.books
+        .filter((book) => publishedBookSlugs.has(book.slug))
+        .map((book) => ({
+          bookSlug: book.slug,
+          collectionSlug: collection.slug,
+          position: collectionPositions.get(`${collection.slug}:${book.slug}`) ?? 0,
+        }))
     ),
     bookTags: books.flatMap((book) =>
       book.tags.map((tag) => ({

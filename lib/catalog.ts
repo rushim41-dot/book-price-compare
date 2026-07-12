@@ -1,6 +1,11 @@
 import { scoreQueryAgainstBook } from "./book-matching";
 import { resolveCoverFallback, resolveVerifiedCover } from "./cover-overrides";
 import { PEACOCK_CLASSICS_SEED_ROWS } from "./peacock-classics";
+import {
+  getPrizeCollectionBookSlugs,
+  PRIZE_CATALOG_SEED_ROWS,
+  PRIZE_COLLECTION_DEFINITIONS,
+} from "./prize-catalog";
 
 export type StoreName = "amazon" | "flipkart" | "bookswagon";
 
@@ -235,25 +240,20 @@ const PEACOCK_CLASSICS_BOOK_SLUGS = PEACOCK_CLASSICS_SEED_ROWS.map(
   ([slug]) => slug
 );
 
-const BOOKER_PRIZE_WINNER_BOOK_SLUGS = [
-  "midnights-children",
-  "life-of-pi",
-  "the-god-of-small-things",
-  "the-white-tiger",
-  "shame",
-];
+const BOOKER_PRIZE_WINNER_BOOK_SLUGS = getPrizeCollectionBookSlugs(
+  "booker-prize-winners"
+);
 
-const NOBEL_PRIZE_WINNER_BOOK_SLUGS = [
-  "gitanjali",
-  "old-man-and-the-sea",
-  "one-hundred-years-of-solitude",
-  "beloved",
-  "the-plague",
-];
+const NOBEL_PRIZE_WINNER_BOOK_SLUGS = getPrizeCollectionBookSlugs(
+  "nobel-prize-winners"
+);
 
 const PRIZE_WINNER_BOOK_SLUGS = [
-  ...BOOKER_PRIZE_WINNER_BOOK_SLUGS,
-  ...NOBEL_PRIZE_WINNER_BOOK_SLUGS,
+  ...new Set(
+    PRIZE_COLLECTION_DEFINITIONS.flatMap(([slug]) =>
+      getPrizeCollectionBookSlugs(slug)
+    )
+  ),
 ];
 
 const FIRST_READ_BOOK_SLUGS = [
@@ -294,6 +294,84 @@ const FIRST_READ_BOOK_SLUGS = [
   "shoe-dog",
 ];
 
+const INVESTING_SEED_ROWS = [
+  ["the-intelligent-investor", "The Intelligent Investor", ["Benjamin Graham"], "personal-finance", "Value investing", "1949", "Core value-investing title; edition details vary widely."],
+  ["security-analysis", "Security Analysis", ["Benjamin Graham", "David L. Dodd"], "business", "Security analysis", "1934", "Foundational valuation and security-analysis text; many editions exist."],
+  ["common-stocks-and-uncommon-profits", "Common Stocks and Uncommon Profits", ["Philip A. Fisher"], "business", "Growth investing", "1958", "Classic business-quality and long-term stock-selection title."],
+  ["one-up-on-wall-street", "One Up On Wall Street", ["Peter Lynch"], "personal-finance", "Stock picking", "1989", "Popular individual-investor book focused on finding understandable businesses."],
+  ["beating-the-street", "Beating the Street", ["Peter Lynch"], "personal-finance", "Stock picking", "1993", "Follow-up Peter Lynch investing title; edition details vary across markets."],
+  ["learn-to-earn", "Learn to Earn", ["Peter Lynch", "John Rothchild"], "personal-finance", "Investing basics", "1995", "Accessible introduction to companies, markets, and stock ownership."],
+  ["a-random-walk-down-wall-street", "A Random Walk Down Wall Street", ["Burton G. Malkiel"], "personal-finance", "Index investing", "1973", "Long-running market and indexing classic; many revised editions exist."],
+  ["the-little-book-of-common-sense-investing", "The Little Book of Common Sense Investing", ["John C. Bogle"], "personal-finance", "Index investing", "2007", "Concise indexing and low-cost fund investing title."],
+  ["the-bogleheads-guide-to-investing", "The Bogleheads' Guide to Investing", ["Taylor Larimore", "Mel Lindauer", "Michael LeBoeuf"], "personal-finance", "Index investing", "2006", "Practical long-term investing guide built around Boglehead principles."],
+  ["the-four-pillars-of-investing", "The Four Pillars of Investing", ["William J. Bernstein"], "personal-finance", "Asset allocation", "2002", "Asset allocation and investing behavior title for long-term investors."],
+  ["the-investors-manifesto", "The Investor's Manifesto", ["William J. Bernstein"], "personal-finance", "Asset allocation", "2009", "Compact long-term investing guide from William J. Bernstein."],
+  ["the-only-investment-guide-youll-ever-need", "The Only Investment Guide You'll Ever Need", ["Andrew Tobias"], "personal-finance", "Investing basics", "1978", "Evergreen personal-finance and investing guide; frequently revised."],
+  ["the-simple-path-to-wealth", "The Simple Path to Wealth", ["J. L. Collins"], "personal-finance", "Financial independence", "2016", "Popular financial-independence and index-fund investing title."],
+  ["the-coffeehouse-investor", "The Coffeehouse Investor", ["Bill Schultheis"], "personal-finance", "Portfolio basics", "1998", "Simple portfolio and long-term investing book for individual investors."],
+  ["the-millionaire-next-door", "The Millionaire Next Door", ["Thomas J. Stanley", "William D. Danko"], "personal-finance", "Wealth habits", "1996", "Research-based wealth habits classic often paired with investing basics."],
+  ["active-value-investing", "Active Value Investing", ["Vitaliy N. Katsenelson"], "business", "Value investing", "2007", "Value-investing book focused on range-bound markets and active stock selection."],
+  ["the-essays-of-warren-buffett", "The Essays of Warren Buffett", ["Warren E. Buffett", "Lawrence A. Cunningham"], "business", "Value investing", "1997", "Curated Buffett shareholder-letter essays; edition details vary."],
+  ["poor-charlies-almanack", "Poor Charlie's Almanack", ["Charles T. Munger"], "business", "Investing wisdom", "2005", "Collected talks and thinking from Charlie Munger; editions vary."],
+  ["the-warren-buffett-way", "The Warren Buffett Way", ["Robert G. Hagstrom"], "business", "Value investing", "1994", "Popular book explaining Warren Buffett's investment approach."],
+  ["buffett-the-making-of-an-american-capitalist", "Buffett: The Making of an American Capitalist", ["Roger Lowenstein"], "business", "Investor biography", "1995", "Major Warren Buffett biography with investment context."],
+  ["the-snowball", "The Snowball", ["Alice Schroeder"], "business", "Investor biography", "2008", "Detailed Warren Buffett biography useful for market and business readers."],
+  ["the-dhandho-investor", "The Dhandho Investor", ["Mohnish Pabrai"], "business", "Value investing", "2007", "Value-investing book focused on low-risk, high-uncertainty opportunities."],
+  ["the-education-of-a-value-investor", "The Education of a Value Investor", ["Guy Spier"], "business", "Value investing", "2014", "Investor memoir about value investing, temperament, and process."],
+  ["value-investing-from-graham-to-buffett-and-beyond", "Value Investing: From Graham to Buffett and Beyond", ["Bruce C. N. Greenwald", "Judd Kahn", "Paul D. Sonkin", "Michael van Biema"], "business", "Value investing", "2001", "Columbia-style value-investing text; editions may vary."],
+  ["the-manual-of-ideas", "The Manual of Ideas", ["John Mihaljevic"], "business", "Idea generation", "2013", "Framework book for sourcing and evaluating investment ideas."],
+  ["you-can-be-a-stock-market-genius", "You Can Be a Stock Market Genius", ["Joel Greenblatt"], "business", "Special situations", "1997", "Special-situations investing classic for advanced stock-market readers."],
+  ["the-little-book-that-still-beats-the-market", "The Little Book That Still Beats the Market", ["Joel Greenblatt"], "personal-finance", "Quant value", "2010", "Accessible magic-formula investing book; revised from the earlier edition."],
+  ["quality-investing", "Quality Investing", ["Lawrence A. Cunningham", "Torkell T. Eide", "Patrick Hargreaves"], "business", "Quality investing", "2016", "Business-quality investing book for long-term stock selection."],
+  ["the-most-important-thing", "The Most Important Thing", ["Howard Marks"], "business", "Market judgment", "2011", "Memo-style investing book on risk, cycles, and second-level thinking."],
+  ["mastering-the-market-cycle", "Mastering the Market Cycle", ["Howard Marks"], "business", "Market cycles", "2018", "Market-cycle investing title focused on risk awareness and timing discipline."],
+  ["margin-of-safety", "Margin of Safety", ["Seth A. Klarman"], "business", "Value investing", "1991", "Well-known value-investing classic; retail availability and editions vary."],
+  ["expectations-investing", "Expectations Investing", ["Alfred Rappaport", "Michael J. Mauboussin"], "business", "Valuation", "2001", "Valuation book focused on market-implied expectations."],
+  ["more-than-you-know", "More Than You Know", ["Michael J. Mauboussin"], "business", "Investment thinking", "2006", "Investment-thinking essays connecting psychology, markets, and process."],
+  ["the-success-equation", "The Success Equation", ["Michael J. Mauboussin"], "business", "Skill and luck", "2012", "Decision-making book on skill, luck, and investment outcomes."],
+  ["narrative-and-numbers", "Narrative and Numbers", ["Aswath Damodaran"], "business", "Valuation", "2017", "Valuation book connecting business stories with numbers."],
+  ["the-little-book-of-valuation", "The Little Book of Valuation", ["Aswath Damodaran"], "business", "Valuation", "2011", "Compact valuation guide for equity and business analysis."],
+  ["investment-valuation", "Investment Valuation", ["Aswath Damodaran"], "business", "Valuation", "1994", "Comprehensive valuation textbook; editions vary."],
+  ["valuation-measuring-and-managing-the-value-of-companies", "Valuation: Measuring and Managing the Value of Companies", ["McKinsey & Company Inc.", "Tim Koller", "Marc Goedhart", "David Wessels"], "business", "Valuation", "1990", "Corporate valuation reference; editions and author listings vary."],
+  ["financial-shenanigans", "Financial Shenanigans", ["Howard M. Schilit"], "business", "Accounting analysis", "1993", "Accounting red-flags book for investors reviewing financial statements."],
+  ["the-financial-numbers-game", "The Financial Numbers Game", ["Charles W. Mulford", "Eugene E. Comiskey"], "business", "Accounting analysis", "2002", "Financial-reporting quality book for accounting-aware investors."],
+  ["the-five-rules-for-successful-stock-investing", "The Five Rules for Successful Stock Investing", ["Pat Dorsey"], "business", "Stock analysis", "2003", "Business analysis and stock-selection guide from Pat Dorsey."],
+  ["the-little-book-that-builds-wealth", "The Little Book That Builds Wealth", ["Pat Dorsey"], "business", "Economic moats", "2008", "Accessible book on economic moats and durable business advantages."],
+  ["the-outsiders", "The Outsiders", ["William N. Thorndike"], "business", "Capital allocation", "2012", "CEO capital-allocation book widely read by long-term investors."],
+  ["100-baggers", "100 Baggers", ["Christopher W. Mayer"], "business", "Long-term compounding", "2015", "Book about long-term stock compounders and multi-bagger investing."],
+  ["the-acquirers-multiple", "The Acquirer's Multiple", ["Tobias E. Carlisle"], "business", "Deep value", "2017", "Deep-value investing book centered on acquisition-value metrics."],
+  ["deep-value", "Deep Value", ["Tobias E. Carlisle"], "business", "Deep value", "2014", "Contrarian and mean-reversion value-investing title."],
+  ["quantitative-value", "Quantitative Value", ["Wesley R. Gray", "Tobias E. Carlisle"], "business", "Quant value", "2012", "Systematic value-investing book for evidence-based stock selection."],
+  ["what-works-on-wall-street", "What Works on Wall Street", ["James P. O'Shaughnessy"], "business", "Factor investing", "1996", "Quantitative factor-investing study; many editions exist."],
+  ["the-little-book-of-value-investing", "The Little Book of Value Investing", ["Christopher H. Browne"], "personal-finance", "Value investing", "2006", "Accessible value-investing guide for individual investors."],
+  ["contrarian-investment-strategies", "Contrarian Investment Strategies", ["David Dreman"], "business", "Contrarian investing", "1979", "Contrarian investing classic; edition details vary widely."],
+  ["winning-the-losers-game", "Winning the Loser's Game", ["Charles D. Ellis"], "personal-finance", "Long-term investing", "1985", "Long-term investing classic emphasizing discipline and costs."],
+  ["common-sense-on-mutual-funds", "Common Sense on Mutual Funds", ["John C. Bogle"], "personal-finance", "Mutual funds", "1999", "Mutual-fund investing classic by John C. Bogle."],
+  ["the-intelligent-asset-allocator", "The Intelligent Asset Allocator", ["William J. Bernstein"], "personal-finance", "Asset allocation", "2000", "Asset-allocation guide for portfolio construction."],
+  ["stocks-for-the-long-run", "Stocks for the Long Run", ["Jeremy J. Siegel"], "business", "Market history", "1994", "Historical stock-return reference; editions vary."],
+  ["against-the-gods", "Against the Gods", ["Peter L. Bernstein"], "business", "Risk history", "1996", "History of risk, probability, and financial thinking."],
+  ["capital-ideas", "Capital Ideas", ["Peter L. Bernstein"], "business", "Market theory", "1992", "History of modern Wall Street and portfolio theory."],
+  ["manias-panics-and-crashes", "Manias, Panics, and Crashes", ["Charles P. Kindleberger", "Robert Z. Aliber"], "business", "Market history", "1978", "Classic financial-crisis and market-mania history; editions vary."],
+  ["extraordinary-popular-delusions-and-the-madness-of-crowds", "Extraordinary Popular Delusions and the Madness of Crowds", ["Charles Mackay"], "business", "Market history", "1841", "Classic crowd-behavior title often read in market-history contexts."],
+  ["reminiscences-of-a-stock-operator", "Reminiscences of a Stock Operator", ["Edwin Lefevre"], "business", "Market history", "1923", "Classic market-operator narrative; many editions exist."],
+  ["market-wizards", "Market Wizards", ["Jack D. Schwager"], "business", "Market interviews", "1989", "Interview collection with major traders and market practitioners."],
+  ["the-new-market-wizards", "The New Market Wizards", ["Jack D. Schwager"], "business", "Market interviews", "1992", "Follow-up market-practitioner interview collection."],
+  ["trading-in-the-zone", "Trading in the Zone", ["Mark Douglas"], "personal-finance", "Trading psychology", "2000", "Trading psychology book included for stock-market readers."],
+  ["how-to-make-money-in-stocks", "How to Make Money in Stocks", ["William J. O'Neil"], "personal-finance", "Growth investing", "1988", "CAN SLIM growth-investing guide; editions vary."],
+  ["the-little-book-of-behavioral-investing", "The Little Book of Behavioral Investing", ["James Montier"], "business", "Behavioral investing", "2010", "Behavioral-finance investing guide focused on investor mistakes."],
+  ["the-art-of-execution", "The Art of Execution", ["Lee Freeman-Shor"], "business", "Portfolio management", "2015", "Portfolio-management book focused on how investors handle winning and losing positions."],
+] satisfies Array<[
+  slug: string,
+  title: string,
+  authors: string[],
+  category: Extract<BookCategory, "business" | "personal-finance">,
+  subCategory: string,
+  firstPublishedYear: string,
+  catalogueNote: string,
+]>;
+
+const INVESTING_BOOK_SLUGS = INVESTING_SEED_ROWS.map(([slug]) => slug);
+
 export const COLLECTION_RECORDS: CollectionRecord[] = [
   {
     slug: "bestsellers",
@@ -330,6 +408,13 @@ export const COLLECTION_RECORDS: CollectionRecord[] = [
       "subtle-art",
       "ikigai",
     ],
+  },
+  {
+    slug: "investing",
+    label: "Investing",
+    description:
+      "Stock market, valuation, investing, and market history books with manually reviewed metadata.",
+    bookSlugs: INVESTING_BOOK_SLUGS,
   },
   {
     slug: "first-book-start-here",
@@ -369,6 +454,15 @@ export const COLLECTION_RECORDS: CollectionRecord[] = [
     description: "Essential works by Nobel laureates from across the world.",
     bookSlugs: NOBEL_PRIZE_WINNER_BOOK_SLUGS,
   },
+  ...PRIZE_COLLECTION_DEFINITIONS.filter(
+    ([slug]) =>
+      slug !== "booker-prize-winners" && slug !== "nobel-prize-winners"
+  ).map(([slug, label, description]) => ({
+    slug,
+    label,
+    description,
+    bookSlugs: getPrizeCollectionBookSlugs(slug),
+  })),
   {
     slug: "indian-authors",
     label: "Indian Authors",
@@ -1001,6 +1095,13 @@ const SELF_HELP_SEED_BOOKS: CatalogBookRecord[] = SELF_HELP_SEED_ROWS.map(
   buildSelfHelpSeedBook
 );
 
+const INVESTING_SEED_BOOKS: CatalogBookRecord[] = INVESTING_SEED_ROWS.map(
+  buildInvestingSeedBook
+);
+
+const PRIZE_CATALOG_SEED_BOOKS: CatalogBookRecord[] =
+  PRIZE_CATALOG_SEED_ROWS.map(buildPrizeCatalogSeedBook);
+
 const FIRST_READ_SEED_BOOKS: CatalogBookRecord[] = FIRST_READ_SEED_ROWS.map(
   buildFirstReadSeedBook
 );
@@ -1490,6 +1591,8 @@ const RAW_CATALOG_BOOKS: CatalogBookRecord[] = [
   ...WORLD_CLASSICS_SEED_BOOKS,
   ...PEACOCK_CLASSICS_SEED_BOOKS,
   ...INDIAN_AUTHORS_SEED_BOOKS,
+  ...INVESTING_SEED_BOOKS,
+  ...PRIZE_CATALOG_SEED_BOOKS,
   ...FIRST_READ_SEED_BOOKS,
   {
     id: "catalog-train-to-pakistan",
@@ -1533,9 +1636,76 @@ const RAW_CATALOG_BOOKS: CatalogBookRecord[] = [
   },
 ];
 
+const DESCRIPTION_METADATA_TAGS = new Set([
+  "seed edition",
+  "high confidence edition",
+  "publisher catalog seed",
+  "prize winner",
+  "award-winning fiction",
+]);
+
 export const CATALOG_BOOKS: CatalogBookRecord[] = RAW_CATALOG_BOOKS.map(
-  applyCatalogCoverOverride
-);
+  applyEditorialCatalogDescription
+).map(applyCatalogCoverOverride);
+
+function applyEditorialCatalogDescription(
+  book: CatalogBookRecord
+): CatalogBookRecord {
+  const baseDescription = ensureSentence(book.description);
+  const authorText = formatEditorialList(book.authors);
+  const collectionSlugs = new Set(book.featuredCollectionSlugs);
+  const topicTags = book.tags
+    .filter(
+      (tag) =>
+        !DESCRIPTION_METADATA_TAGS.has(tag) &&
+        !collectionSlugs.has(tag) &&
+        !tag.endsWith(" edition")
+    )
+    .map(humanizeEditorialLabel)
+    .filter((tag, index, tags) => tags.indexOf(tag) === index)
+    .slice(0, 3);
+  const categoryLabel =
+    CATEGORY_RECORDS.find((category) => category.slug === book.category)?.label ??
+    "Books";
+  const topicText = formatEditorialList(
+    topicTags.length > 0 ? topicTags : [categoryLabel.toLowerCase()]
+  );
+  const shelfText = formatEditorialList(
+    book.featuredCollectionSlugs.length > 0
+      ? book.featuredCollectionSlugs.map(humanizeEditorialLabel)
+      : [categoryLabel]
+  );
+  const contextSentence =
+    book.category === "fiction"
+      ? `${book.title} by ${authorText} sits within ${topicText} and the wider ${shelfText} shelf.`
+      : `${book.title} by ${authorText} focuses on ${topicText} within our ${shelfText} catalogue.`;
+
+  return {
+    ...book,
+    description: `${baseDescription} ${contextSentence}`,
+  };
+}
+
+function ensureSentence(value: string) {
+  const normalized = value.trim().replace(/\s+/g, " ");
+  return /[.!?]$/.test(normalized) ? normalized : `${normalized}.`;
+}
+
+function humanizeEditorialLabel(value: string) {
+  return value.replaceAll("-", " ");
+}
+
+function formatEditorialList(items: readonly string[]) {
+  if (items.length <= 1) {
+    return items[0] ?? "books";
+  }
+
+  if (items.length === 2) {
+    return `${items[0]} and ${items[1]}`;
+  }
+
+  return `${items.slice(0, -1).join(", ")}, and ${items.at(-1)}`;
+}
 
 function applyCatalogCoverOverride(book: CatalogBookRecord): CatalogBookRecord {
   const thumbnail = resolveVerifiedCover({
@@ -1801,6 +1971,66 @@ function buildSelfHelpSeedBook(
     tags: ["self help", "personal development", subCategoryTag, "seed edition"],
     featuredCollectionSlugs: [],
     offers: buildCatalogOffers(slug, title, authors),
+  };
+}
+
+function buildInvestingSeedBook(
+  [
+    slug,
+    title,
+    authors,
+    category,
+    subCategory,
+    firstPublishedYear,
+    catalogueNote,
+  ]: (typeof INVESTING_SEED_ROWS)[number]
+): CatalogBookRecord {
+  const subCategoryTag = subCategory.toLowerCase();
+
+  return {
+    id: `catalog-${slug}`,
+    slug,
+    title,
+    authors,
+    description: `An investing shelf pick in ${subCategoryTag}, first published in ${firstPublishedYear}. ${catalogueNote}`,
+    category,
+    thumbnail: null,
+    publisher: null,
+    publishedDate: firstPublishedYear,
+    isbn13: null,
+    isbn10: null,
+    language: "English",
+    format: "Paperback / common retail edition",
+    pages: null,
+    tags: ["investing", "stock market", subCategoryTag, "seed edition"],
+    featuredCollectionSlugs: ["investing"],
+    offers: buildCatalogOffers(slug, title, authors),
+  };
+}
+
+function buildPrizeCatalogSeedBook(
+  [slug, title, authors, awardYear, collectionSlugs]: (typeof PRIZE_CATALOG_SEED_ROWS)[number]
+): CatalogBookRecord {
+  const featuredCollectionSlugs = collectionSlugs.split("|");
+
+  return {
+    id: `catalog-${slug}`,
+    slug,
+    title,
+    authors: [...authors],
+    description: `A professionally curated prize-book selection associated with the ${awardYear} award year. Edition-specific details remain unclaimed until verified.`,
+    category: "fiction",
+    thumbnail: null,
+    publisher: null,
+    publishedDate: null,
+    isbn13: null,
+    isbn10: null,
+    language: "English",
+    format: "Paperback / common retail edition",
+    pages: null,
+    tags: ["prize winner", "award-winning fiction", ...featuredCollectionSlugs],
+    featuredCollectionSlugs,
+    offers: buildCatalogOffers(slug, title, [...authors]),
   };
 }
 

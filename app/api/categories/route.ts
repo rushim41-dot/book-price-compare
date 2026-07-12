@@ -1,11 +1,15 @@
-import { getCatalogBooksByCategory, getCatalogCategories } from "@/lib/catalog";
+import { getCatalogCategories } from "@/lib/catalog";
+import { getCatalogBooksFromSourceByCategory } from "@/lib/catalog-source";
+
+export const runtime = "nodejs";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const category = searchParams.get("category")?.trim();
+  const categories = getCatalogCategories();
 
   if (category) {
-    const matchedCategory = getCatalogCategories().find((item) => item.slug === category);
+    const matchedCategory = categories.find((item) => item.slug === category);
 
     if (!matchedCategory) {
       return Response.json({ message: "Unknown category." }, { status: 404 });
@@ -13,14 +17,18 @@ export async function GET(request: Request) {
 
     return Response.json({
       category: matchedCategory,
-      books: getCatalogBooksByCategory(matchedCategory.slug),
+      books: await getCatalogBooksFromSourceByCategory(matchedCategory.slug),
     });
   }
 
-  return Response.json({
-    categories: getCatalogCategories().map((item) => ({
+  const categoriesWithCounts = await Promise.all(
+    categories.map(async (item) => ({
       ...item,
-      bookCount: getCatalogBooksByCategory(item.slug).length,
-    })),
+      bookCount: (await getCatalogBooksFromSourceByCategory(item.slug)).length,
+    }))
+  );
+
+  return Response.json({
+    categories: categoriesWithCounts,
   });
 }

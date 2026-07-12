@@ -1,13 +1,12 @@
 import {
-  resolveCatalogMatchByQuery,
-  resolveCatalogMatchForBook,
+  getCatalogBooks,
   getCatalogCategories,
-  getCatalogCollections,
+  getCatalogCollectionsFromSource,
   type BookCategory,
   type CatalogBookRecord,
   type CatalogMatch,
   type StoreName,
-} from "@/lib/catalog";
+} from "@/lib/catalog-source";
 import {
   buildBookIdentityKey,
   hasNonPrimaryBookMarker,
@@ -43,6 +42,8 @@ export async function searchBooks(query: string): Promise<SearchResponse> {
     "Marketplace MVP mode: store buttons use approved outbound search or affiliate links. Live price scraping is intentionally off because it is fragile and can violate store terms.",
     "Prices are only shown when we have a trusted internal catalog match. Otherwise we keep the link safe and leave the price blank.",
   ];
+  const catalogBooksPromise = getCatalogBooks();
+  const catalogCollectionsPromise = getCatalogCollectionsFromSource();
 
   const cachedBooks = await findCachedDiscoveredBooks(trimmedQuery, DEFAULT_SEARCH_LIMIT);
 
@@ -80,9 +81,13 @@ export async function searchBooks(query: string): Promise<SearchResponse> {
     ),
   ]);
 
-  const catalogMatch = resolveCatalogMatchByQuery(trimmedQuery);
+  const [catalogBooks, catalogCollections] = await Promise.all([
+    catalogBooksPromise,
+    catalogCollectionsPromise,
+  ]);
+  const catalogMatch = resolveCatalogMatchByQueryInBooks(trimmedQuery, catalogBooks);
   const categoryRecords = getCatalogCategories();
-  const collectionMatches = getCatalogCollections()
+  const collectionMatches = catalogCollections
     .filter((collection) =>
       collection.books.some((book) => {
         const match = scoreQueryAgainstBook(trimmedQuery, {
@@ -103,7 +108,7 @@ export async function searchBooks(query: string): Promise<SearchResponse> {
     }));
 
   let books = mergedBooks
-    .map((book) => enrichBookWithCatalog(book))
+    .map((book) => enrichBookWithCatalog(book, catalogBooks))
     .sort((left, right) => rankBook(right, trimmedQuery) - rankBook(left, trimmedQuery));
 
   if (books.length === 0 && catalogMatch && isTrustedBookMatch(catalogMatch.confidence)) {
@@ -331,8 +336,11 @@ async function searchOpenLibrary(query: string, limit: number): Promise<Searchab
   });
 }
 
-function enrichBookWithCatalog(book: SearchableBook): CatalogBook {
-  const catalogMatch = resolveCatalogMatchForBook(book);
+function enrichBookWithCatalog(
+  book: SearchableBook,
+  catalogBooks: CatalogBookRecord[]
+): CatalogBook {
+  const catalogMatch = resolveCatalogMatchForBookInBooks(book, catalogBooks);
   const trustedMatch = catalogMatch && isTrustedBookMatch(catalogMatch.confidence)
     ? catalogMatch
     : null;
@@ -458,6 +466,53 @@ function buildFallbackCatalogBook(
 
 function buildStoreSearchText(book: SearchableBook, catalogMatch?: CatalogBookRecord | null) {
   return catalogMatch?.title ?? book.title;
+}
+
+function resolveCatalogMatchForBookInBooks(
+  book: {
+    title: string;
+    authors: string[];
+    isbn13?: string | null;
+    isbn10?: string | null;
+  },
+  catalogBooks: CatalogBookRecord[]
+) {
+  if (book.isbn13 || book.isbn10) {
+    const isbnQuery = book.isbn13 ?? book.isbn10 ?? "";
+    const isbnMatch = resolveCatalogMatchByQueryInBooks(isbnQuery, catalogBooks);
+    if (isbnMatch?.confidence === "exact-isbn") {
+      return isbnMatch;
+    }
+  }
+
+  return resolveCatalogMatchByQueryInBooks(
+    [book.title, ...book.authors].join(" "),
+    catalogBooks
+  );
+}
+
+function resolveCatalogMatchByQueryInBooks(
+  query: string,
+  catalogBooks: CatalogBookRecord[]
+): CatalogMatch | null {
+  return (
+    catalogBooks
+      .map((book) => ({
+        book,
+        ...scoreQueryAgainstBook(query, {
+          title: book.title,
+          authors: book.authors,
+          isbn13: book.isbn13,
+          isbn10: book.isbn10,
+          tags: book.tags,
+        }),
+      }))
+      .filter(
+        (candidate): candidate is CatalogMatch =>
+          candidate.confidence !== null && candidate.score >= 55
+      )
+      .sort((left, right) => right.score - left.score)[0] ?? null
+  );
 }
 
 function isLikelyIdentifierQuery(value: string) {

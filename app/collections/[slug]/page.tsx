@@ -4,11 +4,10 @@ import { notFound } from "next/navigation";
 import { BookCoverImage } from "@/app/components/BookCoverImage";
 import { CatalogPagination } from "@/app/components/CatalogPagination";
 import { StorefrontHeader } from "@/app/components/StorefrontHeader";
+import { getCatalogCategories, getCatalogCollections } from "@/lib/catalog";
 import {
-  getCatalogCategories,
-  getCatalogCollectionBySlug,
-  getCatalogCollections,
-} from "@/lib/catalog";
+  getCatalogCollectionFromSourceBySlug,
+} from "@/lib/catalog-source";
 import {
   CATALOG_PAGE_SIZE,
   getCurrentPage,
@@ -37,7 +36,7 @@ export async function generateMetadata(
   props: CollectionPageProps
 ): Promise<Metadata> {
   const { slug } = await props.params;
-  const collection = getCatalogCollectionBySlug(slug);
+  const collection = await getCatalogCollectionFromSourceBySlug(slug);
 
   if (!collection) {
     return {
@@ -54,7 +53,7 @@ export async function generateMetadata(
 export default async function CollectionPage(props: CollectionPageProps) {
   const { slug } = await props.params;
   const searchParams = props.searchParams ? await props.searchParams : {};
-  const collection = getCatalogCollectionBySlug(slug);
+  const collection = await getCatalogCollectionFromSourceBySlug(slug);
 
   if (!collection) {
     notFound();

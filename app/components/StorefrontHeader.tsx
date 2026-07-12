@@ -7,6 +7,7 @@ import { getCatalogCategories, getCatalogCollections } from "@/lib/catalog";
 const headerCategories = getCatalogCategories();
 const headerCollections = getCatalogCollections();
 const headerShelfSlugs = [
+  "investing",
   "world-classics",
   "peacock-classics",
   "prize-winners",

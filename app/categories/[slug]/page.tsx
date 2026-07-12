@@ -4,12 +4,11 @@ import { notFound } from "next/navigation";
 import { BookCoverImage } from "@/app/components/BookCoverImage";
 import { CatalogPagination } from "@/app/components/CatalogPagination";
 import { StorefrontHeader } from "@/app/components/StorefrontHeader";
+import { getCatalogCategories, getCatalogCategoryBySlug } from "@/lib/catalog";
 import {
-  getCatalogBooksByCategory,
-  getCatalogCategories,
-  getCatalogCategoryBySlug,
-  getCatalogCollections,
-} from "@/lib/catalog";
+  getCatalogBooksFromSourceByCategory,
+  getCatalogCollectionsFromSource,
+} from "@/lib/catalog-source";
 import {
   CATALOG_PAGE_SIZE,
   getCurrentPage,
@@ -60,8 +59,8 @@ export default async function CategoryPage(props: CategoryPageProps) {
     notFound();
   }
 
-  const books = getCatalogBooksByCategory(category.slug);
-  const relatedCollections = getCatalogCollections().filter((collection) =>
+  const books = await getCatalogBooksFromSourceByCategory(category.slug);
+  const relatedCollections = (await getCatalogCollectionsFromSource()).filter((collection) =>
     collection.books.some((book) => book.category === category.slug)
   );
   const heroBooks = books.slice(0, 5);

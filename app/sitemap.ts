@@ -1,9 +1,9 @@
 import type { MetadataRoute } from "next";
+import { getCatalogCategories } from "@/lib/catalog";
 import {
-  CATALOG_BOOKS,
-  getCatalogCategories,
-  getCatalogCollections,
-} from "@/lib/catalog";
+  getCatalogBooks,
+  getCatalogCollectionsFromSource,
+} from "@/lib/catalog-source";
 import { getGuides } from "@/lib/guides";
 
 const SITE_URL = (
@@ -12,7 +12,12 @@ const SITE_URL = (
 
 const LAST_MODIFIED = new Date("2026-07-02");
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const [catalogBooks, catalogCollections] = await Promise.all([
+    getCatalogBooks(),
+    getCatalogCollectionsFromSource(),
+  ]);
+
   const staticRoutes = [
     "",
     "/about",
@@ -42,14 +47,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  const collectionRoutes = getCatalogCollections().map((collection) => ({
+  const collectionRoutes = catalogCollections.map((collection) => ({
     url: `${SITE_URL}/collections/${collection.slug}`,
     lastModified: LAST_MODIFIED,
     changeFrequency: "weekly" as const,
     priority: 0.75,
   }));
 
-  const bookRoutes = CATALOG_BOOKS.map((book) => ({
+  const bookRoutes = catalogBooks.map((book) => ({
     url: `${SITE_URL}/books/${book.slug}`,
     lastModified: LAST_MODIFIED,
     changeFrequency: "monthly" as const,

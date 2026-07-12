@@ -2,7 +2,7 @@ import Link from "next/link";
 import { getCatalogCategories, getCatalogCollections } from "@/lib/catalog";
 
 const footerCollections = getCatalogCollections().filter((collection) =>
-  ["world-classics", "peacock-classics", "prize-winners", "indian-authors"].includes(collection.slug)
+  ["investing", "world-classics", "peacock-classics", "prize-winners", "indian-authors"].includes(collection.slug)
 );
 
 export function SiteFooter() {

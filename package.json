@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "eslint",
     "audit:covers": "node scripts/audit-visible-covers.mjs",
+    "catalog:add:check": "node scripts/validate-manual-catalog-add.mjs",
     "export:catalog-seed": "node scripts/export-catalog-seed.mjs",
+    "db:seed-catalog": "node scripts/apply-catalog-seed.mjs",
     "db:check": "node scripts/check-database.mjs",
     "db:compare-catalog": "node scripts/compare-db-catalog.mjs"
   },
