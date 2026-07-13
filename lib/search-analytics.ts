@@ -2,6 +2,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { normalizeSearchText } from "@/lib/book-matching";
 import type { CatalogBook } from "@/lib/book-types";
+import { canPersistRuntimeFiles } from "@/lib/runtime-file-persistence";
 
 type SearchAnalyticsRecord = {
   normalizedQuery: string;
@@ -27,7 +28,11 @@ export async function recordSearchAnalytics(
   primaryBook: CatalogBook | null
 ) {
   const normalizedQuery = normalizeSearchText(query);
-  if (!normalizedQuery || !isTrackableSearchBook(primaryBook)) {
+  if (
+    !normalizedQuery ||
+    !isTrackableSearchBook(primaryBook) ||
+    !canPersistRuntimeFiles()
+  ) {
     return;
   }
 
@@ -54,8 +59,16 @@ export async function recordSearchAnalytics(
     .sort((left, right) => right.lastSearchedAt.localeCompare(left.lastSearchedAt))
     .slice(0, MAX_SEARCH_ANALYTICS_RECORDS);
 
-  await mkdir(DATA_DIRECTORY, { recursive: true });
-  await writeFile(SEARCH_ANALYTICS_FILE, `${JSON.stringify(trimmedRecords, null, 2)}\n`, "utf8");
+  try {
+    await mkdir(DATA_DIRECTORY, { recursive: true });
+    await writeFile(
+      SEARCH_ANALYTICS_FILE,
+      `${JSON.stringify(trimmedRecords, null, 2)}\n`,
+      "utf8"
+    );
+  } catch (error) {
+    console.warn(`Search analytics write skipped: ${getErrorSummary(error)}`);
+  }
 }
 
 export async function getTopSearchAnalytics(limit = 8) {
@@ -131,4 +144,8 @@ function isSearchAnalyticsRecord(value: unknown): value is SearchAnalyticsRecord
     typeof candidate.count === "number" &&
     typeof candidate.lastSearchedAt === "string"
   );
+}
+
+function getErrorSummary(error: unknown) {
+  return error instanceof Error ? error.message : "unexpected file write error";
 }

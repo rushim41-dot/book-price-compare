@@ -8,6 +8,7 @@ import type {
   DiscoveredBookCacheRecord,
   SearchableBook,
 } from "@/lib/book-types";
+import { canPersistRuntimeFiles } from "@/lib/runtime-file-persistence";
 
 const CACHE_DIRECTORY = path.join(process.cwd(), "data");
 const CACHE_FILE = path.join(CACHE_DIRECTORY, "discovered-books-cache.json");
@@ -43,7 +44,7 @@ export async function persistDiscoveredBooks(
   query: string,
   books: SearchableBook[]
 ): Promise<void> {
-  if (books.length === 0) {
+  if (books.length === 0 || !canPersistRuntimeFiles()) {
     return;
   }
 
@@ -69,8 +70,12 @@ export async function persistDiscoveredBooks(
     .sort((left, right) => right.cachedAt.localeCompare(left.cachedAt))
     .slice(0, MAX_CACHE_RECORDS);
 
-  await mkdir(CACHE_DIRECTORY, { recursive: true });
-  await writeFile(CACHE_FILE, `${JSON.stringify(records, null, 2)}\n`, "utf8");
+  try {
+    await mkdir(CACHE_DIRECTORY, { recursive: true });
+    await writeFile(CACHE_FILE, `${JSON.stringify(records, null, 2)}\n`, "utf8");
+  } catch (error) {
+    console.warn(`Discovered-book cache write skipped: ${getErrorSummary(error)}`);
+  }
 }
 
 async function readCacheRecords(): Promise<DiscoveredBookCacheRecord[]> {
@@ -177,4 +182,8 @@ function sanitizeLanguage(value: string | null) {
 function sanitizeIsbn(value: string | null) {
   const normalized = value?.replace(/[^0-9xX]/g, "").toUpperCase() ?? null;
   return normalized || null;
+}
+
+function getErrorSummary(error: unknown) {
+  return error instanceof Error ? error.message : "unexpected file write error";
 }
